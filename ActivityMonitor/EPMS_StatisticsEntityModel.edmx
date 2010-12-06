@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EPMS_StatisticsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EPMS_StatisticsModelStoreContainer">
+          <EntitySet Name="tbGPdailyactivity" EntityType="EPMS_StatisticsModel.Store.tbGPdailyactivity" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbHealthBoardContacts" EntityType="EPMS_StatisticsModel.Store.tbHealthBoardContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbHealthBoardContacts">
+            <DefiningQuery>SELECT 
+      [tbHealthBoardContacts].[Rid] AS [Rid], 
+      [tbHealthBoardContacts].[HealthBoard] AS [HealthBoard], 
+      [tbHealthBoardContacts].[Contact] AS [Contact]
+      FROM [dbo].[tbHealthBoardContacts] AS [tbHealthBoardContacts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbInactiveSites" EntityType="EPMS_StatisticsModel.Store.tbInactiveSites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbOrganisation" EntityType="EPMS_StatisticsModel.Store.tbOrganisation" store:Type="Tables" store:Schema="dbo" store:Name="tbOrganisation">
+            <DefiningQuery>SELECT 
+      [tbOrganisation].[rid] AS [rid], 
+      [tbOrganisation].[id] AS [id], 
+      [tbOrganisation].[organisationTypeRid] AS [organisationTypeRid], 
+      [tbOrganisation].[shortName] AS [shortName], 
+      [tbOrganisation].[name] AS [name], 
+      [tbOrganisation].[healthBoardName] AS [healthBoardName], 
+      [tbOrganisation].[alternateName] AS [alternateName], 
+      [tbOrganisation].[prsRefreshEnabled] AS [prsRefreshEnabled], 
+      [tbOrganisation].[epsServicesEnabled] AS [epsServicesEnabled], 
+      [tbOrganisation].[startDate] AS [startDate], 
+      [tbOrganisation].[endDate] AS [endDate], 
+      [tbOrganisation].[archived] AS [archived], 
+      [tbOrganisation].[auditCreatedOn] AS [auditCreatedOn], 
+      [tbOrganisation].[auditCreatedBy] AS [auditCreatedBy], 
+      [tbOrganisation].[auditUpdatedOn] AS [auditUpdatedOn], 
+      [tbOrganisation].[auditUpdatedBy] AS [auditUpdatedBy], 
+      [tbOrganisation].[address1] AS [address1], 
+      [tbOrganisation].[address2] AS [address2], 
+      [tbOrganisation].[address3] AS [address3], 
+      [tbOrganisation].[address4] AS [address4], 
+      [tbOrganisation].[postCode] AS [postCode], 
+      [tbOrganisation].[country] AS [country], 
+      [tbOrganisation].[telephone] AS [telephone], 
+      [tbOrganisation].[fax] AS [fax], 
+      [tbOrganisation].[email] AS [email], 
+      [tbOrganisation].[supplier] AS [supplier], 
+      [tbOrganisation].[supplierReference] AS [supplierReference], 
+      [tbOrganisation].[dispensing] AS [dispensing], 
+      [tbOrganisation].[notes] AS [notes]
+      FROM [dbo].[tbOrganisation] AS [tbOrganisation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbOrgSupplier" EntityType="EPMS_StatisticsModel.Store.tbOrgSupplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbSupplierContacts" EntityType="EPMS_StatisticsModel.Store.tbSupplierContacts" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tbGPdailyactivity">
+          <Key>
+            <PropertyRef Name="org" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="org" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="date" Type="smalldatetime" Nullable="false" />
+          <Property Name="amsPrescriptions" Type="smallint" />
+          <Property Name="amsCancellations" Type="smallint" />
+          <Property Name="amsAmendments" Type="smallint" />
+          <Property Name="cmsPrescriptions" Type="smallint" />
+          <Property Name="cmsCancellations" Type="smallint" />
+          <Property Name="cmsUpdatesRequests" Type="smallint" />
+          <Property Name="cmsTreatmentUpdates" Type="smallint" />
+          <Property Name="cmsComplianceUpdates" Type="smallint" />
+          <Property Name="gpRegistrationUpdatesRequests" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'EPMS_Statistics.dbo.tbHealthBoardContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbHealthBoardContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+            <PropertyRef Name="HealthBoard" />
+            <PropertyRef Name="Contact" />
+          </Key>
+          <Property Name="Rid" Type="int" Nullable="false" />
+          <Property Name="HealthBoard" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbInactiveSites">
+          <Key>
+            <PropertyRef Name="Org" />
+          </Key>
+          <Property Name="Org" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="DateEmailSent" Type="smalldatetime" />
+          <Property Name="DateCreated" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="smalldatetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'EPMS_Statistics.dbo.tbOrganisation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbOrganisation">
+          <Key>
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="organisationTypeRid" />
+            <PropertyRef Name="prsRefreshEnabled" />
+            <PropertyRef Name="epsServicesEnabled" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="archived" />
+            <PropertyRef Name="auditCreatedOn" />
+            <PropertyRef Name="auditCreatedBy" />
+          </Key>
+          <Property Name="rid" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="organisationTypeRid" Type="bigint" Nullable="false" />
+          <Property Name="shortName" Type="varchar" MaxLength="15" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="healthBoardName" Type="varchar" MaxLength="255" />
+          <Property Name="alternateName" Type="varchar" MaxLength="255" />
+          <Property Name="prsRefreshEnabled" Type="bit" Nullable="false" />
+          <Property Name="epsServicesEnabled" Type="bit" Nullable="false" />
+          <Property Name="startDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="endDate" Type="smalldatetime" />
+          <Property Name="archived" Type="bit" Nullable="false" />
+          <Property Name="auditCreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="auditCreatedBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="auditUpdatedOn" Type="datetime" />
+          <Property Name="auditUpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="address1" Type="varchar" MaxLength="100" />
+          <Property Name="address2" Type="varchar" MaxLength="100" />
+          <Property Name="address3" Type="varchar" MaxLength="100" />
+          <Property Name="address4" Type="varchar" MaxLength="100" />
+          <Property Name="postCode" Type="varchar" MaxLength="8" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="telephone" Type="varchar" MaxLength="50" />
+          <Property Name="fax" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="supplier" Type="varchar" MaxLength="50" />
+          <Property Name="supplierReference" Type="varchar" MaxLength="50" />
+          <Property Name="dispensing" Type="bit" />
+          <Property Name="notes" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tbOrgSupplier">
+          <Key>
+            <PropertyRef Name="org" />
+          </Key>
+          <Property Name="org" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="epoc" Type="varchar" MaxLength="8" />
+          <Property Name="supplier" Type="varchar" MaxLength="50" />
+          <Property Name="product" Type="varchar" MaxLength="50" />
+          <Property Name="version" Type="varchar" MaxLength="50" />
+          <Property Name="latestMsg" Type="datetime" />
+          <Property Name="X509SerialNumber" Type="varchar" MaxLength="40" />
+          <Property Name="downloaddate" Type="datetime" />
+          <Property Name="AuthCertSerialNumber" Type="varchar" MaxLength="40" />
+          <Property Name="AuthCertDownloadDate" Type="datetime" />
+          <Property Name="ipAddress" Type="varchar" MaxLength="16" />
+          <Property Name="reportingSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="disp" Type="bit" Nullable="false" />
+          <Property Name="extended" Type="bit" />
+          <Property Name="previousSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="previousProduct" Type="varchar" MaxLength="50" />
+          <Property Name="CmsBetaSite" Type="bit" />
+          <Property Name="EpocCertBy" Type="varchar" MaxLength="50" />
+          <Property Name="ResignCertBy" Type="varchar" MaxLength="50" />
+          <Property Name="latestAMS" Type="datetime" />
+          <Property Name="latestCMS" Type="datetime" />
+          <Property Name="latestMAS" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbSupplierContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+          </Key>
+          <Property Name="Rid" Type="int" Nullable="false" />
+          <Property Name="Supplier" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EPMS_StatisticsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EPMS_StatisticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbGPdailyactivity" EntityType="EPMS_StatisticsModel.tbGPdailyactivity" />
+          <EntitySet Name="tbHealthBoardContacts" EntityType="EPMS_StatisticsModel.tbHealthBoardContacts" />
+          <EntitySet Name="tbInactiveSites" EntityType="EPMS_StatisticsModel.tbInactiveSites" />
+          <EntitySet Name="tbOrganisation" EntityType="EPMS_StatisticsModel.tbOrganisation" />
+          <EntitySet Name="tbOrgSupplier" EntityType="EPMS_StatisticsModel.tbOrgSupplier" />
+          <EntitySet Name="tbSupplierContacts" EntityType="EPMS_StatisticsModel.tbSupplierContacts" />
+        </EntityContainer>
+        <EntityType Name="tbGPdailyactivity">
+          <Key>
+            <PropertyRef Name="org" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="org" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="amsPrescriptions" Type="Int16" />
+          <Property Name="amsCancellations" Type="Int16" />
+          <Property Name="amsAmendments" Type="Int16" />
+          <Property Name="cmsPrescriptions" Type="Int16" />
+          <Property Name="cmsCancellations" Type="Int16" />
+          <Property Name="cmsUpdatesRequests" Type="Int16" />
+          <Property Name="cmsTreatmentUpdates" Type="Int16" />
+          <Property Name="cmsComplianceUpdates" Type="Int16" />
+          <Property Name="gpRegistrationUpdatesRequests" Type="Int16" />
+        </EntityType>
+        <EntityType Name="tbHealthBoardContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+            <PropertyRef Name="HealthBoard" />
+            <PropertyRef Name="Contact" />
+          </Key>
+          <Property Name="Rid" Type="Int32" Nullable="false" />
+          <Property Name="HealthBoard" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbInactiveSites">
+          <Key>
+            <PropertyRef Name="Org" />
+          </Key>
+          <Property Name="Org" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="DateEmailSent" Type="DateTime" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <Property Name="DateUpdated" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbOrganisation">
+          <Key>
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="id" />
+            <PropertyRef Name="organisationTypeRid" />
+            <PropertyRef Name="prsRefreshEnabled" />
+            <PropertyRef Name="epsServicesEnabled" />
+            <PropertyRef Name="startDate" />
+            <PropertyRef Name="archived" />
+            <PropertyRef Name="auditCreatedOn" />
+            <PropertyRef Name="auditCreatedBy" />
+          </Key>
+          <Property Name="rid" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="organisationTypeRid" Type="Int64" Nullable="false" />
+          <Property Name="shortName" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="healthBoardName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="alternateName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="prsRefreshEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="epsServicesEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" />
+          <Property Name="endDate" Type="DateTime" />
+          <Property Name="archived" Type="Boolean" Nullable="false" />
+          <Property Name="auditCreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="auditCreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="auditUpdatedOn" Type="DateTime" />
+          <Property Name="auditUpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="address1" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="address3" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="address4" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="postCode" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="country" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="telephone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="fax" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="supplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="supplierReference" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="dispensing" Type="Boolean" />
+          <Property Name="notes" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbOrgSupplier">
+          <Key>
+            <PropertyRef Name="org" />
+          </Key>
+          <Property Name="org" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="epoc" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="supplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="product" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="version" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="latestMsg" Type="DateTime" />
+          <Property Name="X509SerialNumber" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="downloaddate" Type="DateTime" />
+          <Property Name="AuthCertSerialNumber" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="AuthCertDownloadDate" Type="DateTime" />
+          <Property Name="ipAddress" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="reportingSupplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="disp" Type="Boolean" Nullable="false" />
+          <Property Name="extended" Type="Boolean" />
+          <Property Name="previousSupplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="previousProduct" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CmsBetaSite" Type="Boolean" />
+          <Property Name="EpocCertBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ResignCertBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="latestAMS" Type="DateTime" />
+          <Property Name="latestCMS" Type="DateTime" />
+          <Property Name="latestMAS" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="tbSupplierContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+          </Key>
+          <Property Name="Rid" Type="Int32" Nullable="false" />
+          <Property Name="Supplier" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EPMS_StatisticsModelStoreContainer" CdmEntityContainer="EPMS_StatisticsEntities">
+          <EntitySetMapping Name="tbGPdailyactivity"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbGPdailyactivity"><MappingFragment StoreEntitySet="tbGPdailyactivity">
+            <ScalarProperty Name="org" ColumnName="org" />
+            <ScalarProperty Name="date" ColumnName="date" />
+            <ScalarProperty Name="amsPrescriptions" ColumnName="amsPrescriptions" />
+            <ScalarProperty Name="amsCancellations" ColumnName="amsCancellations" />
+            <ScalarProperty Name="amsAmendments" ColumnName="amsAmendments" />
+            <ScalarProperty Name="cmsPrescriptions" ColumnName="cmsPrescriptions" />
+            <ScalarProperty Name="cmsCancellations" ColumnName="cmsCancellations" />
+            <ScalarProperty Name="cmsUpdatesRequests" ColumnName="cmsUpdatesRequests" />
+            <ScalarProperty Name="cmsTreatmentUpdates" ColumnName="cmsTreatmentUpdates" />
+            <ScalarProperty Name="cmsComplianceUpdates" ColumnName="cmsComplianceUpdates" />
+            <ScalarProperty Name="gpRegistrationUpdatesRequests" ColumnName="gpRegistrationUpdatesRequests" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbHealthBoardContacts"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbHealthBoardContacts"><MappingFragment StoreEntitySet="tbHealthBoardContacts">
+            <ScalarProperty Name="Rid" ColumnName="Rid" />
+            <ScalarProperty Name="HealthBoard" ColumnName="HealthBoard" />
+            <ScalarProperty Name="Contact" ColumnName="Contact" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbInactiveSites"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbInactiveSites"><MappingFragment StoreEntitySet="tbInactiveSites">
+            <ScalarProperty Name="Org" ColumnName="Org" />
+            <ScalarProperty Name="DateEmailSent" ColumnName="DateEmailSent" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+            <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbOrganisation"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbOrganisation"><MappingFragment StoreEntitySet="tbOrganisation">
+            <ScalarProperty Name="rid" ColumnName="rid" />
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="organisationTypeRid" ColumnName="organisationTypeRid" />
+            <ScalarProperty Name="shortName" ColumnName="shortName" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="healthBoardName" ColumnName="healthBoardName" />
+            <ScalarProperty Name="alternateName" ColumnName="alternateName" />
+            <ScalarProperty Name="prsRefreshEnabled" ColumnName="prsRefreshEnabled" />
+            <ScalarProperty Name="epsServicesEnabled" ColumnName="epsServicesEnabled" />
+            <ScalarProperty Name="startDate" ColumnName="startDate" />
+            <ScalarProperty Name="endDate" ColumnName="endDate" />
+            <ScalarProperty Name="archived" ColumnName="archived" />
+            <ScalarProperty Name="auditCreatedOn" ColumnName="auditCreatedOn" />
+            <ScalarProperty Name="auditCreatedBy" ColumnName="auditCreatedBy" />
+            <ScalarProperty Name="auditUpdatedOn" ColumnName="auditUpdatedOn" />
+            <ScalarProperty Name="auditUpdatedBy" ColumnName="auditUpdatedBy" />
+            <ScalarProperty Name="address1" ColumnName="address1" />
+            <ScalarProperty Name="address2" ColumnName="address2" />
+            <ScalarProperty Name="address3" ColumnName="address3" />
+            <ScalarProperty Name="address4" ColumnName="address4" />
+            <ScalarProperty Name="postCode" ColumnName="postCode" />
+            <ScalarProperty Name="country" ColumnName="country" />
+            <ScalarProperty Name="telephone" ColumnName="telephone" />
+            <ScalarProperty Name="fax" ColumnName="fax" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="supplier" ColumnName="supplier" />
+            <ScalarProperty Name="supplierReference" ColumnName="supplierReference" />
+            <ScalarProperty Name="dispensing" ColumnName="dispensing" />
+            <ScalarProperty Name="notes" ColumnName="notes" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbOrgSupplier"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbOrgSupplier"><MappingFragment StoreEntitySet="tbOrgSupplier">
+            <ScalarProperty Name="org" ColumnName="org" />
+            <ScalarProperty Name="epoc" ColumnName="epoc" />
+            <ScalarProperty Name="supplier" ColumnName="supplier" />
+            <ScalarProperty Name="product" ColumnName="product" />
+            <ScalarProperty Name="version" ColumnName="version" />
+            <ScalarProperty Name="latestMsg" ColumnName="latestMsg" />
+            <ScalarProperty Name="X509SerialNumber" ColumnName="X509SerialNumber" />
+            <ScalarProperty Name="downloaddate" ColumnName="downloaddate" />
+            <ScalarProperty Name="AuthCertSerialNumber" ColumnName="AuthCertSerialNumber" />
+            <ScalarProperty Name="AuthCertDownloadDate" ColumnName="AuthCertDownloadDate" />
+            <ScalarProperty Name="ipAddress" ColumnName="ipAddress" />
+            <ScalarProperty Name="reportingSupplier" ColumnName="reportingSupplier" />
+            <ScalarProperty Name="disp" ColumnName="disp" />
+            <ScalarProperty Name="extended" ColumnName="extended" />
+            <ScalarProperty Name="previousSupplier" ColumnName="previousSupplier" />
+            <ScalarProperty Name="previousProduct" ColumnName="previousProduct" />
+            <ScalarProperty Name="CmsBetaSite" ColumnName="CmsBetaSite" />
+            <ScalarProperty Name="EpocCertBy" ColumnName="EpocCertBy" />
+            <ScalarProperty Name="ResignCertBy" ColumnName="ResignCertBy" />
+            <ScalarProperty Name="latestAMS" ColumnName="latestAMS" />
+            <ScalarProperty Name="latestCMS" ColumnName="latestCMS" />
+            <ScalarProperty Name="latestMAS" ColumnName="latestMAS" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbSupplierContacts"><EntityTypeMapping TypeName="EPMS_StatisticsModel.tbSupplierContacts"><MappingFragment StoreEntitySet="tbSupplierContacts">
+            <ScalarProperty Name="Rid" ColumnName="Rid" />
+            <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+            <ScalarProperty Name="Contact" ColumnName="Contact" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbGPdailyactivity" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbHealthBoardContacts" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbInactiveSites" Width="1.5" PointX="2.75" PointY="3.75" Height="1.592306315104167" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbOrganisation" Width="1.5" PointX="4.75" PointY="0.75" Height="5.7009895833333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbOrgSupplier" Width="1.5" PointX="6.75" PointY="0.75" Height="4.5505582682291665" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPMS_StatisticsModel.tbSupplierContacts" Width="1.5" PointX="0.75" PointY="6.75" Height="1.4279589843749996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
