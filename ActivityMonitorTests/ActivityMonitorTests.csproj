@@ -68,6 +68,7 @@
     <Compile Include="RepositoryTests\GetSupplierContactsEmailAddressesTests.cs" />
     <Compile Include="RepositoryTests\GetSupplierOrganisationsTests.cs" />
     <Compile Include="RepositoryTests\IsOrganisationActiveTests.cs" />
+    <Compile Include="RepositoryTests\IsOrganisationListedAsInactiveTests.cs" />
     <Compile Include="RepositoryTests\RepositoryTest.cs" />
     <Compile Include="TestHelpers\PopulateTable.cs" />
   </ItemGroup>
