@@ -69,7 +69,11 @@
     <Compile Include="RepositoryTests\GetSupplierOrganisationsTests.cs" />
     <Compile Include="RepositoryTests\IsOrganisationActiveTests.cs" />
     <Compile Include="RepositoryTests\IsOrganisationListedAsInactiveTests.cs" />
+    <Compile Include="RepositoryTests\MarkOrganisationAsActiveTests.cs" />
+    <Compile Include="RepositoryTests\RecordDateInactiveWarningEmailWasSentTests.cs" />
     <Compile Include="RepositoryTests\RepositoryTest.cs" />
+    <Compile Include="RepositoryTests\SaveNewlyInactiveOrganisationTests.cs" />
+    <Compile Include="RepositoryTests\UpdateInactiveOrganisationTests.cs" />
     <Compile Include="TestHelpers\PopulateTable.cs" />
   </ItemGroup>
   <ItemGroup>

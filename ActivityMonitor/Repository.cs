@@ -196,6 +196,8 @@ namespace ActivityMonitor
         // Looks for organisation in tbInactiveSites
         public bool IsOrganisationListedAsInactive(string organisation)
         {
+            // Need to think about how to avoid duplicate rows for org's. Trigger is obvious answer but hard to test (withoout integration tests)
+            // may be more feasible just to add a check here (i.e. if count > 1 => log error)
             var _organisation = (from x in _EPMS_StatisticsContext.tbInactiveSites
                                  where organisation == x.Org
                                  select x);
@@ -209,22 +211,38 @@ namespace ActivityMonitor
         // Saves new inactive site
         public void SaveNewlyInactiveOrganisation(string organisation)
         {
-            tbInactiveSites _inactiveOrganisation = new tbInactiveSites();
-            _inactiveOrganisation.Org = organisation;
-            _inactiveOrganisation.DateEmailSent = null;
-            _inactiveOrganisation.DateCreated = DateTime.Today;
-            // db.AddTotbInactiveSites(_inactiveOrganisation); commented out after playing with my ed data model, below line seems to fit but will need tested
-            _EPMS_StatisticsContext.tbInactiveSites.AddObject(_inactiveOrganisation);
-            _EPMS_StatisticsContext.SaveChanges();
+            try
+            {
+                tbInactiveSites _inactiveOrganisation = new tbInactiveSites();
+                _inactiveOrganisation.Org = organisation;
+                _inactiveOrganisation.DateEmailSent = null;
+                _inactiveOrganisation.DateCreated = DateTime.Today;
+                // db.AddTotbInactiveSites(_inactiveOrganisation); commented out after playing with my ed data model, below line seems to fit but will need tested
+                _EPMS_StatisticsContext.tbInactiveSites.AddObject(_inactiveOrganisation);
+                _EPMS_StatisticsContext.SaveChanges();
+                _log.Add("INFO: New Org Added to tbInactiveSites : " + organisation);
+            }
+            catch (Exception ex)
+            {
+                _log.Add("ERROR: Occured while trying to save new organisation to tbInactiveSites. Org: " + organisation);
+                _log.Add(ex.Message);
+                // throw new Exception(ex.Message);
+            }
         }
 
         // Updates known inactive site 
         public void UpdateInactiveOrganisation(string organisation)
         {
             var _organisation = (from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
-                                 where organisation == InactiveSites.Org
+                                 where InactiveSites.Org == organisation
                                  select InactiveSites)
-                                 .First();
+                                 .FirstOrDefault();
+
+            if (_organisation == null)
+            {
+                _log.Add("ERROR: App attempted to update organisation not present in tbInactiveSites. Org: " + organisation);
+                return;
+            }
 
             _organisation.DateUpdated = DateTime.Today;
             _EPMS_StatisticsContext.SaveChanges();
@@ -236,7 +254,13 @@ namespace ActivityMonitor
             var _organisation = (from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
                                  where organisation == InactiveSites.Org
                                  select InactiveSites)
-                                 .First();
+                                 .FirstOrDefault();
+
+            if (_organisation == null)
+            {
+                _log.Add("ERROR: Tried to remove non-existant organisation from tbInactiveSites. Org: " + organisation);
+                return;
+            }
 
             _EPMS_StatisticsContext.DeleteObject(_organisation);
             _EPMS_StatisticsContext.SaveChanges();
@@ -248,7 +272,13 @@ namespace ActivityMonitor
             var _organisation = (from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
                                  where InactiveSites.Org == organisation
                                  select InactiveSites)
-                                 .First();
+                                 .FirstOrDefault();
+
+            if (_organisation == null)
+            {
+                _log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbInactiveSites. Org: " + organisation);
+                return;
+            }
 
             _organisation.DateEmailSent = DateTime.Today;
             _EPMS_StatisticsContext.SaveChanges();

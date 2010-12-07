@@ -11,6 +11,7 @@
 //------------------------------------------------------------------------------
 using System.Data.EntityClient;
 using System.Data.Objects;
+using System.Linq;
 using ActivityMonitor.EPMS_StatisticsEntitiesMockObjectSet;
 
 namespace ActivityMonitor
@@ -53,6 +54,12 @@ namespace ActivityMonitor
         }
         private IObjectSet<tbSupplierContacts> _tbSupplierContacts;
         public int SaveChanges() { return 0; }   // Had to implement this myself, not sure if it will work....
-        public void DeleteObject(object entity) { }  // Had to implement this myself, not sure if it will work....
+        public void DeleteObject(object entity) 
+        {
+            // Had to write this myself. Only called from tbInactiveSites but need to make this more generic....
+            tbInactiveSites _organisation = (tbInactiveSites)entity;
+            
+            this.tbInactiveSites.DeleteObject(_organisation);
+        }  
     }
 }
