@@ -60,6 +60,29 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
+        public static tbGPdailyactivity AddGPDailyActivityDataRow(string organisation, int daysToSubtractFromDate, bool active)
+        {
+            if (active == true)
+                return AddGPDailyActivityDataRow(organisation, daysToSubtractFromDate);
+
+            tbGPdailyactivity row = new tbGPdailyactivity
+            {
+                org = organisation,
+                date = DateTime.Today,
+                amsPrescriptions = 0,
+                amsAmendments = 0,
+                amsCancellations = 0,
+                cmsPrescriptions = 0,
+                cmsCancellations = 0,
+                cmsUpdatesRequests = 0,
+                cmsTreatmentUpdates = 0,
+                cmsComplianceUpdates = 0,
+                gpRegistrationUpdatesRequests = 0
+            };
+
+            return row;
+        }
+
         public static tbHealthBoardContacts AddHealthBoardContactsDataRow(int rid, string healthBoard, string contact)
         {
             tbHealthBoardContacts row = new tbHealthBoardContacts

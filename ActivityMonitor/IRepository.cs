@@ -8,7 +8,7 @@ namespace ActivityMonitor
         System.Collections.Generic.List<string> GetAllSuppliers();
         System.Collections.Generic.List<string> GetHealthBoardContactsEmailAddresses(string healthBoard);
         System.Collections.Generic.List<string> GetNewlyInactiveSites();
-        tbGPdailyactivity GetOrganisationActivityDetails(string organisation);
+        // tbGPdailyactivity GetOrganisationActivityDetails(string organisation);
         string GetOrganisationHealthBoard(string organisation);
         System.Collections.Generic.List<string> GetSupplierOrganisations(string supplier);
         string GetOrganisationSupplier(string organisation);

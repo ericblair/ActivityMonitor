@@ -172,26 +172,21 @@ namespace ActivityMonitor
             return _organisations.ToList<String>();
         }
 
-        // Returns the most recent dates activity for the organisation passed in
-        // TODO: This query has to accept a date parameter (or keep this as a default and create an overload)
-        public tbGPdailyactivity GetOrganisationActivityDetails(string organisation)
-        {
-            var _orgActivity = (from GPActivity in _EPMS_StatisticsContext.tbGPdailyactivity
-                                where GPActivity.org == organisation
-                                orderby GPActivity.date descending
-                                select GPActivity)
-                                .First();
-
-            return _orgActivity;
-        }
-
         // Checks if organisation has sent particular messages
         public bool IsOrganisationActive(string organisation)
         {
             var _organisation = (from GPActivity in _EPMS_StatisticsContext.tbGPdailyactivity
                                  where GPActivity.org == organisation
+                                 orderby GPActivity.date descending
                                  select GPActivity)
-                                 .First();
+                                 .FirstOrDefault();
+
+            if (_organisation == null)
+            {
+                _log.Add("WARNING: No records found in tbGPDailyActivity for organisation: " + organisation);
+                throw new Exception("WARNING: No records found in tbGPDailyActivity for organisation: " + organisation);
+            }
+
             if (_organisation.amsPrescriptions == 0 && _organisation.gpRegistrationUpdatesRequests == 0)
                 return false;
 
