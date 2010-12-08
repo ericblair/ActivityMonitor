@@ -12,8 +12,8 @@ namespace ActivityMonitor
         {
             Logger log = new Logger();
             EPMS_StatisticsEntities db = new EPMS_StatisticsEntities();
-            Repository repository = new Repository(log, db);
-
+            ActivityMonitor.Repository.Repository repository = new ActivityMonitor.Repository.Repository(log, db);
+            
             try
             {
                 UpdateActivityData updateActivityDate = new UpdateActivityData(repository, log);

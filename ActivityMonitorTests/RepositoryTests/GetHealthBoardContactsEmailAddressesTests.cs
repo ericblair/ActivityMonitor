@@ -14,14 +14,14 @@ namespace ActivityMonitorTests.RepositoryTests
     {
         private IEPMS_StatisticsEntities _mockContext;
         private Mock<ILogger> _log;
-        private ActivityMonitor.Repository _repository;
+        private ActivityMonitor.Repository.Repository _repository;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _mockContext = new EPMS_StatisticsEntitiesMock();
             _log = new Mock<ILogger>();
-            _repository = new ActivityMonitor.Repository(_log.Object, _mockContext);
+            _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
             // Added to setup data for GetHealthBoardContactEmailsAddresses Test
             _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "highland1@healthboard.com"));

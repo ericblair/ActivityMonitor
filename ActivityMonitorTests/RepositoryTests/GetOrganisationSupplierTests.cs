@@ -14,14 +14,14 @@ namespace ActivityMonitorTests.RepositoryTests
     {
         private IEPMS_StatisticsEntities _mockContext;
         private Mock<ILogger> _log;
-        private ActivityMonitor.Repository _repository;
+        private ActivityMonitor.Repository.Repository _repository;
 
         [TestInitialize]
         public void TestInitialize()
         {
             _mockContext = new EPMS_StatisticsEntitiesMock();
             _log = new Mock<ILogger>();
-            _repository = new ActivityMonitor.Repository(_log.Object, _mockContext);
+            _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
             _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
         }

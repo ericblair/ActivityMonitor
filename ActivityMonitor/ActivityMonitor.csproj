@@ -71,7 +71,14 @@
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="ILogger.cs" />
-    <Compile Include="IRepository.cs" />
+    <Compile Include="Repository\GetAllSuppliers.cs" />
+    <Compile Include="Repository\GetHealthBoardContactsEmailAddresses.cs" />
+    <Compile Include="Repository\GetNewlyInactiveSites.cs" />
+    <Compile Include="Repository\GetOrganisationHealthBoard.cs" />
+    <Compile Include="Repository\GetOrganisationSupplier.cs" />
+    <Compile Include="Repository\GetSupplierContactsEmailAddresses.cs" />
+    <Compile Include="Repository\GetSupplierOrganisations.cs" />
+    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="EPMS_StatisticsEntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -81,7 +88,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportInactiveSites.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="Repository\IsOrganisationActive.cs" />
+    <Compile Include="Repository\IsOrganisationListedAsInactive.cs" />
+    <Compile Include="Repository\MarkOrganisationAsActive.cs" />
+    <Compile Include="Repository\RecordDateInactiveWarningEmailWasSent.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\ActivityTableHasBeenUpdated.cs" />
+    <Compile Include="Repository\SaveNewlyInactiveOrganisation.cs" />
+    <Compile Include="Repository\UpdateInactiveOrganisation.cs" />
     <Compile Include="tbGPdailyactivity.cs">
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.tt</DependentUpon>
     </Compile>
