@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Email.cs" />
     <Compile Include="EPMS_StatisticsEntities.cs">
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
     </Compile>
@@ -67,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="IEmail.cs" />
     <Compile Include="IEPMS_StatisticsEntities.cs">
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
     </Compile>

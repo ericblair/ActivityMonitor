@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportInactiveSitesTest.cs" />
     <Compile Include="RepositoryTests\ActivityTableHasBeenUpdatedTests.cs" />
     <Compile Include="RepositoryTests\GetAllSuppliersTests.cs" />
     <Compile Include="RepositoryTests\GetHealthBoardContactsEmailAddressesTests.cs" />
@@ -74,13 +75,22 @@
     <Compile Include="RepositoryTests\RepositoryTest.cs" />
     <Compile Include="RepositoryTests\SaveNewlyInactiveOrganisationTests.cs" />
     <Compile Include="RepositoryTests\UpdateInactiveOrganisationTests.cs" />
-    <Compile Include="TestHelpers\PopulateTable.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddGPDailyActivityDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddHealthBoardContactsDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddInactiveSitesDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddOrganisationDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddOrgSupplierDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddSupplierContactsDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\PopulateTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActivityMonitor\ActivityMonitor.csproj">
       <Project>{9F8A6E12-F09C-452C-8717-153DDE842DDB}</Project>
       <Name>ActivityMonitor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\ActivityMonitor.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

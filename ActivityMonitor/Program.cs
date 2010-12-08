@@ -25,7 +25,7 @@ namespace ActivityMonitor
                 updateActivityDate.UpdateData();
 
                 ReportInactiveSites reportInactiveSites = new ReportInactiveSites(repository, log);
-                reportInactiveSites.SendInactiveReports();
+                //reportInactiveSites.SendInactiveReports();
             }
             catch (Exception ex)
             {
