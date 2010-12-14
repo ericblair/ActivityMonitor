@@ -29,9 +29,15 @@ namespace ActivityMonitor
             //string _supplier = "EMIS";
             List<String> _suppliers = _repository.GetSuppliersToBeChecked();
 
+            if (_suppliers.Count == 0)
+                throw new Exception("Unable to load any suppliers to check. Check config file.");
+
             foreach (string _supplier in _suppliers)
             {
-                List<String> _organisations = ReturnAllSupplierOrganisations(_supplier);
+                List<String> _organisations = _repository.GetSupplierOrganisations(_supplier);
+                if (_organisations.Count == 0)
+                    throw new Exception("Unable to find any organisations to check for supplier: " + _supplier);
+
                 foreach (string _organisation in _organisations)
                 {
                     UpdateOrganisationActivity(_organisation);
@@ -39,7 +45,7 @@ namespace ActivityMonitor
             }
         }
 
-        private void UpdateOrganisationActivity(string organisation)
+        internal void UpdateOrganisationActivity(string organisation)
         {
             // Check to see they are not already listed in tbInactiveSites
             bool _organisationAlreadyKnownToBeInactive = _repository.IsOrganisationListedAsInactive(organisation);
@@ -69,18 +75,7 @@ namespace ActivityMonitor
                     _repository.MarkOrganisationAsActive(organisation);
                     _log.Add("Site no longer inactive: " + organisation);
                 }
-            }  
-        }
-
-        private List<String> LoadSuppliersToCheck()
-        {
-            // Need to update the method this routine calls. Rather than return all suppliers in table, load a list from a config file
-            return _repository.GetAllSuppliers();
-        }
-
-        private List<String> ReturnAllSupplierOrganisations(string supplier)
-        {
-            return _repository.GetSupplierOrganisations(supplier);
+            }
         }
     }
 }

@@ -84,6 +84,7 @@
     <Compile Include="TestHelpers\PopulateDatabaseTables\AddOrgSupplierDataRow.cs" />
     <Compile Include="TestHelpers\PopulateDatabaseTables\AddSupplierContactsDataRow.cs" />
     <Compile Include="TestHelpers\PopulateDatabaseTables\PopulateTable.cs" />
+    <Compile Include="UpdateActivityDataTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActivityMonitor\ActivityMonitor.csproj">

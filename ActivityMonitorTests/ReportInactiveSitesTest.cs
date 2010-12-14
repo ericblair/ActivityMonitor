@@ -21,8 +21,6 @@ namespace ActivityMonitorTests
         [TestInitialize]
         public void TestInitialize()
         {
-            
-
             _mockContext = new EPMS_StatisticsEntitiesMock();
             _log = new Mock<ILogger>();
             // _repository = new Mock<IRepository>(_log.Object, _mockContext);
