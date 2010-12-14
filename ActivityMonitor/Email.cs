@@ -11,11 +11,21 @@ namespace ActivityMonitor
     {
         IRepository _repository;
         ILogger _log;
+        SmtpClient _client;
 
         public Email(IRepository rep, ILogger log)
         {
             _repository = rep;
             _log = log;
+            _client = new SmtpClient();
+        }
+
+        // Added for unit tests
+        public Email(IRepository rep, ILogger log, SmtpClient client)
+        {
+            _repository = rep;
+            _log = log;
+            _client = client;
         }
 
         public void Send(List<String> contacts, string organisation)
@@ -57,7 +67,7 @@ namespace ActivityMonitor
             return true;
         }
 
-        public MailMessage ComposeEmail(List<String> recipients, string organisation)
+        private MailMessage ComposeEmail(List<String> recipients, string organisation)
         {
             // Create the email message
             MailMessage email = new MailMessage();
@@ -70,10 +80,53 @@ namespace ActivityMonitor
                 MailAddress to = new MailAddress(address);
                 email.To.Add(to);
             }
-            email.Subject = "Inactive Organisation:" + organisation;
-            email.Body = "Site: " + organisation + "is currently inactive";
+            email.Subject = CreateEmailSubject(organisation);
+            email.Body = CreateEmailBody(organisation);
 
             return email;
+        }
+
+        private string CreateEmailSubject(string organisation)
+        {
+            string _supplier = _repository.GetOrganisationSupplier(organisation);
+            string _subject = null;
+
+            if (_supplier == "EMIS")
+            {
+                _subject = _repository.GetOrganisationSupplierReference(organisation);
+
+                if (_subject == null) 
+                    throw new Exception("No Supplier Reference could be found to create subject for EMIS inactive report email.");
+            }
+            else
+            {
+                _subject = "Inactive Organisation:" + organisation;
+            }
+
+            return _subject;
+        }
+
+        private string CreateEmailBody(string organisation)
+        {
+            string _supplier = _repository.GetOrganisationSupplier(organisation);
+            string _body = null;
+
+            if (_supplier == "EMIS")
+            {
+                _body = "Transmission Fault in ePharmacy\n\n"
+                        + "Site ("
+                        + _repository.GetOrganisationName(organisation) + ", "
+                        + _repository.GetOrganisationSupplierReference(organisation) + ", "
+                        +  organisation
+                        + ") is reported as being offline. The last AMS [or CMS] message was received on DD/MM/YYYY. Please arrange"
+                        + "for this to be investigated and brought back online as soon as possible.";
+            }
+            else
+            {
+                _body = "Site: " + organisation + "is currently inactive";
+            }
+
+            return _body;
         }
 
         public SmtpClient ConfigureSmtpServer()

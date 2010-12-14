@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace ActivityMonitor
 {
     public interface IRepository
@@ -19,5 +21,8 @@ namespace ActivityMonitor
         void RecordDateInactiveWarningEmailWasSent(string organisation);
         void SaveNewlyInactiveOrganisation(string organisation);
         void UpdateInactiveOrganisation(string organisation);
+        List<String> GetSuppliersToBeChecked();
+        string GetOrganisationSupplierReference(string organisation);
+        string GetOrganisationName(string organisation);
     }
 }

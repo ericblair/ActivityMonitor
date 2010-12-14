@@ -12,7 +12,6 @@ namespace ActivityMonitor.Repository
         {
             string _supplier = null;
 
-            //TODO: Tidy this query!
             _supplier = (from OrgSupplier in _EPMS_StatisticsContext.tbOrgSupplier
                          where OrgSupplier.org == organisation
                          select OrgSupplier.supplier)

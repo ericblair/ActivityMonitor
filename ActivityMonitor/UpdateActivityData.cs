@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -24,7 +25,10 @@ namespace ActivityMonitor
         // This method checks the previous days data for all organisations belonning to the suppliers to be checked
         public void UpdateData()
         {
-            List<String> _suppliers = LoadSuppliersToCheck();  // Ensure LoadSuppliersToCheck throws an error if it finds nothing
+            //List<String> _suppliers = LoadSuppliersToCheck();  // Ensure LoadSuppliersToCheck throws an error if it finds nothing
+            //string _supplier = "EMIS";
+            List<String> _suppliers = _repository.GetSuppliersToBeChecked();
+
             foreach (string _supplier in _suppliers)
             {
                 List<String> _organisations = ReturnAllSupplierOrganisations(_supplier);

@@ -7,14 +7,13 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Return all distinct supplier values from tbOrgSupplier
-        // TODO: rather than return all distict, return all that match values passed loaded from config file
+        // This has been replaced with GetSuppliersToBeChecked() which loads values from the config file.
         public List<String> GetAllSuppliers()
         {
             var _suppliers = (from OrgSupplier in _EPMS_StatisticsContext.tbOrgSupplier
                               orderby OrgSupplier.supplier
                               select OrgSupplier.supplier)
-                            .Distinct();
+                             .Distinct();
 
             if (_suppliers.Count() == 0)
             {
