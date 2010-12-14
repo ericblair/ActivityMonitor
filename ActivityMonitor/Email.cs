@@ -11,17 +11,17 @@ namespace ActivityMonitor
     {
         IRepository _repository;
         ILogger _log;
-        SmtpClient _client;
+        SMTPWrapper _client;
 
         public Email(IRepository rep, ILogger log)
         {
             _repository = rep;
             _log = log;
-            _client = new SmtpClient();
+            _client = new SMTPWrapper(_repository, _log);
         }
 
         // Added for unit tests
-        public Email(IRepository rep, ILogger log, SmtpClient client)
+        public Email(IRepository rep, ILogger log, SMTPWrapper client)
         {
             _repository = rep;
             _log = log;
@@ -32,8 +32,8 @@ namespace ActivityMonitor
         {
             ValidateEmailAddress(contacts);
             MailMessage email = ComposeEmail(contacts, organisation);
-            SmtpClient client = ConfigureSmtpServer();
-            client.Send(email);
+            SmtpClient emailServer = _client.ConfigureSmtpServer();
+            emailServer.Send(email);
         }
 
         private bool ValidateEmailAddress(string emailAddress)
@@ -106,7 +106,7 @@ namespace ActivityMonitor
             return _subject;
         }
 
-        private string CreateEmailBody(string organisation)
+        internal string CreateEmailBody(string organisation)
         {
             string _supplier = _repository.GetOrganisationSupplier(organisation);
             string _body = null;
@@ -127,16 +127,6 @@ namespace ActivityMonitor
             }
 
             return _body;
-        }
-
-        public SmtpClient ConfigureSmtpServer()
-        {
-            // Create SMTP client at mail server location
-            SmtpClient _client = new SmtpClient("192.168.4.190", 25);
-            // Add credentials
-            _client.UseDefaultCredentials = true;
-
-            return _client;
         }
     }
 }

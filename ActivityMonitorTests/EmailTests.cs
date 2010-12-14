@@ -48,9 +48,38 @@ namespace ActivityMonitorTests
         public void Email_CreateEmailSubject_OrganisationSupplierIsEMIS()
         {
             string _organisation = "2345";
+
             string _subject = _email.CreateEmailSubject(_organisation);
 
             Assert.AreEqual(_subject, "EMIS Site");
+        }
+
+        [TestMethod]
+        public void Email_CreateEmailBody_OrganisationSupplierNotEMIS()
+        {
+            string _organisation = "1234";
+
+            string _body = _email.CreateEmailBody(_organisation);
+
+            Assert.AreEqual(_body, "Site: " + _organisation + "is currently inactive");
+        }
+
+        [TestMethod]
+        public void Email_CreateEmailBody_OrganisationSupplierIsEMIS()
+        {
+            string _organisation = "2345";
+
+            string _body = _email.CreateEmailBody(_organisation);
+
+            string _expectedMessage = "Transmission Fault in ePharmacy\n\n"
+                        + "Site ("
+                        + _repository.GetOrganisationName(_organisation) + ", "
+                        + _repository.GetOrganisationSupplierReference(_organisation) + ", "
+                        + _organisation
+                        + ") is reported as being offline. The last AMS [or CMS] message was received on DD/MM/YYYY. Please arrange"
+                        + "for this to be investigated and brought back online as soon as possible.";
+
+            Assert.AreEqual(_body, _expectedMessage);
         }
     }
 }
