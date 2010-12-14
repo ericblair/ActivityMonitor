@@ -86,7 +86,7 @@ namespace ActivityMonitor
             return email;
         }
 
-        private string CreateEmailSubject(string organisation)
+        internal string CreateEmailSubject(string organisation)
         {
             string _supplier = _repository.GetOrganisationSupplier(organisation);
             string _subject = null;
