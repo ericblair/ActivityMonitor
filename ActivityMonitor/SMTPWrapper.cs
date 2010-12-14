@@ -6,7 +6,7 @@ using System.Net.Mail;
 
 namespace ActivityMonitor
 {
-    public class SMTPWrapper
+    public class SMTPWrapper : ActivityMonitor.ISMTPWrapper
     {
         private SmtpClient _client;
         IRepository _repository;
@@ -17,6 +17,9 @@ namespace ActivityMonitor
             _repository = rep;
             _log = log;
         }
+
+        // Unit testing
+        public SMTPWrapper() { }
 
         // Unit testing
         public SMTPWrapper(IRepository rep, ILogger log, SmtpClient client)
@@ -36,6 +39,11 @@ namespace ActivityMonitor
             _client.UseDefaultCredentials = true;
 
             return _client;
+        }
+
+        public void Send(MailMessage msg)
+        {
+            _client.Send(msg);
         }
     }
 }

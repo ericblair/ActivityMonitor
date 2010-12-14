@@ -17,8 +17,10 @@ namespace ActivityMonitorTests
         private IEPMS_StatisticsEntities _mockContext;
         private Mock<ILogger> _log;
         private ActivityMonitor.Repository.Repository _repository;
-        private Mock<SmtpClient> _client;
+        private Mock<ISMTPWrapper> _smtpClient;
         private Email _email;
+
+        private List<String> _contacts;
 
         [TestInitialize]
         public void TestInitialize()
@@ -26,13 +28,18 @@ namespace ActivityMonitorTests
             _mockContext = new EPMS_StatisticsEntitiesMock();
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
-            _email = new Email(_repository, _log.Object);
+            _smtpClient = new Mock<ISMTPWrapper>();
+            _email = new Email(_repository, _log.Object, _smtpClient.Object);
 
             _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
             _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS"));
 
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board", "Non-EMIS Site"));
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board", "EMIS Site"));
+
+            _contacts = new List<string>();
+            _contacts.Add("test1@contacts.com");
+            _contacts.Add("test2@contacts.com");
         }
 
         [TestMethod]
@@ -80,6 +87,32 @@ namespace ActivityMonitorTests
                         + "for this to be investigated and brought back online as soon as possible.";
 
             Assert.AreEqual(_body, _expectedMessage);
+        }
+
+        [TestMethod]
+        public void Email_Send_EmailIsSentToContacts()
+        {
+            //string _organisation = "1234";
+
+            //string _ip = "127.0.0.1";
+            //int _port = 0;
+            //SmtpClient _testSmtpClient  = new SmtpClient(_ip, _port);
+
+            //MailMessage _emailMessage = new MailMessage();
+            //_emailMessage.From = new MailAddress("ePharmacyReports@eps.nds.scot.nhs.uk");
+            //_emailMessage.ReplyTo = new MailAddress("NSS.PSDHelp@nhs.net");
+            //_emailMessage.To.Add("test1@contacts.com");
+            //_emailMessage.To.Add("test2@contacts.com");
+            //_emailMessage.Subject = _email.CreateEmailSubject(_organisation);
+            //_emailMessage.Body = _email.CreateEmailBody(_organisation);
+
+            //_smtpClient.Setup(client => client.ConfigureSmtpServer()).Returns(_testSmtpClient);
+            ////_smtpClient.Setup(client => client.ConfigureSmtpServer()).Returns(new SmtpClient());
+            //_smtpClient.Setup(client => client.Send(It.IsAny<MailMessage>())).Verifiable();
+
+            //_email.Send(_contacts, _organisation);
+
+            //_smtpClient.Verify();
         }
     }
 }

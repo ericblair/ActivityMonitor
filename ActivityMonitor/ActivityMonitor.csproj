@@ -74,6 +74,7 @@
       <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="ILogger.cs" />
+    <Compile Include="ISMTPWrapper.cs" />
     <Compile Include="Repository\GetAllSuppliers.cs" />
     <Compile Include="Repository\GetHealthBoardContactsEmailAddresses.cs" />
     <Compile Include="Repository\GetNewlyInactiveSites.cs" />

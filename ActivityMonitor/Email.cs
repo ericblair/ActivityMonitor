@@ -11,7 +11,7 @@ namespace ActivityMonitor
     {
         IRepository _repository;
         ILogger _log;
-        SMTPWrapper _client;
+        ISMTPWrapper _client;
 
         public Email(IRepository rep, ILogger log)
         {
@@ -21,7 +21,7 @@ namespace ActivityMonitor
         }
 
         // Added for unit tests
-        public Email(IRepository rep, ILogger log, SMTPWrapper client)
+        public Email(IRepository rep, ILogger log, ISMTPWrapper client)
         {
             _repository = rep;
             _log = log;
