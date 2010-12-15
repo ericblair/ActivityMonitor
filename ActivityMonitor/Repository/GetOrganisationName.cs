@@ -12,9 +12,9 @@ namespace ActivityMonitor.Repository
             string _organisationName = null;
 
             _organisationName = (from Org in _EPMS_StatisticsContext.tbOrganisation
-                            where Org.id == organisation
-                            select Org.name)
-                            .FirstOrDefault();
+                                 where Org.id == organisation
+                                 select Org.name)
+                                .FirstOrDefault();
 
             if (_organisationName == null)
             {

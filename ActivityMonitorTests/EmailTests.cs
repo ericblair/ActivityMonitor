@@ -84,8 +84,9 @@ namespace ActivityMonitorTests
                         + _repository.GetOrganisationName(_organisation) + ", "
                         + _repository.GetOrganisationSupplierReference(_organisation) + ", "
                         + _organisation
-                        + ") is reported as being offline. The last AMS [or CMS] message was received on DD/MM/YYYY. Please arrange"
-                        + "for this to be investigated and brought back online as soon as possible.";
+                        + ") is reported as being offline. The last AMS [or CMS] message was received on "
+                        + DateTime.Today.AddDays(-3)
+                        + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
 
             Assert.AreEqual(_body, _expectedMessage);
         }

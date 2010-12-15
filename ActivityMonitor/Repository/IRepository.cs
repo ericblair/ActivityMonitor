@@ -26,5 +26,6 @@ namespace ActivityMonitor
         string GetOrganisationName(string organisation);
         string GetSMTPIPAddress();
         int GetSMTPPortNumber();
+        string GetOrganisationLatestMessageDateTime(string organisation);
     }
 }
