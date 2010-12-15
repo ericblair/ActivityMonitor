@@ -93,10 +93,12 @@ namespace ActivityMonitor
 
             if (_supplier == "EMIS")
             {
-                _subject = _repository.GetOrganisationSupplierReference(organisation);
+                string _supplierRef = _repository.GetOrganisationSupplierReference(organisation);
 
-                if (_subject == null) 
+                if (_supplierRef == null)
                     throw new Exception("No Supplier Reference could be found to create subject for EMIS inactive report email.");
+
+                _subject = "Transmission Fault in ePharmacy " + _supplierRef + " (" + organisation + ")";
             }
             else
             {

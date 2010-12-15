@@ -58,7 +58,8 @@ namespace ActivityMonitorTests
 
             string _subject = _email.CreateEmailSubject(_organisation);
 
-            Assert.AreEqual(_subject, "EMIS Site");
+            //Assert.AreEqual(_subject, "EMIS Site");
+            Assert.AreEqual(_subject, "Transmission Fault in ePharmacy " + "EMIS Site" + " (" + _organisation + ")");
         }
 
         [TestMethod]

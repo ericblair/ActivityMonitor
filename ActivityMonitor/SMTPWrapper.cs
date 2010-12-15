@@ -31,12 +31,17 @@ namespace ActivityMonitor
 
         public SmtpClient ConfigureSmtpServer()
         {
-            string _smtpIP = _repository.GetSMTPIPAddress();
-            int _smtpPort = _repository.GetSMTPPortNumber();
+            // string _smtpIP = _repository.GetSMTPIPAddress();
+            // int _smtpPort = _repository.GetSMTPPortNumber();
             // Create SMTP client at mail server location
-            _client = new SmtpClient(_smtpIP, _smtpPort);
+            //_client = new SmtpClient(_smtpIP, _smtpPort);
             // Add credentials
-            _client.UseDefaultCredentials = true;
+            //_client.UseDefaultCredentials = true;
+
+            // The block commented-out above works (hence it not being deleted)
+            // Moved smtp settings to config file, these are called by using the default constructor for smtpclient
+            // The reason for doing this was to try and get papercut running
+            _client = new SmtpClient();
 
             return _client;
         }
