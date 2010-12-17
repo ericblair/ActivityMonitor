@@ -24,8 +24,6 @@ namespace ActivityMonitor
         List<String> GetSuppliersToBeChecked();
         string GetOrganisationSupplierReference(string organisation);
         string GetOrganisationName(string organisation);
-        string GetSMTPIPAddress();
-        int GetSMTPPortNumber();
-        string GetOrganisationLatestMessageDateTime(string organisation);
+        string GetOrganisationLatestMessageDate(string organisation);
     }
 }

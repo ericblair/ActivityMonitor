@@ -26,7 +26,7 @@ namespace ActivityMonitor
                 filename = filename.Substring(filename.LastIndexOf('\\') + 1);
             int lineNumber = sf.GetFileLineNumber();
 
-            _log.Add(DateTime.Now.ToString() + "  :  " + filename + "  :  " + methodName + "  :  " + lineNumber + "  :  " + message);
+            _log.Add(DateTime.Now.ToString() + "  :  " + filename + "  :  " + methodName + "  :  " + message);
         }
 
         public void Write()

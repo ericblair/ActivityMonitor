@@ -59,7 +59,7 @@ namespace ActivityMonitorTests
             string _subject = _email.CreateEmailSubject(_organisation);
 
             //Assert.AreEqual(_subject, "EMIS Site");
-            Assert.AreEqual(_subject, "Transmission Fault in ePharmacy " + "EMIS Site" + " (" + _organisation + ")");
+            Assert.AreEqual(_subject, "Transmission Fault in ePharmacy CDB" + "EMIS Site" + " (OrgID " + _organisation + ")");
         }
 
         [TestMethod]
@@ -80,12 +80,12 @@ namespace ActivityMonitorTests
             string _body = _email.CreateEmailBody(_organisation);
 
             string _expectedMessage = "Transmission Fault in ePharmacy\n\n"
-                        + "Site ("
-                        + _repository.GetOrganisationName(_organisation) + ", "
-                        + _repository.GetOrganisationSupplierReference(_organisation) + ", "
+                        + "This site ("
+                        + _repository.GetOrganisationName(_organisation) + ", CDB"
+                        + _repository.GetOrganisationSupplierReference(_organisation) + ", OrgID "
                         + _organisation
-                        + ") is reported as being offline. The last AMS [or CMS] message was received on "
-                        + DateTime.Today.AddDays(-3)
+                        + ") is reported as being offline. The last AMS message was received on "
+                        + DateTime.Today.AddDays(-3).ToShortDateString()
                         + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
 
             Assert.AreEqual(_body, _expectedMessage);

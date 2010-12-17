@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Diagnostics;
 
 namespace ActivityMonitor
 {
@@ -16,6 +17,12 @@ namespace ActivityMonitor
             
             try
             {
+                if ((DateTime.Today.DayOfWeek == DayOfWeek.Sunday) || (DateTime.Today.DayOfWeek == DayOfWeek.Monday))
+                {
+                    log.Add("Running app today would pick up weekend activity. Run aborted.");
+                    return;
+                }
+
                 UpdateActivityData updateActivityDate = new UpdateActivityData(repository, log);
                 if (updateActivityDate.CheckActivityDataHasBeenUpdated() == false)
                 {
@@ -29,7 +36,7 @@ namespace ActivityMonitor
             }
             catch (Exception ex)
             {
-                log.Add("EXCEPTION: \r\n" + "Error Message: " + ex.Message + "\r\n" + "Error Stack Trace: " + ex.StackTrace);
+                log.Add("EXCEPTION: \n\n" + "Error Message: " + ex.Message + "\n\n" + "Error Stack Trace: " + ex.StackTrace + "\n\n" + "Inner Exception: " + ex.InnerException);
                 return;
             }
             finally

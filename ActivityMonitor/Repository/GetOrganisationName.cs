@@ -16,7 +16,7 @@ namespace ActivityMonitor.Repository
                                  select Org.name)
                                 .FirstOrDefault();
 
-            if (_organisationName == null)
+            if ((_organisationName == null) || (_organisationName == ""))
             {
                 _log.Add("WARNING: No organisation name was found for organisation: " + organisation);
             }

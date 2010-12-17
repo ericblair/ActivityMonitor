@@ -22,7 +22,8 @@ namespace ActivityMonitor.Repository
                 throw new Exception("WARNING: No records found in tbGPDailyActivity for organisation: " + organisation);
             }
 
-            if (_organisation.amsPrescriptions == 0 && _organisation.gpRegistrationUpdatesRequests == 0)
+            // if (_organisation.amsPrescriptions == 0 && _organisation.gpRegistrationUpdatesRequests == 0)
+            if (_organisation.amsPrescriptions == 0)
                 return false;
 
             return true;

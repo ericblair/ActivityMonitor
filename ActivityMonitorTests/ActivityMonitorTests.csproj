@@ -66,6 +66,9 @@
     <Compile Include="RepositoryTests\GetHealthBoardContactsEmailAddressesTests.cs" />
     <Compile Include="RepositoryTests\GetNewlyInactiveSitesTests.cs" />
     <Compile Include="RepositoryTests\GetOrganisationHealthBoardTests.cs" />
+    <Compile Include="RepositoryTests\GetOrganisationLatestDate.cs" />
+    <Compile Include="RepositoryTests\GetOrganisationNameTests.cs" />
+    <Compile Include="RepositoryTests\GetOrganisationSupplierReference.cs" />
     <Compile Include="RepositoryTests\GetOrganisationSupplierTests.cs" />
     <Compile Include="RepositoryTests\GetSupplierContactsEmailAddressesTests.cs" />
     <Compile Include="RepositoryTests\GetSupplierOrganisationsTests.cs" />

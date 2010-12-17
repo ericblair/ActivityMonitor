@@ -79,11 +79,10 @@
     <Compile Include="Repository\GetHealthBoardContactsEmailAddresses.cs" />
     <Compile Include="Repository\GetNewlyInactiveSites.cs" />
     <Compile Include="Repository\GetOrganisationHealthBoard.cs" />
-    <Compile Include="Repository\GetOrganisationLatestMessageDateTime.cs" />
+    <Compile Include="Repository\GetOrganisationLatestMessageDate.cs" />
     <Compile Include="Repository\GetOrganisationName.cs" />
     <Compile Include="Repository\GetOrganisationSupplier.cs" />
     <Compile Include="Repository\GetOrganisationSupplierReference.cs" />
-    <Compile Include="Repository\GetSMTPPortNumber.cs" />
     <Compile Include="Repository\GetSupplierContactsEmailAddresses.cs" />
     <Compile Include="Repository\GetSupplierOrganisations.cs" />
     <Compile Include="Repository\GetSuppliersToBeChecked.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="ReportInactiveSites.cs" />
     <Compile Include="Repository\IsOrganisationActive.cs" />
     <Compile Include="Repository\IsOrganisationListedAsInactive.cs" />
-    <Compile Include="Repository\GetSMTPIPAddress.cs" />
     <Compile Include="Repository\MarkOrganisationAsActive.cs" />
     <Compile Include="Repository\RecordDateInactiveWarningEmailWasSent.cs" />
     <Compile Include="Repository\Repository.cs" />

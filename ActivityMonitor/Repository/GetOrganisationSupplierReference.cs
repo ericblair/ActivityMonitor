@@ -16,9 +16,10 @@ namespace ActivityMonitor.Repository
                             select Org.supplierReference)
                             .FirstOrDefault();
 
-            if (_supplierRef == null)
+            if ((_supplierRef == null) || (_supplierRef == ""))
             {
                 _log.Add("WARNING: No supplier reference was found for organisation: " + organisation);
+                return "No Supplier Reference Found";
             }
 
             return _supplierRef;

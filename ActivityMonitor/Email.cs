@@ -98,7 +98,7 @@ namespace ActivityMonitor
                 if (_supplierRef == null)
                     throw new Exception("No Supplier Reference could be found to create subject for EMIS inactive report email.");
 
-                _subject = "Transmission Fault in ePharmacy " + _supplierRef + " (" + organisation.Trim() + ")";
+                _subject = "Transmission Fault in ePharmacy CDB" + _supplierRef + " (OrgID " + organisation.Trim() + ")";
             }
             else
             {
@@ -116,12 +116,12 @@ namespace ActivityMonitor
             if (_supplier == "EMIS")
             {
                 _body = "Transmission Fault in ePharmacy\n\n"
-                        + "Site ("
-                        + _repository.GetOrganisationName(organisation) + ", "
-                        + _repository.GetOrganisationSupplierReference(organisation) + ", "
+                        + "This site ("
+                        + _repository.GetOrganisationName(organisation) + ", CDB"
+                        + _repository.GetOrganisationSupplierReference(organisation) + ", OrgID "
                         +  organisation.Trim()
-                        + ") is reported as being offline. The last AMS [or CMS] message was received on "
-                        + _repository.GetOrganisationLatestMessageDateTime(organisation)
+                        + ") is reported as being offline. The last AMS message was received on "
+                        + _repository.GetOrganisationLatestMessageDate(organisation)
                         + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
             }
             else
