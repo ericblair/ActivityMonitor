@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
+using System.Configuration;
 
 namespace ActivityMonitor
 {
@@ -32,6 +34,33 @@ namespace ActivityMonitor
         {
             ValidateEmailAddress(contacts);
             MailMessage email = ComposeEmail(contacts, organisation);
+            SmtpClient emailServer = _client.ConfigureSmtpServer();
+            emailServer.Send(email);
+        }
+
+        public void SendLog()
+        {
+            StreamReader _stream = File.OpenText("_log.txt");
+            string _text = _stream.ReadToEnd();
+            // load contacts
+            List<String> _contacts = null;
+
+            _contacts = new List<string>(ConfigurationManager.AppSettings["LogEmailReceipients"].Split(new char[] { ';' }));
+
+            // send
+            MailMessage email = new MailMessage();
+            MailAddress from = new MailAddress("ePharmacyReports@eps.nds.scot.nhs.uk");
+            email.From = from;
+            MailAddress replyTo = new MailAddress("NSS.PSDHelp@nhs.net");
+            email.ReplyTo = replyTo;
+            foreach (string address in _contacts)
+            {
+                MailAddress to = new MailAddress(address);
+                email.To.Add(to);
+            }
+            email.Subject = "Activity Monitor Log File for Date: " + DateTime.Today.ToShortDateString();
+            email.Body = _text;
+
             SmtpClient emailServer = _client.ConfigureSmtpServer();
             emailServer.Send(email);
         }

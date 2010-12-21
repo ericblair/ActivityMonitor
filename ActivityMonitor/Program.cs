@@ -42,6 +42,8 @@ namespace ActivityMonitor
             finally
             {
                 log.Write();
+                Email _email = new Email(repository, log);
+                _email.SendLog();
             }
         }
     }
