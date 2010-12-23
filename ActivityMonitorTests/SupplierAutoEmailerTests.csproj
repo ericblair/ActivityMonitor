@@ -73,7 +73,9 @@
     <Compile Include="RepositoryTests\GetSupplierContactsEmailAddressesTests.cs" />
     <Compile Include="RepositoryTests\GetSupplierOrganisationsTests.cs" />
     <Compile Include="RepositoryTests\GetSuppliersToBeCheckedTests.cs" />
-    <Compile Include="RepositoryTests\IsOrganisationActiveTests.cs" />
+    <Compile Include="RepositoryTests\IsOrganisationActive.cs" />
+    <Compile Include="RepositoryTests\IsOrganisationDispensingSite.cs" />
+    <Compile Include="RepositoryTests\OrganisationHasSentAMSMessagesTests.cs" />
     <Compile Include="RepositoryTests\IsOrganisationListedAsInactiveTests.cs" />
     <Compile Include="RepositoryTests\MarkOrganisationAsActiveTests.cs" />
     <Compile Include="RepositoryTests\RecordDateInactiveWarningEmailWasSentTests.cs" />
@@ -90,9 +92,9 @@
     <Compile Include="UpdateActivityDataTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ActivityMonitor\ActivityMonitor.csproj">
+    <ProjectReference Include="..\ActivityMonitor\SupplierAutoEmailer.csproj">
       <Project>{9F8A6E12-F09C-452C-8717-153DDE842DDB}</Project>
-      <Name>ActivityMonitor</Name>
+      <Name>SupplierAutoEmailer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

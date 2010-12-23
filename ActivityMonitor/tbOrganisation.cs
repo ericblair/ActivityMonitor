@@ -116,7 +116,7 @@ namespace ActivityMonitor
         }
     
         public virtual string address1
-        {   
+        {
             get;
             set;
         }

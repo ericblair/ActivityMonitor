@@ -23,16 +23,22 @@ namespace ActivityMonitor
                     return;
                 }
 
-                UpdateActivityData updateActivityDate = new UpdateActivityData(repository, log);
-                if (updateActivityDate.CheckActivityDataHasBeenUpdated() == false)
+                UpdateActivityData updateActivityData = new UpdateActivityData(repository, log);
+                if (updateActivityData.CheckActivityDataHasBeenUpdated() == false)
                 {
                     log.Add("tbGPDailyActivity was not updated yesterday");
                     return;
                 }
-                updateActivityDate.UpdateData();
+                updateActivityData.UpdateData();
+
+                // this is probably the best location to insert a check 
+                // for the number of emails to be sent
 
                 ReportInactiveSites reportInactiveSites = new ReportInactiveSites(repository, log);
-                reportInactiveSites.SendInactiveReports();
+                if (reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded() == false)
+                {
+                    reportInactiveSites.SendInactiveReports();
+                }
             }
             catch (Exception ex)
             {

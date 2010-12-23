@@ -1,11 +1,11 @@
 ﻿using ActivityMonitor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using ActivityMonitorTests.TestHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ActivityMonitorTests.TestHelpers;
 
 namespace ActivityMonitorTests.RepositoryTests
 {

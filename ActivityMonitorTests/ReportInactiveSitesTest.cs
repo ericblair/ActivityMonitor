@@ -31,6 +31,80 @@ namespace ActivityMonitorTests
             // _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow())
         }
 
+        [TestMethod]
+        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_NoIactiveSites_LogInfo_ReturnsFalse()
+        {
+            // Going to need a proper repository for this test
+            ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
+            _reportInactiveSites = new ReportInactiveSites(_repository, _log.Object, _email.Object);
+
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", DateTime.Today, DateTime.Today, null));
+
+            bool _limitExceeded = _reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded();
+
+            _log.Verify(log => log.Add("No newly inactive sites"));
+            Assert.IsFalse(_limitExceeded);
+        }
+
+        [TestMethod]
+        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitNotExceeded_ReturnsFalse()
+        {
+            // Going to need a proper repository for this test
+            ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
+            _reportInactiveSites = new ReportInactiveSites(_repository, _log.Object, _email.Object);
+
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3456", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("4567", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("5678", null, DateTime.Today, null));
+
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("3456", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("4567", "Grampian Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("5678", "Grampian Health Board"));
+
+            bool _limitExceeded = _reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded();
+
+            Assert.IsFalse(_limitExceeded);
+        }
+
+        [TestMethod]
+        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitExceeded_ReturnsTrue()
+        {
+            // Going to need a proper repository for this test
+            ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
+            _reportInactiveSites = new ReportInactiveSites(_repository, _log.Object, _email.Object);
+
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("0000", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1111", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2222", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3333", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("4444", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("5555", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("6666", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("7777", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("8888", null, DateTime.Today, null));
+            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("9999", null, DateTime.Today, null));
+
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("0000", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1111", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2222", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("3333", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("4444", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("5555", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("6666", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("7777", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("8888", "Highland Health Board"));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("9999", "Highland Health Board"));
+
+            bool _limitExceeded = _reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded();
+
+            _log.Verify(log => log.Add("WARNING: Healthboard limit exceeded for : Highland Health Board : number of inactive sites: 10"));
+            Assert.IsTrue(_limitExceeded);
+        }
+
         [TestMethod()]
         public void SendInactiveReports_NoInactiveOrganisations_NoReportsSent()
         {

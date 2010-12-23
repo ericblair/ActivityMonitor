@@ -9,7 +9,7 @@ using System.Text;
 namespace ActivityMonitorTests.RepositoryTests
 {
     [TestClass]
-    public class IsOrganisationActiveTests
+    public class OrganisationHasSentAMSMessagesTests
     {
         private IEPMS_StatisticsEntities _mockContext;
         private Mock<ILogger> _log;
@@ -25,37 +25,37 @@ namespace ActivityMonitorTests.RepositoryTests
 
         [TestMethod]
         [ExpectedException(typeof(Exception), "WARNING: No records found in tbGPDailyActivity for organisation: test")]
-        public void IsOrganisationActive_NoMatchesFound_LogsAndThrowsError()
+        public void OrganisationHasSentAMSMessages_NoMatchesFound_LogsAndThrowsError()
         {
             string _organisation = "test";
             
-            _repository.IsOrganisationActive(_organisation);
+            _repository.OrganisationHasSentAMSMessages(_organisation);
 
             _log.Verify(log => log.Add("WARNING: No records found in tbGPDailyActivity for organisation: " + _organisation));
         }
 
         [TestMethod]
-        public void IsOrganisationActive_InactiveOrganisationExists_ReturnsFalse()
+        public void OrganisationHasSentAMSMessages_InactiveOrganisationExists_ReturnsFalse()
         {
             string _organisation = "1234";
 
             _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow(_organisation, 0, false));
 
-            Assert.IsFalse(_repository.IsOrganisationActive(_organisation));
+            Assert.IsFalse(_repository.OrganisationHasSentAMSMessages(_organisation));
         }
 
         [TestMethod]
-        public void IsOrganisationActive_ActiveOrganisationExists_ReturnsTrue()
+        public void OrganisationHasSentAMSMessages_ActiveOrganisationExists_ReturnsTrue()
         {
             string _organisation = "1234";
 
             _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
 
-            Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
+            Assert.IsTrue(_repository.OrganisationHasSentAMSMessages(_organisation));
         }
 
         [TestMethod]
-        public void IsOrganisationActive_MultipleEntriesExistForOrg_MostRecentActivityReturned()
+        public void OrganisationHasSentAMSMessages_MultipleEntriesExistForOrg_MostRecentActivityReturned()
         {
             string _organisation = "1234";
 
@@ -63,7 +63,7 @@ namespace ActivityMonitorTests.RepositoryTests
             _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 1, true));
             _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
 
-            Assert.IsFalse(_repository.IsOrganisationActive(_organisation));
+            Assert.IsFalse(_repository.OrganisationHasSentAMSMessages(_organisation));
         }
     }
 }

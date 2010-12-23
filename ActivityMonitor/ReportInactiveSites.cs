@@ -28,6 +28,42 @@ namespace ActivityMonitor
             _email = email;
         }
 
+        public bool NumberOfInactiveSitesPerHealthBoardLimitExceeded()
+        {
+            List<String> _newlyInactiveSites = _repository.GetNewlyInactiveSites();
+
+            if (_newlyInactiveSites.Count == 0)
+            {
+                _log.Add("No newly inactive sites");
+                return false;   
+                // Don't need to worry about stopping program execution here as 
+                // it's caught in SendInactiveReports()
+            }
+
+            Dictionary<String, Int16> _healthBoardCount = new Dictionary<string, short>();
+
+            foreach (string org in _newlyInactiveSites)
+            {
+                string _healthboard = _repository.GetOrganisationHealthBoard(org);
+
+                if (_healthBoardCount.ContainsKey(_healthboard))
+                    _healthBoardCount[_healthboard]++;
+                else
+                    _healthBoardCount.Add(_healthboard, 1);
+            }
+
+            bool _limitExceeded = false;
+            int _limit = 10;    // Move this value to config file
+
+            foreach (KeyValuePair<String, Int16> value in _healthBoardCount)
+            {
+                if (value.Value >= _limit) _limitExceeded = true;
+                _log.Add("WARNING: Healthboard limit exceeded for : " + value.Key + " : number of inactive sites: " + value.Value.ToString());
+            }
+
+            return _limitExceeded;
+        }
+
         public void SendInactiveReports()
         {
             List<String> _organisations = GetAllInactiveSites();

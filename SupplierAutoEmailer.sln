@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityMonitor", "ActivityMonitor\ActivityMonitor.csproj", "{9F8A6E12-F09C-452C-8717-153DDE842DDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierAutoEmailer", "ActivityMonitor\SupplierAutoEmailer.csproj", "{9F8A6E12-F09C-452C-8717-153DDE842DDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityMonitorTests", "ActivityMonitorTests\ActivityMonitorTests.csproj", "{117D849F-4ABE-43FD-A38F-C34695762DA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierAutoEmailerTests", "ActivityMonitorTests\SupplierAutoEmailerTests.csproj", "{117D849F-4ABE-43FD-A38F-C34695762DA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6B4DAB87-00F5-4A4A-B618-95C668ADBA38}"
 	ProjectSection(SolutionItems) = preProject

@@ -7,25 +7,15 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Checks if organisation has sent particular messages
         public bool IsOrganisationActive(string organisation)
         {
-            var _organisation = (from GPActivity in _EPMS_StatisticsContext.tbGPdailyactivity
-                                 where GPActivity.org == organisation
-                                 orderby GPActivity.date descending
-                                 select GPActivity)
-                                 .FirstOrDefault();
-
-            if (_organisation == null)
+            if ((this.OrganisationHasSentAMSMessages(organisation) == false) && (this.IsOrganisationDispensingSite(organisation) == false))
             {
-                _log.Add("WARNING: No records found in tbGPDailyActivity for organisation: " + organisation);
-                throw new Exception("WARNING: No records found in tbGPDailyActivity for organisation: " + organisation);
+                // No AMS messages have been received and site is not a dispensing site
+                return false;
             }
 
-            // if (_organisation.amsPrescriptions == 0 && _organisation.gpRegistrationUpdatesRequests == 0)
-            if (_organisation.amsPrescriptions == 0)
-                return false;
-
+            // otherwise, site is active or a dispensing site
             return true;
         }
     }
