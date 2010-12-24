@@ -12,7 +12,7 @@ namespace ActivityMonitor
         static void Main(string[] args)
         {
             Logger log = new Logger();
-            EPMS_StatisticsEntities db = new EPMS_StatisticsEntities();
+            ReportingEntities db = new ReportingEntities();
             ActivityMonitor.Repository.Repository repository = new ActivityMonitor.Repository.Repository(log, db);
             
             try

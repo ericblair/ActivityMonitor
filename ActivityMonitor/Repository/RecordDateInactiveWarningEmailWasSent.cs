@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Update tbInactiveSites.DateEmailSent
         public void RecordDateInactiveWarningEmailWasSent(string organisation)
         {
-            var _organisation = (from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
+            var _organisation = (from InactiveSites in _ReportingEntity.tbInactiveSites
                                  where InactiveSites.Org == organisation
                                  select InactiveSites)
                                  .FirstOrDefault();
@@ -22,7 +22,7 @@ namespace ActivityMonitor.Repository
             }
 
             _organisation.DateEmailSent = DateTime.Today;
-            _EPMS_StatisticsContext.SaveChanges();
+            _ReportingEntity.SaveChanges();
         }
     }
 }

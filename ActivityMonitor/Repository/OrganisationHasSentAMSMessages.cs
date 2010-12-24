@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Checks if organisation has sent particular messages
         public bool OrganisationHasSentAMSMessages(string organisation)
         {
-            var _organisation = (from GPActivity in _EPMS_StatisticsContext.tbGPdailyactivity
+            var _organisation = (from GPActivity in _ReportingEntity.tbDailyActivityGP
                                  where GPActivity.org == organisation
                                  orderby GPActivity.date descending
                                  select GPActivity)

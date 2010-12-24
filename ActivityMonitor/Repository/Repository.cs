@@ -9,13 +9,13 @@ namespace ActivityMonitor.Repository
 {
     partial class Repository : ActivityMonitor.IRepository
     {
-        private IEPMS_StatisticsEntities _EPMS_StatisticsContext;
+        private IReportingEntities _ReportingEntity;
         private ILogger _log;
 
-        public Repository(ILogger log, IEPMS_StatisticsEntities context)
+        public Repository(ILogger log, IReportingEntities context)
         {
             _log = log;
-            _EPMS_StatisticsContext = context;
+            _ReportingEntity = context;
         }
     }
 }

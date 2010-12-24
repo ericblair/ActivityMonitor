@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Return list of all sites in tbInactiveSites where email has not yet been sent
         public List<String> GetNewlyInactiveSites()
         {
-            var _inactiveSites = from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
+            var _inactiveSites = from InactiveSites in _ReportingEntity.tbInactiveSites
                                  where InactiveSites.DateEmailSent == null
                                  orderby InactiveSites.Org      // Added this to assist testing
                                  select InactiveSites.Org;

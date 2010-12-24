@@ -27,5 +27,6 @@ namespace ActivityMonitor
         string GetOrganisationLatestMessageDate(string organisation);
         bool OrganisationHasSentAMSMessages(string organisation);
         bool IsOrganisationDispensingSite(string organisation);
+        bool HasSiteSentAMSGPMessagesSinceYesterday(string organisation);
     }
 }

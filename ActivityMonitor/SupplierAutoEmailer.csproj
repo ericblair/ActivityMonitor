@@ -50,29 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Email.cs" />
-    <Compile Include="EPMS_StatisticsEntities.cs">
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EPMS_StatisticsEntitiesMock.cs">
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EPMS_StatisticsEntitiesMock.ObjectSet.cs">
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EPMS_StatisticsEntityModelMockContextGenerator.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EPMS_StatisticsEntityModelMockContextGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="IEmail.cs" />
-    <Compile Include="IEPMS_StatisticsEntities.cs">
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="ILogger.cs" />
     <Compile Include="IReportingEntities.cs">
       <DependentUpon>ReportingMock.Context.tt</DependentUpon>
@@ -113,13 +91,9 @@
     <Compile Include="Repository\GetSupplierContactsEmailAddresses.cs" />
     <Compile Include="Repository\GetSupplierOrganisations.cs" />
     <Compile Include="Repository\GetSuppliersToBeChecked.cs" />
+    <Compile Include="Repository\HasSiteSentAMSGPMessagesSinceYesterday.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="EPMS_StatisticsEntityModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EPMS_StatisticsEntityModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportInactiveSites.cs" />
@@ -136,9 +110,6 @@
     <Compile Include="SMTPWrapper.cs" />
     <Compile Include="tbDailyActivityGP.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tbGPdailyactivity.cs">
-      <DependentUpon>EPMS_StatisticsEntityModelMockContextGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="tbHealthBoardContacts.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
@@ -165,22 +136,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EPMS_StatisticsEntityModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EPMS_StatisticsEntityModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="EPMS_StatisticsEntityModelMockContextGenerator.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EPMS_StatisticsEntityModelMockContextGenerator.Context.cs</LastGenOutput>
-    </None>
-    <None Include="EPMS_StatisticsEntityModelMockContextGenerator.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EPMS_StatisticsEntityModelMockContextGenerator.cs</LastGenOutput>
     </None>
     <EntityDeploy Include="Reporting.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

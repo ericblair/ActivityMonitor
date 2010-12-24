@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Return all rows from tbHealthBoardContacts where HealthBoard field matches paramter value
         public List<String> GetHealthBoardContactsEmailAddresses(string healthBoard)
         {
-            var _healthBoardContacts = from healthBoardContacts in _EPMS_StatisticsContext.tbHealthBoardContacts
+            var _healthBoardContacts = from healthBoardContacts in _ReportingEntity.tbHealthBoardContacts
                                        where healthBoardContacts.HealthBoard == healthBoard
                                        select healthBoardContacts.Contact;
 

@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public bool IsOrganisationDispensingSite(string organisation)
         {
-            var _organisation = (from Org in _EPMS_StatisticsContext.tbOrganisation
+            var _organisation = (from Org in _ReportingEntity.tbOrganisation
                                  where Org.id == organisation
                                  select Org.dispensing)
                                  .FirstOrDefault();

@@ -9,10 +9,12 @@ namespace ActivityMonitor.Repository
     {
         public bool IsOrganisationActive(string organisation)
         {
+            // No AMS messages have been received and site is not a dispensing site
             if ((this.OrganisationHasSentAMSMessages(organisation) == false) && (this.IsOrganisationDispensingSite(organisation) == false))
             {
-                // No AMS messages have been received and site is not a dispensing site
-                return false;
+                // Check for any activity from the site since tbDailyActivityGP was updated
+                if (!this.HasSiteSentAMSGPMessagesSinceYesterday(organisation))
+                    return false;
             }
 
             // otherwise, site is active or a dispensing site

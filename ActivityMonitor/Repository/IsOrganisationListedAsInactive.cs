@@ -12,7 +12,7 @@ namespace ActivityMonitor.Repository
         {
             // Need to think about how to avoid duplicate rows for org's. Trigger is obvious answer but hard to test (withoout integration tests)
             // may be more feasible just to add a check here (i.e. if count > 1 => log error)
-            var _organisation = (from x in _EPMS_StatisticsContext.tbInactiveSites
+            var _organisation = (from x in _ReportingEntity.tbInactiveSites
                                  where organisation == x.Org
                                  select x);
 

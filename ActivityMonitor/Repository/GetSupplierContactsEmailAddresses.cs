@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Return all rows from tbSupplierContacts where Supplier field matches paramter value
         public List<String> GetSupplierContactsEmailAddresses(string supplier)
         {
-            var _supplierContacts = from SupplierContacts in _EPMS_StatisticsContext.tbSupplierContacts
+            var _supplierContacts = from SupplierContacts in _ReportingEntity.tbSupplierContacts
                                     where SupplierContacts.Supplier == supplier
                                     select SupplierContacts.Contact;
 

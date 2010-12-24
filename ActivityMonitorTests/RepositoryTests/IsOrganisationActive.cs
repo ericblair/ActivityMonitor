@@ -12,14 +12,14 @@ namespace ActivityMonitorTests.RepositoryTests
     [TestClass]
     public class IsOrganisationActive
     {
-        private IEPMS_StatisticsEntities _mockContext;
+        private IReportingEntities _mockContext;
         private Mock<ILogger> _log;
         private ActivityMonitor.Repository.Repository _repository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContext = new EPMS_StatisticsEntitiesMock();
+            _mockContext = new ReportingEntitiesMock();
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
@@ -30,7 +30,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
 
             Assert.IsFalse(_repository.IsOrganisationActive(_organisation));
@@ -41,7 +41,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", true));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
@@ -52,7 +52,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
+            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
@@ -63,8 +63,25 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbGPdailyactivity.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
+            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
             _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", true));
+
+            Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
+        }
+
+        [TestMethod]
+        public void IsOrganisationActive_OrgHasBeenActiveSincetbDailyActivityGPWasUpdated_ReturnsTrue()
+        {
+            // for this I've taken the setup code used for:
+            // IsOrganisationActive_OrgNotSentAMSMessages_OrgNotDispensingSite_ReturnsFalse()
+            // but added a record to tbMsg which has a date more recent than the date 
+            // tbDailyActivityGP would have been updated
+
+            string _organisation = "1234";
+
+            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
+            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }

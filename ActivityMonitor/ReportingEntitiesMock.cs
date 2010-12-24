@@ -57,5 +57,16 @@ namespace ActivityMonitor
             get { return _tbSupplierContacts  ?? (_tbSupplierContacts = new MockObjectSet<tbSupplierContacts>()); }
         }
         private IObjectSet<tbSupplierContacts> _tbSupplierContacts;
+
+        // Implemented the following methods myself
+
+        public int SaveChanges() { return 0; }   
+        public void DeleteObject(object entity)
+        {
+            // Only called from tbInactiveSites but need to make this more generic....
+            tbInactiveSites _organisation = (tbInactiveSites)entity;
+
+            this.tbInactiveSites.DeleteObject(_organisation);
+        }  
     }
 }

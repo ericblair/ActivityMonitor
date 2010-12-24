@@ -28,5 +28,8 @@ namespace ActivityMonitor
         IObjectSet<tbOrganisation> tbOrganisation { get; }
         IObjectSet<tbOrgSupplier> tbOrgSupplier { get; }
         IObjectSet<tbSupplierContacts> tbSupplierContacts { get; }
+        // Had to implement the following myself (for testing)
+        int SaveChanges();
+        void DeleteObject(object entity);
     }
 }

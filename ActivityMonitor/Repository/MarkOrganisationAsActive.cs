@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // Remove site from tbInactiveSites
         public void MarkOrganisationAsActive(string organisation)
         {
-            var _organisation = (from InactiveSites in _EPMS_StatisticsContext.tbInactiveSites
+            var _organisation = (from InactiveSites in _ReportingEntity.tbInactiveSites
                                  where organisation == InactiveSites.Org
                                  select InactiveSites)
                                  .FirstOrDefault();
@@ -21,8 +21,8 @@ namespace ActivityMonitor.Repository
                 return;
             }
 
-            _EPMS_StatisticsContext.DeleteObject(_organisation);
-            _EPMS_StatisticsContext.SaveChanges();
+            _ReportingEntity.DeleteObject(_organisation);
+            _ReportingEntity.SaveChanges();
         }
     }
 }

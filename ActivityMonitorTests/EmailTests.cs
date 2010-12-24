@@ -14,7 +14,7 @@ namespace ActivityMonitorTests
     [TestClass]
     public class EmailTests
     {
-        private IEPMS_StatisticsEntities _mockContext;
+        private IReportingEntities _mockContext;
         private Mock<ILogger> _log;
         private ActivityMonitor.Repository.Repository _repository;
         private Mock<ISMTPWrapper> _smtpClient;
@@ -25,7 +25,7 @@ namespace ActivityMonitorTests
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContext = new EPMS_StatisticsEntitiesMock();
+            _mockContext = new ReportingEntitiesMock();
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
             _smtpClient = new Mock<ISMTPWrapper>();

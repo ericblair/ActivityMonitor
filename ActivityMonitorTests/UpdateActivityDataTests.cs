@@ -12,7 +12,7 @@ namespace ActivityMonitorTests
     [TestClass]
     public class UpdateActivityDataTests
     {
-        private IEPMS_StatisticsEntities _mockContext;
+        private IReportingEntities _mockContext;
         private Mock<ILogger> _log;
         private UpdateActivityData _updateActivityData;
         Mock<IRepository> _repository;
@@ -20,7 +20,7 @@ namespace ActivityMonitorTests
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContext = new EPMS_StatisticsEntitiesMock();
+            _mockContext = new ReportingEntitiesMock();
             _log = new Mock<ILogger>();
             _repository = new Mock<IRepository>();
             _updateActivityData = new UpdateActivityData(_repository.Object, _log.Object);

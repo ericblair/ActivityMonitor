@@ -73,6 +73,7 @@
     <Compile Include="RepositoryTests\GetSupplierContactsEmailAddressesTests.cs" />
     <Compile Include="RepositoryTests\GetSupplierOrganisationsTests.cs" />
     <Compile Include="RepositoryTests\GetSuppliersToBeCheckedTests.cs" />
+    <Compile Include="RepositoryTests\HasSiteSentAMSGPMessagesSinceYesterdayTests.cs" />
     <Compile Include="RepositoryTests\IsOrganisationActive.cs" />
     <Compile Include="RepositoryTests\IsOrganisationDispensingSite.cs" />
     <Compile Include="RepositoryTests\OrganisationHasSentAMSMessagesTests.cs" />
@@ -88,17 +89,18 @@
     <Compile Include="TestHelpers\PopulateDatabaseTables\AddOrganisationDataRow.cs" />
     <Compile Include="TestHelpers\PopulateDatabaseTables\AddOrgSupplierDataRow.cs" />
     <Compile Include="TestHelpers\PopulateDatabaseTables\AddSupplierContactsDataRow.cs" />
+    <Compile Include="TestHelpers\PopulateDatabaseTables\AddtbMsgDataRow.cs" />
     <Compile Include="TestHelpers\PopulateDatabaseTables\PopulateTable.cs" />
     <Compile Include="UpdateActivityDataTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\ActivityMonitor.accessor" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ActivityMonitor\SupplierAutoEmailer.csproj">
       <Project>{9F8A6E12-F09C-452C-8717-153DDE842DDB}</Project>
       <Name>SupplierAutoEmailer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Shadow Include="Test References\ActivityMonitor.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

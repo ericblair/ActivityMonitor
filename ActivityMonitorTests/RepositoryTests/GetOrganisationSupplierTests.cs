@@ -1,25 +1,25 @@
 ﻿using ActivityMonitor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using ActivityMonitorTests.TestHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ActivityMonitorTests.TestHelpers;
 
 namespace ActivityMonitorTests.RepositoryTests
 {
     [TestClass]
     public class GetOrganisationSupplierTests
     {
-        private IEPMS_StatisticsEntities _mockContext;
+        private IReportingEntities _mockContext;
         private Mock<ILogger> _log;
         private ActivityMonitor.Repository.Repository _repository;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContext = new EPMS_StatisticsEntitiesMock();
+            _mockContext = new ReportingEntitiesMock();
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 

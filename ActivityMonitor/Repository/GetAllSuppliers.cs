@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // This has been replaced with GetSuppliersToBeChecked() which loads values from the config file.
         public List<String> GetAllSuppliers()
         {
-            var _suppliers = (from OrgSupplier in _EPMS_StatisticsContext.tbOrgSupplier
+            var _suppliers = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
                               orderby OrgSupplier.supplier
                               select OrgSupplier.supplier)
                              .Distinct();

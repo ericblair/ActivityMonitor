@@ -11,7 +11,7 @@ namespace ActivityMonitorTests
     [TestClass()]
     public class ReportInactiveSitesTest
     {
-        private IEPMS_StatisticsEntities _mockContext;
+        private IReportingEntities _mockContext;
         private Mock<ILogger> _log;
         // private Mock<IRepository> _repository;
 
@@ -21,7 +21,7 @@ namespace ActivityMonitorTests
         [TestInitialize]
         public void TestInitialize()
         {
-            _mockContext = new EPMS_StatisticsEntitiesMock();
+            _mockContext = new ReportingEntitiesMock();
             _log = new Mock<ILogger>();
             // _repository = new Mock<IRepository>(_log.Object, _mockContext);
             // _repository = new Mock<IRepository>();

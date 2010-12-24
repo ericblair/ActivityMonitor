@@ -17,8 +17,8 @@ namespace ActivityMonitor.Repository
                 _inactiveOrganisation.DateEmailSent = null;
                 _inactiveOrganisation.DateCreated = DateTime.Today;
                 // db.AddTotbInactiveSites(_inactiveOrganisation); commented out after playing with my ed data model, below line seems to fit but will need tested
-                _EPMS_StatisticsContext.tbInactiveSites.AddObject(_inactiveOrganisation);
-                _EPMS_StatisticsContext.SaveChanges();
+                _ReportingEntity.tbInactiveSites.AddObject(_inactiveOrganisation);
+                _ReportingEntity.SaveChanges();
                 _log.Add("INFO: New Org Added to tbInactiveSites : " + organisation);
             }
             catch (Exception ex)

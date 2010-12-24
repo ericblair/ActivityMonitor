@@ -13,7 +13,7 @@ namespace ActivityMonitor.Repository
             string _healthBoard = null;
 
             //TODO: Tidy this query!
-            _healthBoard = (from Organisation in _EPMS_StatisticsContext.tbOrganisation
+            _healthBoard = (from Organisation in _ReportingEntity.tbOrganisation
                             where Organisation.id == organisation
                             select Organisation.healthBoardName)
                             .FirstOrDefault();

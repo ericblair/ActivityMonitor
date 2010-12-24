@@ -12,7 +12,7 @@ namespace ActivityMonitor.Repository
         {
             string _supplier = null;
 
-            _supplier = (from OrgSupplier in _EPMS_StatisticsContext.tbOrgSupplier
+            _supplier = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
                          where OrgSupplier.org == organisation
                          select OrgSupplier.supplier)
                         .FirstOrDefault();
