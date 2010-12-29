@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ReportingModelStoreContainer">
           <EntitySet Name="tbDailyActivityGP" EntityType="ReportingModel.Store.tbDailyActivityGP" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbHealthBoardContacts" EntityType="ReportingModel.Store.tbHealthBoardContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbHealthBoardContacts">
