@@ -57,8 +57,11 @@ namespace ActivityMonitor
 
             foreach (KeyValuePair<String, Int16> value in _healthBoardCount)
             {
-                if (value.Value >= _limit) _limitExceeded = true;
-                _log.Add("WARNING: Healthboard limit exceeded for : " + value.Key + " : number of inactive sites: " + value.Value.ToString());
+                if (value.Value >= _limit)
+                {
+                    _limitExceeded = true;
+                    _log.Add("WARNING: Healthboard limit exceeded for : " + value.Key + " : number of inactive sites: " + value.Value.ToString());
+                }
             }
 
             return _limitExceeded;

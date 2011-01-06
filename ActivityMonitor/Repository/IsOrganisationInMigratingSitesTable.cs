@@ -7,11 +7,10 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Looks for organisation in tbInactiveSites
-        public bool IsOrganisationListedAsInactive(string organisation)
+        public bool IsOrganisationInMigratingSitesTable(string organisation)
         {
-            var _organisation = (from x in _ReportingEntity.tbInactiveSites
-                                 where organisation == x.Org
+            var _organisation = (from x in _ReportingEntity.tbMigratingSites
+                                 where organisation == x.Organisation
                                  select x);
 
             if (_organisation.Count() == 0)

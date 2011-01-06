@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ReportingModelStoreContainer">
           <EntitySet Name="tbDailyActivityGP" EntityType="ReportingModel.Store.tbDailyActivityGP" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbHealthBoardContacts" EntityType="ReportingModel.Store.tbHealthBoardContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbHealthBoardContacts">
@@ -15,6 +15,7 @@
       FROM [dbo].[tbHealthBoardContacts] AS [tbHealthBoardContacts]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="tbInactiveSites" EntityType="ReportingModel.Store.tbInactiveSites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbMigratingSites" EntityType="ReportingModel.Store.tbMigratingSites" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbMsg" EntityType="ReportingModel.Store.tbMsg" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbOrganisation" EntityType="ReportingModel.Store.tbOrganisation" store:Type="Tables" store:Schema="dbo" store:Name="tbOrganisation">
             <DefiningQuery>SELECT 
@@ -95,6 +96,17 @@
           <Property Name="Org" Type="nchar" Nullable="false" MaxLength="10" />
           <Property Name="DateEmailSent" Type="smalldatetime" />
           <Property Name="DateCreated" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tbMigratingSites">
+          <Key>
+            <PropertyRef Name="Organisation" />
+          </Key>
+          <Property Name="Organisation" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="OriginalSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="FutureSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="PlannedMigrationDate" Type="smalldatetime" />
+          <Property Name="DateNotificationEmailSent" Type="smalldatetime" />
           <Property Name="DateUpdated" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="tbMsg">
@@ -227,8 +239,7 @@
           <Property Name="Supplier" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ReportingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -240,6 +251,7 @@
           <EntitySet Name="tbOrganisation" EntityType="ReportingModel.tbOrganisation" />
           <EntitySet Name="tbOrgSupplier" EntityType="ReportingModel.tbOrgSupplier" />
           <EntitySet Name="tbSupplierContacts" EntityType="ReportingModel.tbSupplierContacts" />
+          <EntitySet Name="tbMigratingSites1" EntityType="ReportingModel.tbMigratingSites" />
         </EntityContainer>
         <EntityType Name="tbDailyActivityGP">
           <Key>
@@ -401,6 +413,17 @@
           <Property Name="Supplier" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Contact" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
         </EntityType>
+        <EntityType Name="tbMigratingSites">
+          <Key>
+            <PropertyRef Name="Organisation" />
+          </Key>
+          <Property Type="String" Name="Organisation" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FutureSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PlannedMigrationDate" />
+          <Property Type="DateTime" Name="DateNotificationEmailSent" />
+          <Property Type="DateTime" Name="DateUpdated" />
+          <Property Type="String" Name="OriginalSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -533,6 +556,18 @@
             <ScalarProperty Name="Supplier" ColumnName="Supplier" />
             <ScalarProperty Name="Contact" ColumnName="Contact" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbMigratingSites1">
+            <EntityTypeMapping TypeName="ReportingModel.tbMigratingSites">
+              <MappingFragment StoreEntitySet="tbMigratingSites">
+                <ScalarProperty Name="OriginalSupplier" ColumnName="OriginalSupplier" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateNotificationEmailSent" ColumnName="DateNotificationEmailSent" />
+                <ScalarProperty Name="PlannedMigrationDate" ColumnName="PlannedMigrationDate" />
+                <ScalarProperty Name="FutureSupplier" ColumnName="FutureSupplier" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -562,6 +597,7 @@
         <EntityTypeShape EntityType="ReportingModel.tbOrganisation" Width="1.5" PointX="6.75" PointY="0.75" Height="5.7009895833333326" IsExpanded="true" />
         <EntityTypeShape EntityType="ReportingModel.tbOrgSupplier" Width="1.5" PointX="0.75" PointY="6.75" Height="4.5505582682291674" IsExpanded="true" />
         <EntityTypeShape EntityType="ReportingModel.tbSupplierContacts" Width="1.5" PointX="6.75" PointY="7.75" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReportingModel.tbMigratingSites" Width="1.5" PointX="9.375" PointY="0.75" Height="1.9210009765625" />
       </Diagram>
     </Diagrams>
   </Designer>

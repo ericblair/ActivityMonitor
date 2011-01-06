@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckGPActivityForSelectedSupplier.cs" />
+    <Compile Include="CheckMigratingSites.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="IEmail.cs" />
     <Compile Include="ILogger.cs" />
@@ -80,11 +82,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\AddNewMigratingSite.cs" />
+    <Compile Include="Repository\FindUnnotifiedSitesWithLateMigrations.cs" />
+    <Compile Include="Repository\GetAllMigratingSites.cs" />
     <Compile Include="Repository\GetAllSuppliers.cs" />
     <Compile Include="Repository\GetHealthBoardContactsEmailAddresses.cs" />
+    <Compile Include="Repository\GetMigratingGPASSSites.cs" />
+    <Compile Include="Repository\GetMigratingSiteOriginalSupplier.cs" />
     <Compile Include="Repository\GetNewlyInactiveSites.cs" />
     <Compile Include="Repository\GetOrganisationHealthBoard.cs" />
     <Compile Include="Repository\GetOrganisationLatestMessageDate.cs" />
+    <Compile Include="Repository\GetOrganisationMigrationDate.cs" />
     <Compile Include="Repository\GetOrganisationName.cs" />
     <Compile Include="Repository\GetOrganisationSupplier.cs" />
     <Compile Include="Repository\GetOrganisationSupplierReference.cs" />
@@ -99,13 +107,17 @@
     <Compile Include="ReportInactiveSites.cs" />
     <Compile Include="Repository\IsOrganisationActive.cs" />
     <Compile Include="Repository\IsOrganisationDispensingSite.cs" />
+    <Compile Include="Repository\IsOrganisationInMigratingSitesTable.cs" />
     <Compile Include="Repository\OrganisationHasSentAMSMessages.cs" />
     <Compile Include="Repository\IsOrganisationListedAsInactive.cs" />
     <Compile Include="Repository\MarkOrganisationAsActive.cs" />
     <Compile Include="Repository\RecordDateInactiveWarningEmailWasSent.cs" />
+    <Compile Include="Repository\RecordDateLateMigrationEmailWasSent.cs" />
+    <Compile Include="Repository\RemoveMigratingSite.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\ActivityTableHasBeenUpdated.cs" />
     <Compile Include="Repository\SaveNewlyInactiveOrganisation.cs" />
+    <Compile Include="Repository\SetOrganisationMigrationDate.cs" />
     <Compile Include="Repository\UpdateInactiveOrganisation.cs" />
     <Compile Include="SMTPWrapper.cs" />
     <Compile Include="tbDailyActivityGP.cs">
@@ -115,6 +127,9 @@
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
     <Compile Include="tbInactiveSites.cs">
+      <DependentUpon>ReportingMock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbMigratingSites.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
     <Compile Include="tbMsg.cs">

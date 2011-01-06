@@ -16,6 +16,7 @@ namespace ActivityMonitor.Repository
                           && Msg.msgTypeRid == 21 
                           | Msg.msgTypeRid == 22
                           | Msg.msgTypeRid == 23
+                          orderby Msg.datetime descending
                           select Msg.datetime)
                           .FirstOrDefault();
 

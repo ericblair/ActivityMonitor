@@ -10,7 +10,7 @@ using System.Text;
 namespace ActivityMonitorTests.RepositoryTests
 {
     [TestClass]
-    public class IsOrganisationActive
+    public class IsOrganisationActiveTests
     {
         private IReportingEntities _mockContext;
         private Mock<ILogger> _log;

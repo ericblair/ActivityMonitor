@@ -91,6 +91,12 @@ namespace ActivityMonitor
             get { return _tbSupplierContacts ?? (_tbSupplierContacts = CreateObjectSet<tbSupplierContacts>("tbSupplierContacts")); }
         }
         private ObjectSet<tbSupplierContacts> _tbSupplierContacts;
+    
+        public IObjectSet<tbMigratingSites> tbMigratingSites
+        {
+            get { return _tbMigratingSites1 ?? (_tbMigratingSites1 = CreateObjectSet<tbMigratingSites>("tbMigratingSites1")); }
+        }
+        private ObjectSet<tbMigratingSites> _tbMigratingSites1;
 
         #endregion
     }

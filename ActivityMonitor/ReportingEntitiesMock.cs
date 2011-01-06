@@ -12,6 +12,7 @@
 using System.Data.EntityClient;
 using System.Data.Objects;
 using ActivityMonitor.ReportingEntitiesMockObjectSet;
+using System.Diagnostics;
 
 namespace ActivityMonitor
 {
@@ -57,16 +58,30 @@ namespace ActivityMonitor
             get { return _tbSupplierContacts  ?? (_tbSupplierContacts = new MockObjectSet<tbSupplierContacts>()); }
         }
         private IObjectSet<tbSupplierContacts> _tbSupplierContacts;
+        public IObjectSet<tbMigratingSites> tbMigratingSites
+        {
+            get { return _tbMigratingSites  ?? (_tbMigratingSites = new MockObjectSet<tbMigratingSites>()); }
+        }
+        private IObjectSet<tbMigratingSites> _tbMigratingSites;
 
-        // Implemented the following methods myself
-
-        public int SaveChanges() { return 0; }   
+        public int SaveChanges() { return 0; }   // Had to implement this myself, not sure if it will work....
         public void DeleteObject(object entity)
         {
-            // Only called from tbInactiveSites but need to make this more generic....
-            tbInactiveSites _organisation = (tbInactiveSites)entity;
+            // Grab the name of the calling method and action as appropriate
 
-            this.tbInactiveSites.DeleteObject(_organisation);
+            StackTrace stackTrace = new StackTrace();
+            string callingMethod = stackTrace.GetFrame(1).GetMethod().Name;
+
+            if (callingMethod == "MarkOrganisationAsActive")
+            {
+                tbInactiveSites _organisation = (tbInactiveSites)entity;
+                this.tbInactiveSites.DeleteObject(_organisation);
+            }
+            else if (callingMethod == "RemoveMigratingSite")
+            {
+                tbMigratingSites _organisation = (tbMigratingSites)entity;
+                this.tbMigratingSites.DeleteObject(_organisation);
+            }
         }  
     }
 }

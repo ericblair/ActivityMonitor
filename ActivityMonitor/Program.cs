@@ -14,30 +14,26 @@ namespace ActivityMonitor
             Logger log = new Logger();
             ReportingEntities db = new ReportingEntities();
             ActivityMonitor.Repository.Repository repository = new ActivityMonitor.Repository.Repository(log, db);
-            
             try
             {
-                if ((DateTime.Today.DayOfWeek == DayOfWeek.Sunday) || (DateTime.Today.DayOfWeek == DayOfWeek.Monday))
+                if (args[0] == null)
                 {
-                    log.Add("Running app today would pick up weekend activity. Run aborted.");
+                    log.Add("No job was selected.");
                     return;
-                }
+                } 
 
-                UpdateActivityData updateActivityData = new UpdateActivityData(repository, log);
-                if (updateActivityData.CheckActivityDataHasBeenUpdated() == false)
+                string parameter = args[0];
+                if (parameter == "CheckGPActivityForSelectedSuppliers")
                 {
-                    log.Add("tbGPDailyActivity was not updated yesterday");
-                    return;
+                    log.Add("Job to run = CheckGPActivityForSelectedSuppliers, healthboard inactive site limit = true");
+                    CheckGPActivityForSelectedSupplier _checkGPActivity = new CheckGPActivityForSelectedSupplier(repository, log, true);
+                    _checkGPActivity.RunCheck();
                 }
-                updateActivityData.UpdateData();
-
-                // this is probably the best location to insert a check 
-                // for the number of emails to be sent
-
-                ReportInactiveSites reportInactiveSites = new ReportInactiveSites(repository, log);
-                if (reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded() == false)
+                else if (parameter == "CheckGPActivityForSelectedSuppliersIgnoreHealthboardLimit")
                 {
-                    reportInactiveSites.SendInactiveReports();
+                    log.Add("Job to run = CheckGPActivityForSelectedSuppliers, healthboard inactive site limit = false");
+                    CheckGPActivityForSelectedSupplier _checkGPActivity = new CheckGPActivityForSelectedSupplier(repository, log, false);
+                    _checkGPActivity.RunCheck();
                 }
             }
             catch (Exception ex)
