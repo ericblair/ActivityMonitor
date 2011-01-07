@@ -31,7 +31,7 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
 
             Assert.IsFalse(_repository.IsOrganisationActive(_organisation));
         }
@@ -42,7 +42,7 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", true));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -53,7 +53,7 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -64,7 +64,7 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", true));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -80,7 +80,7 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
             _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));

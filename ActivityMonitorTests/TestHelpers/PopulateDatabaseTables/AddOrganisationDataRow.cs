@@ -46,47 +46,6 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrganisation AddOrganisationDataRow(string orgID, bool dispensing)
-        {
-            if (dispensing == false)
-                return AddOrganisationDataRow(orgID);
-
-            tbOrganisation row = new tbOrganisation
-            {
-                rid = 1,
-                id = orgID,
-                organisationTypeRid = 1,
-                shortName = "",
-                name = "",
-                healthBoardName = "",
-                alternateName = "",
-                prsRefreshEnabled = true,
-                epsServicesEnabled = true,
-                startDate = DateTime.Today.AddDays(-10),
-                endDate = null,
-                archived = false,
-                auditCreatedOn = DateTime.Today.AddDays(-10),
-                auditCreatedBy = "",
-                auditUpdatedOn = null,
-                auditUpdatedBy = "",
-                address1 = "",
-                address2 = "",
-                address3 = "",
-                address4 = "",
-                postCode = "",
-                country = "",
-                telephone = "",
-                fax = "",
-                email = "",
-                supplier = "",
-                supplierReference = "",
-                dispensing = true,
-                notes = ""
-            };
-
-            return row;
-        }
-
         public static tbOrganisation AddOrganisationDataRow(string orgID, string healthBoard)
         {
             tbOrganisation row = new tbOrganisation

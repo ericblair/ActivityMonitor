@@ -9,18 +9,18 @@ namespace ActivityMonitor.Repository
     {
         public bool IsOrganisationDispensingSite(string organisation)
         {
-            var _organisation = (from Org in _ReportingEntity.tbOrganisation
-                                 where Org.id == organisation
-                                 select Org.dispensing)
+            var _organisation = (from Org in _ReportingEntity.tbOrgSupplier
+                                 where Org.org == organisation
+                                 select Org)
                                  .FirstOrDefault();
 
             if (_organisation == null)
             {
-                _log.Add("WARNING: No records found in tbOrganisation for organisation: " + organisation);
-                throw new Exception("WARNING: No records found in tbOrganisation for organisation: " + organisation);
+                _log.Add("WARNING: No records found in tbOrgSupplier for organisation: " + organisation);
+                throw new Exception("WARNING: No records found in tbOrgSupplier for organisation: " + organisation);
             }
 
-            return (bool)_organisation;
+            return _organisation.disp;
         }
     }
 }

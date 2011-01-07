@@ -26,14 +26,14 @@ namespace ActivityMonitorTests.RepositoryTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception), "WARNING: No records found in tbOrganisation for organisation: test")]
+        [ExpectedException(typeof(Exception), "WARNING: No records found in tbOrgSupplier for organisation: test")]
         public void IsOrganisationDispensingSite_OrgDoesntExist_LogsError()
         {
             string _organisation = "test";
 
             _repository.IsOrganisationDispensingSite(_organisation);
 
-            _log.Verify(log => log.Add("WARNING: No records found in tbOrganisation for organisation: " + _organisation));
+            _log.Verify(log => log.Add("WARNING: No records found in tbOrgSupplier for organisation: " + _organisation));
         }
 
         [TestMethod]
@@ -41,7 +41,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", false));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
 
             bool _isDispensing = _repository.IsOrganisationDispensingSite(_organisation);
 
@@ -53,7 +53,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", true));
+            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
 
             bool _isDispensing = _repository.IsOrganisationDispensingSite(_organisation);
 

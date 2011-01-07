@@ -69,5 +69,36 @@ namespace ActivityMonitorTests.TestHelpers
 
             return row;
         }
+
+        public static tbOrgSupplier AddOrgSupplierDataRow(string organisation, bool dispensing)
+        {
+            tbOrgSupplier row = new tbOrgSupplier
+            {
+                org = organisation,
+                epoc = "test",
+                supplier = "test",
+                product = "test",
+                version = "test",
+                latestMsg = DateTime.Today.AddDays(-3),
+                X509SerialNumber = "test",
+                downloaddate = DateTime.Today.AddDays(-5),
+                AuthCertSerialNumber = "test",
+                AuthCertDownloadDate = DateTime.Today.AddDays(-5),
+                ipAddress = "127.0.0.1",
+                reportingSupplier = "test",
+                disp = dispensing,
+                extended = null,
+                previousSupplier = "test",
+                previousProduct = "test",
+                CmsBetaSite = false,
+                EpocCertBy = "test",
+                ResignCertBy = "test",
+                latestAMS = DateTime.Today.AddDays(-3),
+                latestMAS = DateTime.Today.AddDays(-3),
+                latestCMS = DateTime.Today.AddDays(-3)
+            };
+
+            return row;
+        }
     }
 }
