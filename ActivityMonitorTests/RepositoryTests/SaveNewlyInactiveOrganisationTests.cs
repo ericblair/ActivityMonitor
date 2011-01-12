@@ -1,11 +1,11 @@
 ﻿using ActivityMonitor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using ActivityMonitorTests.TestHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ActivityMonitorTests.TestHelpers;
 
 namespace ActivityMonitorTests.RepositoryTests
 {
@@ -24,15 +24,37 @@ namespace ActivityMonitorTests.RepositoryTests
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
         }
 
-        // Possibly have to write test if I deceide to throw error!
-        // Should probably test what happens when a massive (or null string is passed in...
+        // Update regarding commented-out code below. I can't test this properly from this level. I need to investigate
 
+        // Not 100% sure that this is actually testing anything........
+        //[TestMethod]
+        //[ExpectedException(typeof(Exception))]
+        //public void SaveNewlyInactiveOrganisation_ErrorOccurs_ExceptionCaught()
+        //{
+        //    string _organisation = "1234";
+
+        //    Mock<IRepository> _repository = new Mock<IRepository>();
+        //    _repository.Setup(rep => rep.SaveNewlyInactiveOrganisation(_organisation)).Throws(new Exception());
+
+        //    _repository.Object.SaveNewlyInactiveOrganisation(_organisation);
+        //}
+
+        //[TestMethod]
         //public void SaveNewlyInactiveOrganisation_ErrorOccurs_LogUpdated()
         //{
-        //    // Cant work out how to throw an error accessing data source. Will come back to this...
-        //    // THink i'll need to use something like:
-        //    // Mock<EPMS_StatisticsEntities> _testmockContext = new Mock<EPMS_StatisticsEntities>();
-            
+        //    string _organisation = "1234";
+
+        //    Mock<IRepository> _repository = new Mock<IRepository>();
+        //    _repository.Setup(rep => rep.SaveNewlyInactiveOrganisation(_organisation)).Throws(new Exception());
+
+        //    try
+        //    {
+        //        _repository.Object.SaveNewlyInactiveOrganisation(_organisation);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        _log.Verify(log => log.Add("ERROR: Occured while trying to save new organisation to tbInactiveSites. Org: 1234"));
+        //    }
         //}
 
         [TestMethod]

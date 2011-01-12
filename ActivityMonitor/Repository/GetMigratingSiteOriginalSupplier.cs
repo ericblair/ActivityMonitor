@@ -14,6 +14,11 @@ namespace ActivityMonitor.Repository
                                      select x.OriginalSupplier)
                                      .FirstOrDefault();
 
+            if (_originalSupplier == null)
+            {
+                _log.Add("No original supplier value could be found for site: " + organisation);
+            }
+
             return _originalSupplier;
         }
     }

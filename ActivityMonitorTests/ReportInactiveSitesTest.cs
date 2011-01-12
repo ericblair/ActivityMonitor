@@ -111,12 +111,11 @@ namespace ActivityMonitorTests
             Mock<IRepository> _repository = new Mock<IRepository>();
             _reportInactiveSites = new ReportInactiveSites(_repository.Object, _log.Object, _email.Object);
 
-            List<String> _emptyList = new List<string>();   
-            _repository.Setup(rep => rep.GetNewlyInactiveSites()).Returns(_emptyList);
+            _repository.Setup(rep => rep.GetNewlyInactiveSites()).Returns(new List<String>());
 
             _reportInactiveSites.SendInactiveReports();
-            _email.Verify(email => email.Send(_emptyList, It.IsAny<string>()), Times.Never());
-            //_email.Verify(email => email.Send(It.IsAny<List<string>>, It.IsAny<string>()), Times.Never());
+             
+            _email.Verify(email => email.Send(It.IsAny<List<string>>(), It.IsAny<string>()), Times.Never());
             _log.Verify(log => log.Add("INFO: There are no newly inactive sites to send reports to."));
         }
 

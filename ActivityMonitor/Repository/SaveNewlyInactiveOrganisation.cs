@@ -25,7 +25,7 @@ namespace ActivityMonitor.Repository
             {
                 _log.Add("ERROR: Occured while trying to save new organisation to tbInactiveSites. Org: " + organisation);
                 _log.Add(ex.Message);
-                // throw new Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
         }
     }

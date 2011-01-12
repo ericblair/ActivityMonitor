@@ -26,13 +26,13 @@ namespace ActivityMonitor
             _email = email;
         }
 
-        public void UpdateMigratingSites()
+        public void UpdateMigratingSitesTable()
         {
             Dictionary<String, DateTime> _sites = _repository.GetMigratingGPASSSites();
 
             if (_sites.Count == 0)
             {
-                _log.Add("No GPASS sites could be found. Abandoned Migrating site check");
+                _log.Add("No Migrating GPASS sites could be found. Abandoned Migrating site check");
                 return;
             }
 
@@ -64,18 +64,21 @@ namespace ActivityMonitor
             List<String> _migratingSites = _repository.GetAllMigratingSites();
 
             if (_migratingSites.Count == 0)
+            {
                 return;
+            }
 
             foreach (string org in _migratingSites)
             {
-                string originalSupplier = _repository.GetMigratingSiteOriginalSupplier(org);
+                // string originalSupplier = _repository.GetMigratingSiteOriginalSupplier(org);
+                string futureSupplier = _repository.GetMigratingSiteFutureSupplier(org);
                 string currentSupplier = _repository.GetOrganisationSupplier(org);
-                if (originalSupplier != currentSupplier)
+                if (currentSupplier == futureSupplier)
                 {
                     _log.Add("INFO: Record removed from tbMigratingSites.\n"
-                             + "New supplier detected for site: " + org
-                             + "Original Supplier: " + originalSupplier
-                             + "New Supplier:" + currentSupplier);
+                             + " New supplier detected for site: " + org
+                             + " Original Supplier: " + _repository.GetMigratingSiteOriginalSupplier(org)
+                             + " New Supplier: " + currentSupplier);
                     _repository.RemoveMigratingSite(org);
                 }
             }
@@ -85,6 +88,12 @@ namespace ActivityMonitor
         public void SendNotificationEmailsForLateMigrations()
         {
             Dictionary<String, DateTime> _lateMigrations = _repository.FindUnnotifiedSitesWithLateMigrations();
+
+            if (_lateMigrations.Count == 0)
+            {
+                _log.Add("No un-notified sites with expired migrations were found.");
+                return;
+            }
 
             foreach (KeyValuePair<String, DateTime> value in _lateMigrations)
             {

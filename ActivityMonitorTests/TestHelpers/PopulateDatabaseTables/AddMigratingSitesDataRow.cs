@@ -37,5 +37,35 @@ namespace ActivityMonitorTests.TestHelpers
 
             return row;
         }
+
+        public static tbMigratingSites AddMigratingSitesDataRow(string organisation, DateTime? migrationDate, DateTime? dateEmailSent)
+        {
+            tbMigratingSites row = new tbMigratingSites
+            {
+                Organisation = organisation,
+                OriginalSupplier = "test",
+                FutureSupplier = "test",
+                PlannedMigrationDate = migrationDate,
+                DateNotificationEmailSent = dateEmailSent,
+                DateUpdated = null
+            };
+
+            return row;
+        }
+
+        public static tbMigratingSites AddMigratingSitesDataRow(string organisation, string originalSupplier, string futureSupplier)
+        {
+            tbMigratingSites row = new tbMigratingSites
+            {
+                Organisation = organisation,
+                OriginalSupplier = originalSupplier,
+                FutureSupplier = futureSupplier,
+                PlannedMigrationDate = null,
+                DateNotificationEmailSent = null,
+                DateUpdated = null
+            };
+
+            return row;
+        }
     }
 }

@@ -88,6 +88,7 @@
     <Compile Include="Repository\GetAllSuppliers.cs" />
     <Compile Include="Repository\GetHealthBoardContactsEmailAddresses.cs" />
     <Compile Include="Repository\GetMigratingGPASSSites.cs" />
+    <Compile Include="Repository\GetMigratingSiteFutureSupplier.cs" />
     <Compile Include="Repository\GetMigratingSiteOriginalSupplier.cs" />
     <Compile Include="Repository\GetNewlyInactiveSites.cs" />
     <Compile Include="Repository\GetOrganisationHealthBoard.cs" />

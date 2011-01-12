@@ -18,10 +18,17 @@ namespace ActivityMonitor.Repository
 
             foreach (tbOrgSupplier org in _migratingSitesRaw)
             {
-                // Is this the best way?
-                //int stringLength = org.reportingSupplier.Length;
-                DateTime _migrationDate = Convert.ToDateTime(org.reportingSupplier.Substring(21).ToString());
-                _migratingSites.Add(org.org, _migrationDate);
+                try
+                {
+                    DateTime _migrationDate = Convert.ToDateTime(org.reportingSupplier.Substring(21).ToString());
+                    _migratingSites.Add(org.org, _migrationDate);
+                }
+                catch (Exception ex)
+                {
+                    _log.Add("Error occured converting date for site: " + org.org + ". ReportingSupplier value: " + org.reportingSupplier);
+                    continue;
+                }
+                
             }
 
             return _migratingSites;
