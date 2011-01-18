@@ -49,9 +49,10 @@ namespace ActivityMonitor
 
             // send
             MailMessage email = new MailMessage();
-            MailAddress from = new MailAddress("ePharmacyReports@eps.nds.scot.nhs.uk");
+            MailAddress from = new MailAddress(ConfigurationManager.AppSettings["FromEmailAddress"]);
             email.From = from;
-            MailAddress replyTo = new MailAddress("NSS.PSDHelp@nhs.net");
+
+            MailAddress replyTo = new MailAddress(ConfigurationManager.AppSettings["ReplyToEmailAddress"]);
             email.ReplyTo = replyTo;
             foreach (string address in _contacts)
             {
@@ -100,9 +101,9 @@ namespace ActivityMonitor
         {
             // Create the email message
             MailMessage email = new MailMessage();
-            MailAddress from = new MailAddress("ePharmacyReports@eps.nds.scot.nhs.uk");
+            MailAddress from = new MailAddress(ConfigurationManager.AppSettings["FromEmailAddress"]);
             email.From = from;
-            MailAddress replyTo = new MailAddress("NSS.PSDHelp@nhs.net");
+            MailAddress replyTo = new MailAddress(ConfigurationManager.AppSettings["ReplyToEmailAddress"]);
             email.ReplyTo = replyTo;
             foreach (string address in recipients)
             {
@@ -150,7 +151,7 @@ namespace ActivityMonitor
                         + _repository.GetOrganisationSupplierReference(organisation) + ", OrgID "
                         +  organisation.Trim()
                         + ") is reported as being offline. The last AMS message was received on "
-                        + _repository.GetOrganisationLatestMessageDate(organisation)
+                        + _repository.GetDateTimeOfLatestAMSMessage(organisation)
                         + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
             }
             else

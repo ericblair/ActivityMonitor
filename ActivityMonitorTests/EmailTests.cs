@@ -77,6 +77,9 @@ namespace ActivityMonitorTests
         {
             string _organisation = "2345";
 
+            DateTime _messageDateTime = new DateTime(2011, 01, 01, 01, 01, 01);
+            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "2345", _messageDateTime, 21));
+
             string _body = _email.CreateEmailBody(_organisation);
 
             string _expectedMessage = "Transmission Fault in ePharmacy\n\n"
@@ -85,7 +88,7 @@ namespace ActivityMonitorTests
                         + _repository.GetOrganisationSupplierReference(_organisation) + ", OrgID "
                         + _organisation
                         + ") is reported as being offline. The last AMS message was received on "
-                        + DateTime.Today.AddDays(-3).ToShortDateString()
+                        + _repository.GetDateTimeOfLatestAMSMessage(_organisation)
                         + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
 
             Assert.AreEqual(_body, _expectedMessage);

@@ -39,5 +39,6 @@ namespace ActivityMonitor
         Dictionary<String, DateTime> FindUnnotifiedSitesWithLateMigrations();
         void RecordDateLateMigrationEmailWasSent(string organisation);
         string GetMigratingSiteFutureSupplier(string organisation);
+        string GetDateTimeOfLatestAMSMessage(string organisation);
     }
 }

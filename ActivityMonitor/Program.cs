@@ -16,12 +16,6 @@ namespace ActivityMonitor
             ActivityMonitor.Repository.Repository repository = new ActivityMonitor.Repository.Repository(log, db);
             try
             {
-                if (args[0] == null)
-                {
-                    log.Add("No job was selected.");
-                    return;
-                } 
-
                 string parameter = args[0];
                 if (parameter == "CheckGPActivityForSelectedSuppliers")
                 {
@@ -34,6 +28,24 @@ namespace ActivityMonitor
                     log.Add("Job to run = CheckGPActivityForSelectedSuppliers, healthboard inactive site limit = false");
                     CheckGPActivityForSelectedSupplier _checkGPActivity = new CheckGPActivityForSelectedSupplier(repository, log, false);
                     _checkGPActivity.RunCheck();
+                }
+                else if (parameter == "CheckSitesMigratingFromGpassToEmis")
+                {
+                    log.Add("Job to run = CheckSitesMigratingFromGpassToEmis");
+                    CheckMigratingSites _checkMigratingSites = new CheckMigratingSites(repository, log);
+                    _checkMigratingSites.UpdateMigratingSitesTable();
+                    _checkMigratingSites.CheckForCompletedMigrations();
+                    _checkMigratingSites.SendNotificationEmailsForLateMigrations();
+                }
+                else
+                {
+                    Console.WriteLine("SupplierAutoEmailer.exe written by Eric");
+                    Console.WriteLine("Available parameters:");
+                    Console.WriteLine("CheckGPActivityForSelectedSuppliers");
+                    Console.WriteLine("CheckGPActivityForSelectedSuppliersIgnoreHealthBoardLimit");
+                    Console.WriteLine("CheckSitesMigratingFromGpassToEmis");
+                    Console.WriteLine("Refer to documentation for more information.");
+                    Console.ReadLine();
                 }
             }
             catch (Exception ex)
