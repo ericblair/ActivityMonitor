@@ -11,11 +11,15 @@ namespace ActivityMonitor
         IRepository _repository;
         ILogger _log;
 
+        #region Constructors
+        
         public UpdateActivityData(IRepository rep, ILogger log)
         {
             _repository = rep;
             _log = log;
         }
+
+        #endregion
 
         public bool CheckActivityDataHasBeenUpdated()
         {

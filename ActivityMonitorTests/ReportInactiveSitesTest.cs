@@ -32,7 +32,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod]
-        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_NoIactiveSites_LogInfo_ReturnsFalse()
+        public void ReportInactiveSites_NumberOfInactiveSitesPerHealthBoardLimitExceeded_NoIactiveSites_LogInfo_ReturnsFalse()
         {
             // Going to need a proper repository for this test
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
@@ -47,7 +47,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod]
-        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitNotExceeded_ReturnsFalse()
+        public void ReportInactiveSites_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitNotExceeded_ReturnsFalse()
         {
             // Going to need a proper repository for this test
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
@@ -71,7 +71,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod]
-        public void SendInactiveReports_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitExceeded_ReturnsTrue()
+        public void ReportInactiveSites_NumberOfInactiveSitesPerHealthBoardLimitExceeded_LimitExceeded_ReturnsTrue()
         {
             // Going to need a proper repository for this test
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
@@ -106,7 +106,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod()]
-        public void SendInactiveReports_NoInactiveOrganisations_NoReportsSent()
+        public void ReportInactiveSites_NoInactiveOrganisations_NoReportsSent()
         {
             Mock<IRepository> _repository = new Mock<IRepository>();
             _reportInactiveSites = new ReportInactiveSites(_repository.Object, _log.Object, _email.Object);
@@ -120,7 +120,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod]
-        public void SendInactiveReports_InactiveOrgHasNoContacts_NoReportsSent()
+        public void ReportInactiveSites_InactiveOrgHasNoContacts_NoReportsSent()
         {
             // Going to need a proper repository for this test
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
@@ -135,7 +135,7 @@ namespace ActivityMonitorTests
         }
 
         [TestMethod]
-        public void SendInactiveReports_MultipleInactiveOrgs_OneOrgHasNoContacts_EmailSentToOrgWithContacts()
+        public void ReportInactiveSites_MultipleInactiveOrgs_OneOrgHasNoContacts_EmailSentToOrgWithContacts()
         {
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
             _reportInactiveSites = new ReportInactiveSites(_repository, _log.Object, _email.Object);
@@ -149,19 +149,21 @@ namespace ActivityMonitorTests
             _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
             _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
 
-            List<String> _contacts = new List<string>();
-            _contacts.Add("test@INPS.com");
-            _contacts.Add("high@land.com");
+            List<String> _supplierContact = new List<string>();
+            _supplierContact.Add("test@INPS.com");
+            List<String> _healthBoardContact = new List<string>();
+            _healthBoardContact.Add("high@land.com");
 
             _reportInactiveSites.SendInactiveReports();
             _log.Verify(log => log.Add("WARNING: No contacts for organisation: " + "1234" + " could be found."));
-            _email.Verify(email => email.Send(_contacts, "2345"), Times.Exactly(1));
+
+            _email.Verify(email => email.Send(_supplierContact, _healthBoardContact, "2345"), Times.Exactly(1));
             _log.Verify(log => log.Add("Inactive email report was sent for site: " + "2345"));
             Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(1).DateEmailSent, DateTime.Today);
         }
 
         [TestMethod]
-        public void SendInactiveReports_ErrorRaisedWhenSendingEmail_ErrorCaughtAndLogged()
+        public void ReportInactiveSites_ErrorRaisedWhenSendingEmail_ErrorCaughtAndLogged()
         {
             ActivityMonitor.Repository.Repository _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
             _reportInactiveSites = new ReportInactiveSites(_repository, _log.Object, _email.Object);
@@ -174,15 +176,16 @@ namespace ActivityMonitorTests
             _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
             _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
 
-            List<String> _contacts = new List<string>();
-            _contacts.Add("test@INPS.com");
-            _contacts.Add("high@land.com");
+            List<String> _supplierContact = new List<string>();
+            _supplierContact.Add("test@INPS.com");
+            List<String> _healthBoardContact = new List<string>();
+            _healthBoardContact.Add("high@land.com");
 
-            _email.Setup(email => email.Send(_contacts, "2345")).Throws(new Exception("Error sending email"));
+            _email.Setup(email => email.Send(_supplierContact, _healthBoardContact, "2345")).Throws(new Exception("Error sending email"));
 
             _reportInactiveSites.SendInactiveReports();
 
-            _email.Verify(email => email.Send(_contacts, "2345"), Times.Exactly(1));
+            _email.Verify(email => email.Send(_supplierContact, _healthBoardContact, "2345"), Times.Exactly(1));
             _log.Verify(log => log.Add("ERROR: Unable to send inactive report email for organisation: " + "2345" + ". Error message: " + "Error sending email"));
         }
     }

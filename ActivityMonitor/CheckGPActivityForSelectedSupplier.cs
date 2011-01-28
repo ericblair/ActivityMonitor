@@ -11,12 +11,16 @@ namespace ActivityMonitor
         ILogger _log;
         bool _applyHealthBoardInactiveSiteLimit;
 
+        #region Constructors
+
         public CheckGPActivityForSelectedSupplier(IRepository rep, ILogger log, bool applyHealthBoardInactiveSiteLimit)
         {
             _repository = rep;
             _log = log;
             _applyHealthBoardInactiveSiteLimit = applyHealthBoardInactiveSiteLimit;
         }
+
+        #endregion
 
         public void RunCheck()
         {

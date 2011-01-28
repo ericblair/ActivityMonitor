@@ -13,6 +13,8 @@ namespace ActivityMonitor
         ILogger _log;
         IEmail _email;
 
+        #region Constructors
+        
         public ReportInactiveSites(IRepository rep, ILogger log)
         {
             _repository = rep;
@@ -27,6 +29,8 @@ namespace ActivityMonitor
             _log = log;
             _email = email;
         }
+
+        #endregion
 
         public bool NumberOfInactiveSitesPerHealthBoardLimitExceeded()
         {
@@ -80,16 +84,18 @@ namespace ActivityMonitor
 
             foreach (string _organisation in _organisations)
             {
-                List<String> _contacts = GetContactsForOrganisation(_organisation);
+                // List<String> _contacts = GetContactsForOrganisation(_organisation);
+                List<String> _supplierContacts = _repository.GetSupplierContactsEmailAddresses(_repository.GetOrganisationSupplier(_organisation));
+                List<String> _healthBoardContacts = _repository.GetHealthBoardContactsEmailAddresses(_repository.GetOrganisationHealthBoard(_organisation));
 
-                if (_contacts.Count == 0)
+                if (_supplierContacts.Count == 0 && _healthBoardContacts.Count == 0)
                 {
                     _log.Add("WARNING: No contacts for organisation: " + _organisation + " could be found.");
                     continue;
                 }
                 try
                 {
-                    _email.Send(_contacts, _organisation);
+                    _email.Send(_supplierContacts, _healthBoardContacts, _organisation);
 
                     RecordOrganisationInactiveReportHasBeenSent(_organisation);
                     _log.Add("Inactive email report was sent for site: " + _organisation);

@@ -32,8 +32,16 @@ namespace ActivityMonitor
 
         public void Send(List<String> contacts, string organisation)
         {
-            ValidateEmailAddress(contacts);
+            // ValidateEmailAddress(contacts);
             MailMessage email = ComposeEmail(contacts, organisation);
+            SmtpClient emailServer = _client.ConfigureSmtpServer();
+            emailServer.Send(email);
+        }
+
+        public void Send(List<String> supplierContacts, List<String> healthBoardContacts, string organisation)
+        {
+            // Created this method to accomodate sending to 'To' (supplier) and 'CC' (healthBoard) receipients 
+            MailMessage email = ComposeEmail(supplierContacts, healthBoardContacts, organisation);
             SmtpClient emailServer = _client.ConfigureSmtpServer();
             emailServer.Send(email);
         }
@@ -109,6 +117,30 @@ namespace ActivityMonitor
             {
                 MailAddress to = new MailAddress(address);
                 email.To.Add(to);
+            }
+            email.Subject = CreateEmailSubject(organisation);
+            email.Body = CreateEmailBody(organisation);
+
+            return email;
+        }
+
+        private MailMessage ComposeEmail(List<String> supplierRecipients, List<String> healthBoardRecipients, string organisation)
+        {
+            // Created this method to accomodate sending to 'To' (supplier) and 'CC' (healthBoard) receipients 
+            MailMessage email = new MailMessage();
+            MailAddress from = new MailAddress(ConfigurationManager.AppSettings["FromEmailAddress"]);
+            email.From = from;
+            MailAddress replyTo = new MailAddress(ConfigurationManager.AppSettings["ReplyToEmailAddress"]);
+            email.ReplyTo = replyTo;
+            foreach (string address in supplierRecipients)
+            {
+                MailAddress to = new MailAddress(address);
+                email.To.Add(to);
+            }
+            foreach (string address in healthBoardRecipients)
+            {
+                MailAddress cc = new MailAddress(address);
+                email.CC.Add(cc);
             }
             email.Subject = CreateEmailSubject(organisation);
             email.Body = CreateEmailBody(organisation);

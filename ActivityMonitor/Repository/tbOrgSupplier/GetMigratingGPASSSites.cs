@@ -11,7 +11,9 @@ namespace ActivityMonitor.Repository
         {
             var _migratingSitesRaw = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
                                    where OrgSupplier.supplier == "Gpass"
-                                   && OrgSupplier.reportingSupplier.StartsWith("MIGRATING TO EMIS ON", true, System.Globalization.CultureInfo.CurrentCulture) == true
+                                      // Following line caused issues when ran against live. Error: LINQ to Entities does not recognize the method boolean startswith
+                                      // && OrgSupplier.reportingSupplier.StartsWith("MIGRATING TO EMIS ON", true, System.Globalization.CultureInfo.CurrentCulture) == true
+                                      && OrgSupplier.reportingSupplier.Contains("MIGRATING TO EMIS ON") 
                                    select OrgSupplier);
                                        
             Dictionary<string, DateTime> _migratingSites = new Dictionary<string, DateTime>();
@@ -23,7 +25,7 @@ namespace ActivityMonitor.Repository
                     DateTime _migrationDate = Convert.ToDateTime(org.reportingSupplier.Substring(21).ToString());
                     _migratingSites.Add(org.org, _migrationDate);
                 }
-                catch (Exception ex)
+                catch
                 {
                     _log.Add("Error occured converting date for site: " + org.org + ". ReportingSupplier value: " + org.reportingSupplier);
                     continue;

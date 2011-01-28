@@ -39,6 +39,7 @@ namespace ActivityMonitor
                 }
                 else
                 {
+                    // this doesn't work. 
                     Console.WriteLine("SupplierAutoEmailer.exe written by Eric");
                     Console.WriteLine("Available parameters:");
                     Console.WriteLine("CheckGPActivityForSelectedSuppliers");
