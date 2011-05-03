@@ -23,46 +23,47 @@ namespace ActivityMonitor
     /// </summary>
     public partial class ReportingEntitiesMock : IReportingEntities
     {
-        public IObjectSet<tbDailyActivityGP> tbDailyActivityGP
+        public IObjectSet<tbRPT_DailyActivityGP> tbRPT_DailyActivityGP
         {
-            get { return _tbDailyActivityGP  ?? (_tbDailyActivityGP = new MockObjectSet<tbDailyActivityGP>()); }
+            get { return _tbRPT_DailyActivityGP  ?? (_tbRPT_DailyActivityGP = new MockObjectSet<tbRPT_DailyActivityGP>()); }
         }
-        private IObjectSet<tbDailyActivityGP> _tbDailyActivityGP;
-        public IObjectSet<tbHealthBoardContacts> tbHealthBoardContacts
+        private IObjectSet<tbRPT_DailyActivityGP> _tbRPT_DailyActivityGP;
+        public IObjectSet<tbEPS_Msg> tbEPS_Msg
         {
-            get { return _tbHealthBoardContacts  ?? (_tbHealthBoardContacts = new MockObjectSet<tbHealthBoardContacts>()); }
+            get { return _tbEPS_Msg  ?? (_tbEPS_Msg = new MockObjectSet<tbEPS_Msg>()); }
         }
-        private IObjectSet<tbHealthBoardContacts> _tbHealthBoardContacts;
-        public IObjectSet<tbInactiveSites> tbInactiveSites
+        private IObjectSet<tbEPS_Msg> _tbEPS_Msg;
+        public IObjectSet<tbEPS_Organisation> tbEPS_Organisation
         {
-            get { return _tbInactiveSites  ?? (_tbInactiveSites = new MockObjectSet<tbInactiveSites>()); }
+            get { return _tbEPS_Organisation  ?? (_tbEPS_Organisation = new MockObjectSet<tbEPS_Organisation>()); }
         }
-        private IObjectSet<tbInactiveSites> _tbInactiveSites;
-        public IObjectSet<tbMsg> tbMsg
+        private IObjectSet<tbEPS_Organisation> _tbEPS_Organisation;
+        public IObjectSet<tbRPT_HealthBoardContacts> tbRPT_HealthBoardContacts
         {
-            get { return _tbMsg  ?? (_tbMsg = new MockObjectSet<tbMsg>()); }
+            get { return _tbRPT_HealthBoardContacts  ?? (_tbRPT_HealthBoardContacts = new MockObjectSet<tbRPT_HealthBoardContacts>()); }
         }
-        private IObjectSet<tbMsg> _tbMsg;
-        public IObjectSet<tbOrganisation> tbOrganisation
+        private IObjectSet<tbRPT_HealthBoardContacts> _tbRPT_HealthBoardContacts;
+        public IObjectSet<tbRPT_InactiveSites> tbRPT_InactiveSites
         {
-            get { return _tbOrganisation  ?? (_tbOrganisation = new MockObjectSet<tbOrganisation>()); }
+            get { return _tbRPT_InactiveSites  ?? (_tbRPT_InactiveSites = new MockObjectSet<tbRPT_InactiveSites>()); }
         }
-        private IObjectSet<tbOrganisation> _tbOrganisation;
-        public IObjectSet<tbOrgSupplier> tbOrgSupplier
+        private IObjectSet<tbRPT_InactiveSites> _tbRPT_InactiveSites;
+        public IObjectSet<tbRPT_MigratingSites> tbRPT_MigratingSites
         {
-            get { return _tbOrgSupplier  ?? (_tbOrgSupplier = new MockObjectSet<tbOrgSupplier>()); }
+            get { return _tbRPT_MigratingSites  ?? (_tbRPT_MigratingSites = new MockObjectSet<tbRPT_MigratingSites>()); }
         }
-        private IObjectSet<tbOrgSupplier> _tbOrgSupplier;
-        public IObjectSet<tbSupplierContacts> tbSupplierContacts
+        private IObjectSet<tbRPT_MigratingSites> _tbRPT_MigratingSites;
+        public IObjectSet<tbRPT_OrgSupplier> tbRPT_OrgSupplier
         {
-            get { return _tbSupplierContacts  ?? (_tbSupplierContacts = new MockObjectSet<tbSupplierContacts>()); }
+            get { return _tbRPT_OrgSupplier  ?? (_tbRPT_OrgSupplier = new MockObjectSet<tbRPT_OrgSupplier>()); }
         }
-        private IObjectSet<tbSupplierContacts> _tbSupplierContacts;
-        public IObjectSet<tbMigratingSites> tbMigratingSites
+        private IObjectSet<tbRPT_OrgSupplier> _tbRPT_OrgSupplier;
+        public IObjectSet<tbRPT_SupplierContacts> tbRPT_SupplierContacts
         {
-            get { return _tbMigratingSites  ?? (_tbMigratingSites = new MockObjectSet<tbMigratingSites>()); }
+            get { return _tbRPT_SupplierContacts  ?? (_tbRPT_SupplierContacts = new MockObjectSet<tbRPT_SupplierContacts>()); }
         }
-        private IObjectSet<tbMigratingSites> _tbMigratingSites;
+        private IObjectSet<tbRPT_SupplierContacts> _tbRPT_SupplierContacts;
+
 
         public int SaveChanges() { return 0; }   // Had to implement this myself, not sure if it will work....
         public void DeleteObject(object entity)
@@ -74,13 +75,13 @@ namespace ActivityMonitor
 
             if (callingMethod == "MarkOrganisationAsActive")
             {
-                tbInactiveSites _organisation = (tbInactiveSites)entity;
-                this.tbInactiveSites.DeleteObject(_organisation);
+                tbRPT_InactiveSites _organisation = (tbRPT_InactiveSites)entity;
+                this._tbRPT_InactiveSites.DeleteObject(_organisation);
             }
             else if (callingMethod == "RemoveMigratingSite")
             {
-                tbMigratingSites _organisation = (tbMigratingSites)entity;
-                this.tbMigratingSites.DeleteObject(_organisation);
+                tbRPT_MigratingSites _organisation = (tbRPT_MigratingSites)entity;
+                this._tbRPT_MigratingSites.DeleteObject(_organisation);
             }
         }  
     }

@@ -31,11 +31,11 @@ namespace ActivityMonitorTests
             _smtpClient = new Mock<ISMTPWrapper>();
             _email = new Email(_repository, _log.Object, _smtpClient.Object);
 
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS"));
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board", "Non-EMIS Site"));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board", "EMIS Site"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board", "Non-EMIS Site"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board", "EMIS Site"));
 
             _contacts = new List<string>();
             _contacts.Add("test1@contacts.com");
@@ -78,7 +78,7 @@ namespace ActivityMonitorTests
             string _organisation = "2345";
 
             DateTime _messageDateTime = new DateTime(2011, 01, 01, 01, 01, 01);
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "2345", _messageDateTime, 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "2345", _messageDateTime, 21));
 
             string _body = _email.CreateEmailBody(_organisation);
 

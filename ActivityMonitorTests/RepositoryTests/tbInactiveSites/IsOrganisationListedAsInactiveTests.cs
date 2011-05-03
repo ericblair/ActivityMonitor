@@ -23,7 +23,7 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
         }
 
         [TestMethod]

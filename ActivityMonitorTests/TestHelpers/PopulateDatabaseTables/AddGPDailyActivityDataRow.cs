@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbDailyActivityGP AddGPDailyActivityDataRow(string organisation, int daysToSubtractFromDate)
+        public static tbRPT_DailyActivityGP AddGPDailyActivityDataRow(string organisation, int daysToSubtractFromDate)
         {
-            tbDailyActivityGP row = new tbDailyActivityGP
+            tbRPT_DailyActivityGP row = new tbRPT_DailyActivityGP
             {
                 org = organisation,
                 date = DateTime.Today.AddDays(-daysToSubtractFromDate),
@@ -28,12 +28,12 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbDailyActivityGP AddGPDailyActivityDataRow(string organisation, int daysToSubtractFromDate, bool active)
+        public static tbRPT_DailyActivityGP AddGPDailyActivityDataRow(string organisation, int daysToSubtractFromDate, bool active)
         {
             if (active == true)
                 return AddGPDailyActivityDataRow(organisation, daysToSubtractFromDate);
 
-            tbDailyActivityGP row = new tbDailyActivityGP
+            tbRPT_DailyActivityGP row = new tbRPT_DailyActivityGP
             {
                 org = organisation,
                 date = DateTime.Today,

@@ -50,53 +50,53 @@ namespace ActivityMonitor
     
         #region ObjectSet Properties
     
-        public IObjectSet<tbDailyActivityGP> tbDailyActivityGP
+        public IObjectSet<tbRPT_DailyActivityGP> tbRPT_DailyActivityGP
         {
-            get { return _tbDailyActivityGP ?? (_tbDailyActivityGP = CreateObjectSet<tbDailyActivityGP>("tbDailyActivityGP")); }
+            get { return _tbRPT_DailyActivityGP ?? (_tbRPT_DailyActivityGP = CreateObjectSet<tbRPT_DailyActivityGP>("tbRPT_DailyActivityGP")); }
         }
-        private ObjectSet<tbDailyActivityGP> _tbDailyActivityGP;
+        private ObjectSet<tbRPT_DailyActivityGP> _tbRPT_DailyActivityGP;
     
-        public IObjectSet<tbHealthBoardContacts> tbHealthBoardContacts
+        public IObjectSet<tbEPS_Msg> tbEPS_Msg
         {
-            get { return _tbHealthBoardContacts ?? (_tbHealthBoardContacts = CreateObjectSet<tbHealthBoardContacts>("tbHealthBoardContacts")); }
+            get { return _tbEPS_Msg ?? (_tbEPS_Msg = CreateObjectSet<tbEPS_Msg>("tbEPS_Msg")); }
         }
-        private ObjectSet<tbHealthBoardContacts> _tbHealthBoardContacts;
+        private ObjectSet<tbEPS_Msg> _tbEPS_Msg;
     
-        public IObjectSet<tbInactiveSites> tbInactiveSites
+        public IObjectSet<tbEPS_Organisation> tbEPS_Organisation
         {
-            get { return _tbInactiveSites ?? (_tbInactiveSites = CreateObjectSet<tbInactiveSites>("tbInactiveSites")); }
+            get { return _tbEPS_Organisation ?? (_tbEPS_Organisation = CreateObjectSet<tbEPS_Organisation>("tbEPS_Organisation")); }
         }
-        private ObjectSet<tbInactiveSites> _tbInactiveSites;
+        private ObjectSet<tbEPS_Organisation> _tbEPS_Organisation;
     
-        public IObjectSet<tbMsg> tbMsg
+        public IObjectSet<tbRPT_HealthBoardContacts> tbRPT_HealthBoardContacts
         {
-            get { return _tbMsg ?? (_tbMsg = CreateObjectSet<tbMsg>("tbMsg")); }
+            get { return _tbRPT_HealthBoardContacts ?? (_tbRPT_HealthBoardContacts = CreateObjectSet<tbRPT_HealthBoardContacts>("tbRPT_HealthBoardContacts")); }
         }
-        private ObjectSet<tbMsg> _tbMsg;
+        private ObjectSet<tbRPT_HealthBoardContacts> _tbRPT_HealthBoardContacts;
     
-        public IObjectSet<tbOrganisation> tbOrganisation
+        public IObjectSet<tbRPT_InactiveSites> tbRPT_InactiveSites
         {
-            get { return _tbOrganisation ?? (_tbOrganisation = CreateObjectSet<tbOrganisation>("tbOrganisation")); }
+            get { return _tbRPT_InactiveSites ?? (_tbRPT_InactiveSites = CreateObjectSet<tbRPT_InactiveSites>("tbRPT_InactiveSites")); }
         }
-        private ObjectSet<tbOrganisation> _tbOrganisation;
+        private ObjectSet<tbRPT_InactiveSites> _tbRPT_InactiveSites;
     
-        public IObjectSet<tbOrgSupplier> tbOrgSupplier
+        public IObjectSet<tbRPT_MigratingSites> tbRPT_MigratingSites
         {
-            get { return _tbOrgSupplier ?? (_tbOrgSupplier = CreateObjectSet<tbOrgSupplier>("tbOrgSupplier")); }
+            get { return _tbRPT_MigratingSites ?? (_tbRPT_MigratingSites = CreateObjectSet<tbRPT_MigratingSites>("tbRPT_MigratingSites")); }
         }
-        private ObjectSet<tbOrgSupplier> _tbOrgSupplier;
+        private ObjectSet<tbRPT_MigratingSites> _tbRPT_MigratingSites;
     
-        public IObjectSet<tbSupplierContacts> tbSupplierContacts
+        public IObjectSet<tbRPT_OrgSupplier> tbRPT_OrgSupplier
         {
-            get { return _tbSupplierContacts ?? (_tbSupplierContacts = CreateObjectSet<tbSupplierContacts>("tbSupplierContacts")); }
+            get { return _tbRPT_OrgSupplier ?? (_tbRPT_OrgSupplier = CreateObjectSet<tbRPT_OrgSupplier>("tbRPT_OrgSupplier")); }
         }
-        private ObjectSet<tbSupplierContacts> _tbSupplierContacts;
+        private ObjectSet<tbRPT_OrgSupplier> _tbRPT_OrgSupplier;
     
-        public IObjectSet<tbMigratingSites> tbMigratingSites
+        public IObjectSet<tbRPT_SupplierContacts> tbRPT_SupplierContacts
         {
-            get { return _tbMigratingSites1 ?? (_tbMigratingSites1 = CreateObjectSet<tbMigratingSites>("tbMigratingSites1")); }
+            get { return _tbRPT_SupplierContacts ?? (_tbRPT_SupplierContacts = CreateObjectSet<tbRPT_SupplierContacts>("tbRPT_SupplierContacts")); }
         }
-        private ObjectSet<tbMigratingSites> _tbMigratingSites1;
+        private ObjectSet<tbRPT_SupplierContacts> _tbRPT_SupplierContacts;
 
         #endregion
     }

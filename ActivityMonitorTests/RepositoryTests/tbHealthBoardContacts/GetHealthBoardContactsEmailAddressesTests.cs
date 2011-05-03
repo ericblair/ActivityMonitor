@@ -24,9 +24,9 @@ namespace ActivityMonitorTests.RepositoryTests
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
             // Added to setup data for GetHealthBoardContactEmailsAddresses Test
-            _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "highland1@healthboard.com"));
-            _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(2, "Grampian Health Board", "grampian1@healthboard.com"));
-            _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(3, "Highland Health Board", "highland2@healthboard.com"));
+            _mockContext.tbRPT_HealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "highland1@healthboard.com"));
+            _mockContext.tbRPT_HealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(2, "Grampian Health Board", "grampian1@healthboard.com"));
+            _mockContext.tbRPT_HealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(3, "Highland Health Board", "highland2@healthboard.com"));
         }
 
         [TestMethod()]
@@ -57,7 +57,7 @@ namespace ActivityMonitorTests.RepositoryTests
             List<String> _returnedContacts = _repository.GetHealthBoardContactsEmailAddresses(_healthBoard);
 
             Assert.AreEqual(_returnedContacts.Count, 0);
-            _log.Verify(log => log.Add("WARNING: No contacts could be found in tbHealthBoardContacts matching value: " + _healthBoard));
+            _log.Verify(log => log.Add("WARNING: No contacts could be found in tbRPT_HealthBoardContacts matching value: " + _healthBoard));
         }
     }
 }

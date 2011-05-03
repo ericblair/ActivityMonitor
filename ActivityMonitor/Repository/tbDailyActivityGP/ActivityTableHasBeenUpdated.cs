@@ -31,7 +31,7 @@ namespace ActivityMonitor.Repository
                 throw new Exception(ex.Message);    // not sure about throwing this here....
             }
 
-            var _recordsMatchingDate = from ActivityTable in _ReportingEntity.tbDailyActivityGP
+            var _recordsMatchingDate = from ActivityTable in _ReportingEntity.tbRPT_DailyActivityGP
                                        where ActivityTable.date == _date
                                        select ActivityTable;
 

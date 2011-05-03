@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace ActivityMonitor
 {
-    public partial class tbMsg
+    public partial class tbEPS_Msg
     {
         #region Primitive Properties
     

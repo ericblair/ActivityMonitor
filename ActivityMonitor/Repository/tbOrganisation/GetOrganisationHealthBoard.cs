@@ -7,13 +7,13 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Return organisation's healthboard value from tbOrganisation
+        // Return organisation's healthboard value from tbEPS_Organisation
         public string GetOrganisationHealthBoard(string organisation)
         {
             string _healthBoard = null;
 
             //TODO: Tidy this query!
-            _healthBoard = (from Organisation in _ReportingEntity.tbOrganisation
+            _healthBoard = (from Organisation in _ReportingEntity.tbEPS_Organisation
                             where Organisation.id == organisation
                             select Organisation.healthBoardName)
                             .FirstOrDefault();

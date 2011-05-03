@@ -7,17 +7,17 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Update tbInactiveSites.DateEmailSent
+        // Update tbRPT_InactiveSites.DateEmailSent
         public void RecordDateInactiveWarningEmailWasSent(string organisation)
         {
-            var _organisation = (from InactiveSites in _ReportingEntity.tbInactiveSites
+            var _organisation = (from InactiveSites in _ReportingEntity.tbRPT_InactiveSites
                                  where InactiveSites.Org == organisation
                                  select InactiveSites)
                                  .FirstOrDefault();
 
             if (_organisation == null)
             {
-                _log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbInactiveSites. Org: " + organisation);
+                _log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbRPT_InactiveSites. Org: " + organisation);
                 return;
             }
 

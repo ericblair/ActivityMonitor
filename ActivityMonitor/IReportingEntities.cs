@@ -21,14 +21,16 @@ namespace ActivityMonitor
     /// </summary>
     public interface IReportingEntities
     {
-        IObjectSet<tbDailyActivityGP> tbDailyActivityGP { get; }
-        IObjectSet<tbHealthBoardContacts> tbHealthBoardContacts { get; }
-        IObjectSet<tbInactiveSites> tbInactiveSites { get; }
-        IObjectSet<tbMsg> tbMsg { get; }
-        IObjectSet<tbOrganisation> tbOrganisation { get; }
-        IObjectSet<tbOrgSupplier> tbOrgSupplier { get; }
-        IObjectSet<tbSupplierContacts> tbSupplierContacts { get; }
-        IObjectSet<tbMigratingSites> tbMigratingSites { get; }
+        IObjectSet<tbRPT_DailyActivityGP> tbRPT_DailyActivityGP { get; }
+        IObjectSet<tbEPS_Msg> tbEPS_Msg { get; }
+        IObjectSet<tbEPS_Organisation> tbEPS_Organisation { get; }
+        IObjectSet<tbRPT_HealthBoardContacts> tbRPT_HealthBoardContacts { get; }
+        IObjectSet<tbRPT_InactiveSites> tbRPT_InactiveSites { get; }
+        IObjectSet<tbRPT_MigratingSites> tbRPT_MigratingSites { get; }
+        IObjectSet<tbRPT_OrgSupplier> tbRPT_OrgSupplier { get; }
+        IObjectSet<tbRPT_SupplierContacts> tbRPT_SupplierContacts { get; }
+
+        // Added the following myself
         int SaveChanges();
         void DeleteObject(object entity);
     }

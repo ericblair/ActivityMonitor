@@ -10,14 +10,14 @@ namespace ActivityMonitor.Repository
         // Update tbMigrationSites.DateNotificationEmailSent
         public void RecordDateLateMigrationEmailWasSent(string organisation)
         {
-            var _organisation = (from x in _ReportingEntity.tbMigratingSites
+            var _organisation = (from x in _ReportingEntity.tbRPT_MigratingSites
                                  where x.Organisation == organisation
                                  select x)
                                  .FirstOrDefault();
 
             if (_organisation == null)
             {
-                _log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbMigratingSites. Org: " + organisation);
+                _log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbRPT_MigratingSites. Org: " + organisation);
                 return;
             }
 

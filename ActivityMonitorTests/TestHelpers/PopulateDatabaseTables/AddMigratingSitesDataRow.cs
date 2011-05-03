@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbMigratingSites AddMigratingSitesDataRow(string organisation)
+        public static ActivityMonitor.tbRPT_MigratingSites AddMigratingSitesDataRow(string organisation)
         {
-            tbMigratingSites row = new tbMigratingSites
+            tbRPT_MigratingSites row = new tbRPT_MigratingSites
             {
                 Organisation = organisation,
                 OriginalSupplier = "test",
@@ -23,9 +23,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbMigratingSites AddMigratingSitesDataRow(string organisation, DateTime? migrationDate)
+        public static ActivityMonitor.tbRPT_MigratingSites AddMigratingSitesDataRow(string organisation, DateTime? migrationDate)
         {
-            tbMigratingSites row = new tbMigratingSites
+            tbRPT_MigratingSites row = new tbRPT_MigratingSites
             {
                 Organisation = organisation,
                 OriginalSupplier = "test",
@@ -38,9 +38,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbMigratingSites AddMigratingSitesDataRow(string organisation, DateTime? migrationDate, DateTime? dateEmailSent)
+        public static ActivityMonitor.tbRPT_MigratingSites AddMigratingSitesDataRow(string organisation, DateTime? migrationDate, DateTime? dateEmailSent)
         {
-            tbMigratingSites row = new tbMigratingSites
+            tbRPT_MigratingSites row = new tbRPT_MigratingSites
             {
                 Organisation = organisation,
                 OriginalSupplier = "test",
@@ -53,9 +53,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbMigratingSites AddMigratingSitesDataRow(string organisation, string originalSupplier, string futureSupplier)
+        public static ActivityMonitor.tbRPT_MigratingSites AddMigratingSitesDataRow(string organisation, string originalSupplier, string futureSupplier)
         {
-            tbMigratingSites row = new tbMigratingSites
+            tbRPT_MigratingSites row = new tbRPT_MigratingSites
             {
                 Organisation = organisation,
                 OriginalSupplier = originalSupplier,

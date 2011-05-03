@@ -40,7 +40,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "Test Supplier", null));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "Test Supplier", null));
 
             string _latestDate = _repository.GetOrganisationLatestMessageDate(_organisation);
 
@@ -53,7 +53,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "Test Supplier", DateTime.Today.AddDays(-1)));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "Test Supplier", DateTime.Today.AddDays(-1)));
 
             string _latestDate = _repository.GetOrganisationLatestMessageDate(_organisation);
 

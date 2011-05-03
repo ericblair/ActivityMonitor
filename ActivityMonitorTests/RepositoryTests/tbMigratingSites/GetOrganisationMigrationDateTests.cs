@@ -29,7 +29,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today));
 
             DateTime? _migrationDate = _repository.GetOrganisationMigrationDate(_organisation);
 
@@ -42,7 +42,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234"));
 
             DateTime? _migrationDate = _repository.GetOrganisationMigrationDate(_organisation);
 

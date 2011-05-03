@@ -15,71 +15,41 @@ using System.Collections.Specialized;
 
 namespace ActivityMonitor
 {
-    public partial class tbDailyActivityGP
+    public partial class tbRPT_MigratingSites
     {
         #region Primitive Properties
     
-        public virtual string org
+        public virtual string Organisation
         {
             get;
             set;
         }
     
-        public virtual System.DateTime date
+        public virtual string OriginalSupplier
         {
             get;
             set;
         }
     
-        public virtual Nullable<short> amsPrescriptions
+        public virtual string FutureSupplier
         {
             get;
             set;
         }
     
-        public virtual Nullable<short> amsCancellations
+        public virtual Nullable<System.DateTime> PlannedMigrationDate
         {
             get;
             set;
         }
     
-        public virtual Nullable<short> amsAmendments
+        public virtual Nullable<System.DateTime> DateNotificationEmailSent
         {
             get;
             set;
         }
     
-        public virtual Nullable<short> cmsPrescriptions
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<short> cmsCancellations
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<short> cmsUpdatesRequests
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<short> cmsTreatmentUpdates
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<short> cmsComplianceUpdates
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<short> gpRegistrationUpdatesRequests
+        public virtual Nullable<System.DateTime> DateUpdated
         {
             get;
             set;

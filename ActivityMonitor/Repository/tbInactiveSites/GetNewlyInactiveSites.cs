@@ -7,10 +7,10 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // Return list of all sites in tbInactiveSites where email has not yet been sent
+        // Return list of all sites in tbRPT_InactiveSites where email has not yet been sent
         public List<String> GetNewlyInactiveSites()
         {
-            var _inactiveSites = from InactiveSites in _ReportingEntity.tbInactiveSites
+            var _inactiveSites = from InactiveSites in _ReportingEntity.tbRPT_InactiveSites
                                  where InactiveSites.DateEmailSent == null
                                  orderby InactiveSites.Org      // Added this to assist testing
                                  select InactiveSites.Org;

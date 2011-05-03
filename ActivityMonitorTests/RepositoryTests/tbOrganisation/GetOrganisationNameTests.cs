@@ -39,7 +39,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234"));
 
             _repository.GetOrganisationName(_organisation);
 
@@ -51,7 +51,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "testHealthBoard"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "testHealthBoard"));
 
             string _orgName = _repository.GetOrganisationName(_organisation);
 

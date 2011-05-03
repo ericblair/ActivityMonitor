@@ -21,16 +21,21 @@ namespace ActivityMonitor
 
         #endregion
 
+        /// <summary>
+        /// Checks that tbDailyActivityGP has been updated in the last 24 hours
+        /// </summary>
+        /// <returns></returns>
         public bool CheckActivityDataHasBeenUpdated()
         {
             return _repository.ActivityTableHasBeenUpdated();
         }
 
-        // This method checks the previous days data for all organisations belonning to the suppliers to be checked
+        /// <summary>
+        /// Checks the previous days data for all organisations belonning to the suppliers to be checked
+        /// </summary>
         public void UpdateData()
         {
-            //List<String> _suppliers = LoadSuppliersToCheck();  // Ensure LoadSuppliersToCheck throws an error if it finds nothing
-            //string _supplier = "EMIS";
+            // Load suppliers to be checked from config file
             List<String> _suppliers = _repository.GetSuppliersToBeChecked();
 
             if (_suppliers.Count == 0)
@@ -38,20 +43,26 @@ namespace ActivityMonitor
 
             foreach (string _supplier in _suppliers)
             {
+                // Create a list of all organisations running selected supplier's software
                 List<String> _organisations = _repository.GetSupplierOrganisations(_supplier);
                 if (_organisations.Count == 0)
                     throw new Exception("Unable to find any organisations to check for supplier: " + _supplier);
 
                 foreach (string _organisation in _organisations)
                 {
+                    // Check site's activity
                     UpdateOrganisationActivity(_organisation);
                 }
             }
         }
 
+        /// <summary>
+        /// Checks sites activity and updates tbRPT_InactiveSites if necessary
+        /// </summary>
+        /// <param name="organisation"></param>
         internal void UpdateOrganisationActivity(string organisation)
         {
-            // Check to see they are not already listed in tbInactiveSites
+            // Check to see they are not already listed in tbRPT_InactiveSites
             bool _organisationAlreadyKnownToBeInactive = _repository.IsOrganisationListedAsInactive(organisation);
 
             // If site is inactive
@@ -59,13 +70,13 @@ namespace ActivityMonitor
             {
                 if (_organisationAlreadyKnownToBeInactive == false)
                 {
-                    // Add new record to tbInactiveSites
+                    // Add new record to tbRPT_InactiveSites
                     _repository.SaveNewlyInactiveOrganisation(organisation);
                     _log.Add("New inactive site: " + organisation);
                 }
                 else
                 {
-                    // Update tbInactiveSites
+                    // Update tbRPT_InactiveSites
                     _repository.UpdateInactiveOrganisation(organisation);
                     _log.Add("Site still inactive:" + organisation);
                 }

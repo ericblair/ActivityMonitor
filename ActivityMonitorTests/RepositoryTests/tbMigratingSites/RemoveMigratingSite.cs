@@ -22,9 +22,9 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today));
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("2345", DateTime.Today));
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("3456", DateTime.Today));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("2345", DateTime.Today));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("3456", DateTime.Today));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.RemoveMigratingSite(_organisation);
 
-            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbMigratingSites. Org: " + _organisation));
+            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbRPT_MigratingSites. Org: " + _organisation));
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.RemoveMigratingSite(_organisation);
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 3);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 3);
         }
 
         [TestMethod]
@@ -54,9 +54,9 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.RemoveMigratingSite(_organisation);
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 2);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, "2345");
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(1).Organisation, "3456");
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 2);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, "2345");
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(1).Organisation, "3456");
         }
     }
 }

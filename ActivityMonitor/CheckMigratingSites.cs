@@ -40,7 +40,7 @@ namespace ActivityMonitor
             {
                 if (_repository.IsOrganisationInMigratingSitesTable(value.Key))
                 {
-                    // Site is already listed in tbMigratingSites
+                    // Site is already listed in tbRPT_MigratingSites
 
                     // Update migration date if change is detected
                     if (value.Value != _repository.GetOrganisationMigrationDate(value.Key))
@@ -49,7 +49,7 @@ namespace ActivityMonitor
                         _repository.SetOrganisationMigrationDate(value.Key, value.Value);
                     }
                 }
-                else  // Add site to tbMigratingSites
+                else  // Add site to tbRPT_MigratingSites
                 {
                     _repository.AddNewMigratingSite(value.Key, value.Value);
                 }
@@ -58,7 +58,7 @@ namespace ActivityMonitor
 
         public void CheckForCompletedMigrations()
         {
-            // Iterate through each organisation in tbMigratingSites
+            // Iterate through each organisation in tbRPT_MigratingSites
             // Check to see if the site's supplier value has changed and remove it from the
             // table if necessary
             List<String> _migratingSites = _repository.GetAllMigratingSites();
@@ -75,7 +75,7 @@ namespace ActivityMonitor
                 string currentSupplier = _repository.GetOrganisationSupplier(org);
                 if (currentSupplier == futureSupplier)
                 {
-                    _log.Add("INFO: Record removed from tbMigratingSites.\n"
+                    _log.Add("INFO: Record removed from tbRPT_MigratingSites.\n"
                              + " New supplier detected for site: " + org
                              + " Original Supplier: " + _repository.GetMigratingSiteOriginalSupplier(org)
                              + " New Supplier: " + currentSupplier);

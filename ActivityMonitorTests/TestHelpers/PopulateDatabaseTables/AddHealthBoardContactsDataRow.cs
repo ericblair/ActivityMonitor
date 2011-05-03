@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbHealthBoardContacts AddHealthBoardContactsDataRow(int rid, string healthBoard, string contact)
+        public static tbRPT_HealthBoardContacts AddHealthBoardContactsDataRow(int rid, string healthBoard, string contact)
         {
-            tbHealthBoardContacts row = new tbHealthBoardContacts
+            tbRPT_HealthBoardContacts row = new tbRPT_HealthBoardContacts
             {
                 Rid = rid,
                 HealthBoard = healthBoard,

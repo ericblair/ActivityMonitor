@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbOrganisation AddOrganisationDataRow(string orgID)
+        public static tbEPS_Organisation AddOrganisationDataRow(string orgID)
         {
-            tbOrganisation row = new tbOrganisation
+            tbEPS_Organisation row = new tbEPS_Organisation
             {
                 rid = 1,
                 id = orgID,
@@ -46,9 +46,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrganisation AddOrganisationDataRow(string orgID, string healthBoard)
+        public static tbEPS_Organisation AddOrganisationDataRow(string orgID, string healthBoard)
         {
-            tbOrganisation row = new tbOrganisation
+            tbEPS_Organisation row = new tbEPS_Organisation
             {
                 rid = 1,
                 id = orgID,
@@ -84,9 +84,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrganisation AddOrganisationDataRow(string orgID, string healthBoard, string supplierReference)
+        public static tbEPS_Organisation AddOrganisationDataRow(string orgID, string healthBoard, string supplierReference)
         {
-            tbOrganisation row = new tbOrganisation
+            tbEPS_Organisation row = new tbEPS_Organisation
             {
                 rid = 1,
                 id = orgID,

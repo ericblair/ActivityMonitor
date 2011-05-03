@@ -40,7 +40,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Test HealthBoard", ""));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Test HealthBoard", ""));
 
             string _supplierReference = _repository.GetOrganisationSupplierReference(_organisation);
 
@@ -53,7 +53,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Test HealthBoard", "Test Supplier Reference"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Test HealthBoard", "Test Supplier Reference"));
 
             string _supplierReference = _repository.GetOrganisationSupplierReference(_organisation);
 

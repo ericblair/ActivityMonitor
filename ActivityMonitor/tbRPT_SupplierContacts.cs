@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace ActivityMonitor
 {
-    public partial class tbHealthBoardContacts
+    public partial class tbRPT_SupplierContacts
     {
         #region Primitive Properties
     
@@ -25,7 +25,7 @@ namespace ActivityMonitor
             set;
         }
     
-        public virtual string HealthBoard
+        public virtual string Supplier
         {
             get;
             set;

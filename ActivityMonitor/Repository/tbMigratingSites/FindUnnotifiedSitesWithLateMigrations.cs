@@ -11,12 +11,12 @@ namespace ActivityMonitor.Repository
         {
             Dictionary<String, DateTime> _sitesFound = new Dictionary<string, DateTime>();
 
-            var _sites = (from x in _ReportingEntity.tbMigratingSites
+            var _sites = (from x in _ReportingEntity.tbRPT_MigratingSites
                           where x.PlannedMigrationDate < DateTime.Today
                           && x.DateNotificationEmailSent == null
                           select x);
 
-            foreach (tbMigratingSites site in _sites)
+            foreach (tbRPT_MigratingSites site in _sites)
             {
                 _log.Add("Migration Date has expired for site: " + site.Organisation
                             + " . Planned migration date: " + site.PlannedMigrationDate.ToString());

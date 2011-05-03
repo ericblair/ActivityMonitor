@@ -11,7 +11,7 @@ namespace ActivityMonitor.Repository
         {
             DateTime? _latestAMSMessageRaw = null;
 
-            _latestAMSMessageRaw = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
+            _latestAMSMessageRaw = (from OrgSupplier in _ReportingEntity.tbRPT_OrgSupplier
                                  where OrgSupplier.org == organisation
                                  select OrgSupplier.latestAMS)
                                  .FirstOrDefault();

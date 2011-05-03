@@ -11,7 +11,7 @@ namespace ActivityMonitor.Repository
         {
             DateTime _latestMsg = new DateTime();
 
-            _latestMsg = (from Msg in _ReportingEntity.tbMsg
+            _latestMsg = (from Msg in _ReportingEntity.tbEPS_Msg
                           where Msg.msgTxSenderId == organisation
                           && Msg.msgTypeRid == 21 
                           | Msg.msgTypeRid == 22
@@ -22,7 +22,7 @@ namespace ActivityMonitor.Repository
 
             if (_latestMsg == null)
             {
-                _log.Add("No records exists in tbMsg for site: " + organisation);
+                _log.Add("No records exists in tbEPS_Msg for site: " + organisation);
                 return false;
             }
 

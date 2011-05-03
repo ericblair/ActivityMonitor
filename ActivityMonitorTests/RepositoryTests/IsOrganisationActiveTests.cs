@@ -30,8 +30,8 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
 
             Assert.IsFalse(_repository.IsOrganisationActive(_organisation));
         }
@@ -41,8 +41,8 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -52,8 +52,8 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -63,8 +63,8 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", true));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }
@@ -74,14 +74,14 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             // for this I've taken the setup code used for:
             // IsOrganisationActive_OrgNotSentAMSMessages_OrgNotDispensingSite_ReturnsFalse()
-            // but added a record to tbMsg which has a date more recent than the date 
+            // but added a record to tbEPS_Msg which has a date more recent than the date 
             // tbDailyActivityGP would have been updated
 
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", false));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
 
             Assert.IsTrue(_repository.IsOrganisationActive(_organisation));
         }

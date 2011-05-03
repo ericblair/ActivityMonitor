@@ -6,110 +6,60 @@
     <edmx:StorageModels>
     <Schema Namespace="ReportingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ReportingModelStoreContainer">
-          <EntitySet Name="tbDailyActivityGP" EntityType="ReportingModel.Store.tbDailyActivityGP" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbHealthBoardContacts" EntityType="ReportingModel.Store.tbHealthBoardContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbHealthBoardContacts">
+          <EntitySet Name="tbEPS_Msg" EntityType="ReportingModel.Store.tbEPS_Msg" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbEPS_Organisation" EntityType="ReportingModel.Store.tbEPS_Organisation" store:Type="Tables" store:Schema="dbo" store:Name="tbEPS_Organisation">
             <DefiningQuery>SELECT 
-      [tbHealthBoardContacts].[Rid] AS [Rid], 
-      [tbHealthBoardContacts].[HealthBoard] AS [HealthBoard], 
-      [tbHealthBoardContacts].[Contact] AS [Contact]
-      FROM [dbo].[tbHealthBoardContacts] AS [tbHealthBoardContacts]</DefiningQuery>
+      [tbEPS_Organisation].[rid] AS [rid], 
+      [tbEPS_Organisation].[id] AS [id], 
+      [tbEPS_Organisation].[organisationTypeRid] AS [organisationTypeRid], 
+      [tbEPS_Organisation].[shortName] AS [shortName], 
+      [tbEPS_Organisation].[name] AS [name], 
+      [tbEPS_Organisation].[healthBoardName] AS [healthBoardName], 
+      [tbEPS_Organisation].[alternateName] AS [alternateName], 
+      [tbEPS_Organisation].[prsRefreshEnabled] AS [prsRefreshEnabled], 
+      [tbEPS_Organisation].[epsServicesEnabled] AS [epsServicesEnabled], 
+      [tbEPS_Organisation].[startDate] AS [startDate], 
+      [tbEPS_Organisation].[endDate] AS [endDate], 
+      [tbEPS_Organisation].[archived] AS [archived], 
+      [tbEPS_Organisation].[auditCreatedOn] AS [auditCreatedOn], 
+      [tbEPS_Organisation].[auditCreatedBy] AS [auditCreatedBy], 
+      [tbEPS_Organisation].[auditUpdatedOn] AS [auditUpdatedOn], 
+      [tbEPS_Organisation].[auditUpdatedBy] AS [auditUpdatedBy], 
+      [tbEPS_Organisation].[address1] AS [address1], 
+      [tbEPS_Organisation].[address2] AS [address2], 
+      [tbEPS_Organisation].[address3] AS [address3], 
+      [tbEPS_Organisation].[address4] AS [address4], 
+      [tbEPS_Organisation].[postCode] AS [postCode], 
+      [tbEPS_Organisation].[country] AS [country], 
+      [tbEPS_Organisation].[telephone] AS [telephone], 
+      [tbEPS_Organisation].[fax] AS [fax], 
+      [tbEPS_Organisation].[email] AS [email], 
+      [tbEPS_Organisation].[supplier] AS [supplier], 
+      [tbEPS_Organisation].[supplierReference] AS [supplierReference], 
+      [tbEPS_Organisation].[dispensing] AS [dispensing], 
+      [tbEPS_Organisation].[notes] AS [notes]
+      FROM [dbo].[tbEPS_Organisation] AS [tbEPS_Organisation]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="tbInactiveSites" EntityType="ReportingModel.Store.tbInactiveSites" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbMigratingSites" EntityType="ReportingModel.Store.tbMigratingSites" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbMsg" EntityType="ReportingModel.Store.tbMsg" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbOrganisation" EntityType="ReportingModel.Store.tbOrganisation" store:Type="Tables" store:Schema="dbo" store:Name="tbOrganisation">
+          <EntitySet Name="tbRPT_DailyActivityGP" EntityType="ReportingModel.Store.tbRPT_DailyActivityGP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbRPT_HealthBoardContacts" EntityType="ReportingModel.Store.tbRPT_HealthBoardContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbRPT_HealthBoardContacts">
             <DefiningQuery>SELECT 
-      [tbOrganisation].[rid] AS [rid], 
-      [tbOrganisation].[id] AS [id], 
-      [tbOrganisation].[organisationTypeRid] AS [organisationTypeRid], 
-      [tbOrganisation].[shortName] AS [shortName], 
-      [tbOrganisation].[name] AS [name], 
-      [tbOrganisation].[healthBoardName] AS [healthBoardName], 
-      [tbOrganisation].[alternateName] AS [alternateName], 
-      [tbOrganisation].[prsRefreshEnabled] AS [prsRefreshEnabled], 
-      [tbOrganisation].[epsServicesEnabled] AS [epsServicesEnabled], 
-      [tbOrganisation].[startDate] AS [startDate], 
-      [tbOrganisation].[endDate] AS [endDate], 
-      [tbOrganisation].[archived] AS [archived], 
-      [tbOrganisation].[auditCreatedOn] AS [auditCreatedOn], 
-      [tbOrganisation].[auditCreatedBy] AS [auditCreatedBy], 
-      [tbOrganisation].[auditUpdatedOn] AS [auditUpdatedOn], 
-      [tbOrganisation].[auditUpdatedBy] AS [auditUpdatedBy], 
-      [tbOrganisation].[address1] AS [address1], 
-      [tbOrganisation].[address2] AS [address2], 
-      [tbOrganisation].[address3] AS [address3], 
-      [tbOrganisation].[address4] AS [address4], 
-      [tbOrganisation].[postCode] AS [postCode], 
-      [tbOrganisation].[country] AS [country], 
-      [tbOrganisation].[telephone] AS [telephone], 
-      [tbOrganisation].[fax] AS [fax], 
-      [tbOrganisation].[email] AS [email], 
-      [tbOrganisation].[supplier] AS [supplier], 
-      [tbOrganisation].[supplierReference] AS [supplierReference], 
-      [tbOrganisation].[dispensing] AS [dispensing], 
-      [tbOrganisation].[notes] AS [notes]
-      FROM [dbo].[tbOrganisation] AS [tbOrganisation]</DefiningQuery>
+      [tbRPT_HealthBoardContacts].[Rid] AS [Rid], 
+      [tbRPT_HealthBoardContacts].[HealthBoard] AS [HealthBoard], 
+      [tbRPT_HealthBoardContacts].[Contact] AS [Contact]
+      FROM [dbo].[tbRPT_HealthBoardContacts] AS [tbRPT_HealthBoardContacts]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="tbOrgSupplier" EntityType="ReportingModel.Store.tbOrgSupplier" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tbSupplierContacts" EntityType="ReportingModel.Store.tbSupplierContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbSupplierContacts">
+          <EntitySet Name="tbRPT_InactiveSites" EntityType="ReportingModel.Store.tbRPT_InactiveSites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbRPT_MigratingSites" EntityType="ReportingModel.Store.tbRPT_MigratingSites" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbRPT_OrgSupplier" EntityType="ReportingModel.Store.tbRPT_OrgSupplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbRPT_SupplierContacts" EntityType="ReportingModel.Store.tbRPT_SupplierContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbRPT_SupplierContacts">
             <DefiningQuery>SELECT 
-      [tbSupplierContacts].[Rid] AS [Rid], 
-      [tbSupplierContacts].[Supplier] AS [Supplier], 
-      [tbSupplierContacts].[Contact] AS [Contact]
-      FROM [dbo].[tbSupplierContacts] AS [tbSupplierContacts]</DefiningQuery>
+      [tbRPT_SupplierContacts].[Rid] AS [Rid], 
+      [tbRPT_SupplierContacts].[Supplier] AS [Supplier], 
+      [tbRPT_SupplierContacts].[Contact] AS [Contact]
+      FROM [dbo].[tbRPT_SupplierContacts] AS [tbRPT_SupplierContacts]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-        <EntityType Name="tbDailyActivityGP">
-          <Key>
-            <PropertyRef Name="org" />
-            <PropertyRef Name="date" />
-          </Key>
-          <Property Name="org" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="date" Type="smalldatetime" Nullable="false" />
-          <Property Name="amsPrescriptions" Type="smallint" />
-          <Property Name="amsCancellations" Type="smallint" />
-          <Property Name="amsAmendments" Type="smallint" />
-          <Property Name="cmsPrescriptions" Type="smallint" />
-          <Property Name="cmsCancellations" Type="smallint" />
-          <Property Name="cmsUpdatesRequests" Type="smallint" />
-          <Property Name="cmsTreatmentUpdates" Type="smallint" />
-          <Property Name="cmsComplianceUpdates" Type="smallint" />
-          <Property Name="gpRegistrationUpdatesRequests" Type="smallint" />
-        </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'Reporting.dbo.tbHealthBoardContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="tbHealthBoardContacts">
-          <Key>
-            <PropertyRef Name="Rid" />
-            <PropertyRef Name="HealthBoard" />
-            <PropertyRef Name="Contact" />
-          </Key>
-          <Property Name="Rid" Type="int" Nullable="false" />
-          <Property Name="HealthBoard" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="tbInactiveSites">
-          <Key>
-            <PropertyRef Name="Org" />
-          </Key>
-          <Property Name="Org" Type="nchar" Nullable="false" MaxLength="10" />
-          <Property Name="DateEmailSent" Type="smalldatetime" />
-          <Property Name="DateCreated" Type="smalldatetime" Nullable="false" />
-          <Property Name="DateUpdated" Type="smalldatetime" />
-        </EntityType>
-        <EntityType Name="tbMigratingSites">
-          <Key>
-            <PropertyRef Name="Organisation" />
-          </Key>
-          <Property Name="Organisation" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="OriginalSupplier" Type="varchar" MaxLength="50" />
-          <Property Name="FutureSupplier" Type="varchar" MaxLength="50" />
-          <Property Name="PlannedMigrationDate" Type="smalldatetime" />
-          <Property Name="DateNotificationEmailSent" Type="smalldatetime" />
-          <Property Name="DateUpdated" Type="smalldatetime" />
-        </EntityType>
-        <EntityType Name="tbMsg">
+        <EntityType Name="tbEPS_Msg">
           <Key>
             <PropertyRef Name="rid" />
           </Key>
@@ -155,9 +105,9 @@
           <Property Name="deleteFailedOn" Type="smalldatetime" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'Reporting.dbo.tbOrganisation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'Reporting.dbo.tbEPS_Organisation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-        <EntityType Name="tbOrganisation">
+        <EntityType Name="tbEPS_Organisation">
           <Key>
             <PropertyRef Name="rid" />
             <PropertyRef Name="id" />
@@ -199,7 +149,57 @@
           <Property Name="dispensing" Type="bit" />
           <Property Name="notes" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="tbOrgSupplier">
+        <EntityType Name="tbRPT_DailyActivityGP">
+          <Key>
+            <PropertyRef Name="org" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="org" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="date" Type="smalldatetime" Nullable="false" />
+          <Property Name="amsPrescriptions" Type="smallint" />
+          <Property Name="amsCancellations" Type="smallint" />
+          <Property Name="amsAmendments" Type="smallint" />
+          <Property Name="cmsPrescriptions" Type="smallint" />
+          <Property Name="cmsCancellations" Type="smallint" />
+          <Property Name="cmsUpdatesRequests" Type="smallint" />
+          <Property Name="cmsTreatmentUpdates" Type="smallint" />
+          <Property Name="cmsComplianceUpdates" Type="smallint" />
+          <Property Name="gpRegistrationUpdatesRequests" Type="smallint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Reporting.dbo.tbRPT_HealthBoardContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbRPT_HealthBoardContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+            <PropertyRef Name="HealthBoard" />
+            <PropertyRef Name="Contact" />
+          </Key>
+          <Property Name="Rid" Type="int" Nullable="false" />
+          <Property Name="HealthBoard" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbRPT_InactiveSites">
+          <Key>
+            <PropertyRef Name="Org" />
+          </Key>
+          <Property Name="Org" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="DateEmailSent" Type="smalldatetime" />
+          <Property Name="DateCreated" Type="smalldatetime" Nullable="false" />
+          <Property Name="DateUpdated" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tbRPT_MigratingSites">
+          <Key>
+            <PropertyRef Name="Organisation" />
+          </Key>
+          <Property Name="Organisation" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="OriginalSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="FutureSupplier" Type="varchar" MaxLength="50" />
+          <Property Name="PlannedMigrationDate" Type="smalldatetime" />
+          <Property Name="DateNotificationEmailSent" Type="smalldatetime" />
+          <Property Name="DateUpdated" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tbRPT_OrgSupplier">
           <Key>
             <PropertyRef Name="org" />
           </Key>
@@ -227,9 +227,9 @@
           <Property Name="latestMAS" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'Reporting.dbo.tbSupplierContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'Reporting.dbo.tbRPT_SupplierContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-        <EntityType Name="tbSupplierContacts">
+        <EntityType Name="tbRPT_SupplierContacts">
           <Key>
             <PropertyRef Name="Rid" />
             <PropertyRef Name="Supplier" />
@@ -244,97 +244,78 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ReportingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ReportingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tbDailyActivityGP" EntityType="ReportingModel.tbDailyActivityGP" />
-          <EntitySet Name="tbHealthBoardContacts" EntityType="ReportingModel.tbHealthBoardContacts" />
-          <EntitySet Name="tbInactiveSites" EntityType="ReportingModel.tbInactiveSites" />
-          <EntitySet Name="tbMsg" EntityType="ReportingModel.tbMsg" />
-          <EntitySet Name="tbOrganisation" EntityType="ReportingModel.tbOrganisation" />
-          <EntitySet Name="tbOrgSupplier" EntityType="ReportingModel.tbOrgSupplier" />
-          <EntitySet Name="tbSupplierContacts" EntityType="ReportingModel.tbSupplierContacts" />
-          <EntitySet Name="tbMigratingSites1" EntityType="ReportingModel.tbMigratingSites" />
+          <EntitySet Name="tbRPT_DailyActivityGP" EntityType="ReportingModel.tbRPT_DailyActivityGP" />
+          <EntitySet Name="tbEPS_Msg" EntityType="ReportingModel.tbEPS_Msg" />
+          <EntitySet Name="tbEPS_Organisation" EntityType="ReportingModel.tbEPS_Organisation" />
+          <EntitySet Name="tbRPT_HealthBoardContacts" EntityType="ReportingModel.tbRPT_HealthBoardContacts" />
+          <EntitySet Name="tbRPT_InactiveSites" EntityType="ReportingModel.tbRPT_InactiveSites" />
+          <EntitySet Name="tbRPT_MigratingSites" EntityType="ReportingModel.tbRPT_MigratingSites" />
+          <EntitySet Name="tbRPT_OrgSupplier" EntityType="ReportingModel.tbRPT_OrgSupplier" />
+          <EntitySet Name="tbRPT_SupplierContacts" EntityType="ReportingModel.tbRPT_SupplierContacts" />
         </EntityContainer>
-        <EntityType Name="tbDailyActivityGP">
+        <EntityType Name="tbRPT_DailyActivityGP">
           <Key>
             <PropertyRef Name="org" />
             <PropertyRef Name="date" />
           </Key>
-          <Property Name="org" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" />
-          <Property Name="amsPrescriptions" Type="Int16" />
-          <Property Name="amsCancellations" Type="Int16" />
-          <Property Name="amsAmendments" Type="Int16" />
-          <Property Name="cmsPrescriptions" Type="Int16" />
-          <Property Name="cmsCancellations" Type="Int16" />
-          <Property Name="cmsUpdatesRequests" Type="Int16" />
-          <Property Name="cmsTreatmentUpdates" Type="Int16" />
-          <Property Name="cmsComplianceUpdates" Type="Int16" />
-          <Property Name="gpRegistrationUpdatesRequests" Type="Int16" />
+          <Property Type="String" Name="org" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" Nullable="false" />
+          <Property Type="Int16" Name="amsPrescriptions" />
+          <Property Type="Int16" Name="amsCancellations" />
+          <Property Type="Int16" Name="amsAmendments" />
+          <Property Type="Int16" Name="cmsPrescriptions" />
+          <Property Type="Int16" Name="cmsCancellations" />
+          <Property Type="Int16" Name="cmsUpdatesRequests" />
+          <Property Type="Int16" Name="cmsTreatmentUpdates" />
+          <Property Type="Int16" Name="cmsComplianceUpdates" />
+          <Property Type="Int16" Name="gpRegistrationUpdatesRequests" />
         </EntityType>
-        <EntityType Name="tbHealthBoardContacts">
-          <Key>
-            <PropertyRef Name="Rid" />
-            <PropertyRef Name="HealthBoard" />
-            <PropertyRef Name="Contact" />
-          </Key>
-          <Property Name="Rid" Type="Int32" Nullable="false" />
-          <Property Name="HealthBoard" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Contact" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="tbInactiveSites">
-          <Key>
-            <PropertyRef Name="Org" />
-          </Key>
-          <Property Name="Org" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
-          <Property Name="DateEmailSent" Type="DateTime" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
-          <Property Name="DateUpdated" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="tbMsg">
+        <EntityType Name="tbEPS_Msg">
           <Key>
             <PropertyRef Name="rid" />
           </Key>
-          <Property Name="rid" Type="Int64" Nullable="false" />
-          <Property Name="exId" Type="Guid" Nullable="false" />
-          <Property Name="exDatetime" Type="DateTime" Nullable="false" />
-          <Property Name="exMepRoleId" Type="Int16" Nullable="false" />
-          <Property Name="exMsgSourceEpocRid" Type="Int64" Nullable="false" />
-          <Property Name="exMsgDestinationEpocRid" Type="Int64" Nullable="false" />
-          <Property Name="msgCxRid" Type="Int64" Nullable="false" />
-          <Property Name="msgTypeRid" Type="Int64" Nullable="false" />
-          <Property Name="xmlSourceComplete" Type="Boolean" Nullable="false" />
-          <Property Name="xmlSource" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="requestMsgRid" Type="Int64" />
-          <Property Name="responseSendCount" Type="Int32" />
-          <Property Name="schemaVersion" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="priorityId" Type="Int16" Nullable="false" />
-          <Property Name="statusId" Type="Int16" Nullable="false" />
-          <Property Name="softwareName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="softwareVersion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="softwareAuthor" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="appServiceName" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
-          <Property Name="appServiceVersion" Type="Decimal" Nullable="false" Precision="38" Scale="28" />
-          <Property Name="sttl" Type="Int32" Nullable="false" />
-          <Property Name="id" Type="Guid" Nullable="false" />
-          <Property Name="stepRef" Type="Int32" Nullable="false" />
-          <Property Name="datetime" Type="DateTime" Nullable="false" />
-          <Property Name="categoryId" Type="Int16" Nullable="false" />
-          <Property Name="lastBlockId" Type="Guid" />
-          <Property Name="bodyTypeCount" Type="Int32" Nullable="false" />
-          <Property Name="batched" Type="Boolean" />
-          <Property Name="deletableOn" Type="DateTime" />
-          <Property Name="msgTxSenderType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="msgTxSenderId" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="msgTxSenderName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="auditCreatedOn" Type="DateTime" Nullable="false" />
-          <Property Name="auditCreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="auditUpdatedOn" Type="DateTime" />
-          <Property Name="auditUpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="deleteOn" Type="DateTime" />
-          <Property Name="deleteOnNextReview" Type="DateTime" />
-          <Property Name="deleteOnFixed" Type="Boolean" Nullable="false" />
-          <Property Name="deleteFailedOn" Type="DateTime" />
+          <Property Type="Int64" Name="rid" Nullable="false" />
+          <Property Type="Guid" Name="exId" Nullable="false" />
+          <Property Type="DateTime" Name="exDatetime" Nullable="false" />
+          <Property Type="Int16" Name="exMepRoleId" Nullable="false" />
+          <Property Type="Int64" Name="exMsgSourceEpocRid" Nullable="false" />
+          <Property Type="Int64" Name="exMsgDestinationEpocRid" Nullable="false" />
+          <Property Type="Int64" Name="msgCxRid" Nullable="false" />
+          <Property Type="Int64" Name="msgTypeRid" Nullable="false" />
+          <Property Type="Boolean" Name="xmlSourceComplete" Nullable="false" />
+          <Property Type="String" Name="xmlSource" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="requestMsgRid" />
+          <Property Type="Int32" Name="responseSendCount" />
+          <Property Type="String" Name="schemaVersion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="priorityId" Nullable="false" />
+          <Property Type="Int16" Name="statusId" Nullable="false" />
+          <Property Type="String" Name="softwareName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="softwareVersion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="softwareAuthor" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="appServiceName" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="appServiceVersion" Nullable="false" Precision="38" Scale="28" />
+          <Property Type="Int32" Name="sttl" Nullable="false" />
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="stepRef" Nullable="false" />
+          <Property Type="DateTime" Name="datetime" Nullable="false" />
+          <Property Type="Int16" Name="categoryId" Nullable="false" />
+          <Property Type="Guid" Name="lastBlockId" />
+          <Property Type="Int32" Name="bodyTypeCount" Nullable="false" />
+          <Property Type="Boolean" Name="batched" />
+          <Property Type="DateTime" Name="deletableOn" />
+          <Property Type="String" Name="msgTxSenderType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="msgTxSenderId" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="msgTxSenderName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="auditCreatedOn" Nullable="false" />
+          <Property Type="String" Name="auditCreatedBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="auditUpdatedOn" />
+          <Property Type="String" Name="auditUpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="deleteOn" />
+          <Property Type="DateTime" Name="deleteOnNextReview" />
+          <Property Type="Boolean" Name="deleteOnFixed" Nullable="false" />
+          <Property Type="DateTime" Name="deleteFailedOn" />
         </EntityType>
-        <EntityType Name="tbOrganisation">
+        <EntityType Name="tbEPS_Organisation">
           <Key>
             <PropertyRef Name="rid" />
             <PropertyRef Name="id" />
@@ -346,83 +327,102 @@
             <PropertyRef Name="auditCreatedOn" />
             <PropertyRef Name="auditCreatedBy" />
           </Key>
-          <Property Name="rid" Type="Int64" Nullable="false" />
-          <Property Name="id" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="organisationTypeRid" Type="Int64" Nullable="false" />
-          <Property Name="shortName" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
-          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="healthBoardName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="alternateName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="prsRefreshEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="epsServicesEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="startDate" Type="DateTime" Nullable="false" />
-          <Property Name="endDate" Type="DateTime" />
-          <Property Name="archived" Type="Boolean" Nullable="false" />
-          <Property Name="auditCreatedOn" Type="DateTime" Nullable="false" />
-          <Property Name="auditCreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="auditUpdatedOn" Type="DateTime" />
-          <Property Name="auditUpdatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="address1" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="address2" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="address3" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="address4" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="postCode" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
-          <Property Name="country" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="telephone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="fax" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="supplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="supplierReference" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="dispensing" Type="Boolean" />
-          <Property Name="notes" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="Int64" Name="rid" Nullable="false" />
+          <Property Type="String" Name="id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="organisationTypeRid" Nullable="false" />
+          <Property Type="String" Name="shortName" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="healthBoardName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="alternateName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="prsRefreshEnabled" Nullable="false" />
+          <Property Type="Boolean" Name="epsServicesEnabled" Nullable="false" />
+          <Property Type="DateTime" Name="startDate" Nullable="false" />
+          <Property Type="DateTime" Name="endDate" />
+          <Property Type="Boolean" Name="archived" Nullable="false" />
+          <Property Type="DateTime" Name="auditCreatedOn" Nullable="false" />
+          <Property Type="String" Name="auditCreatedBy" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="auditUpdatedOn" />
+          <Property Type="String" Name="auditUpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address1" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address2" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address3" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address4" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postCode" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telephone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierReference" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="dispensing" />
+          <Property Type="String" Name="notes" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="tbOrgSupplier">
+        <EntityType Name="tbRPT_HealthBoardContacts">
+          <Key>
+            <PropertyRef Name="Rid" />
+            <PropertyRef Name="HealthBoard" />
+            <PropertyRef Name="Contact" />
+          </Key>
+          <Property Type="Int32" Name="Rid" Nullable="false" />
+          <Property Type="String" Name="HealthBoard" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbRPT_InactiveSites">
+          <Key>
+            <PropertyRef Name="Org" />
+          </Key>
+          <Property Type="String" Name="Org" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="DateTime" Name="DateEmailSent" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" />
+        </EntityType>
+        <EntityType Name="tbRPT_MigratingSites">
+          <Key>
+            <PropertyRef Name="Organisation" />
+          </Key>
+          <Property Type="String" Name="Organisation" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OriginalSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FutureSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PlannedMigrationDate" />
+          <Property Type="DateTime" Name="DateNotificationEmailSent" />
+          <Property Type="DateTime" Name="DateUpdated" />
+        </EntityType>
+        <EntityType Name="tbRPT_OrgSupplier">
           <Key>
             <PropertyRef Name="org" />
           </Key>
-          <Property Name="org" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="epoc" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
-          <Property Name="supplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="product" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="version" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="latestMsg" Type="DateTime" />
-          <Property Name="X509SerialNumber" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
-          <Property Name="downloaddate" Type="DateTime" />
-          <Property Name="AuthCertSerialNumber" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
-          <Property Name="AuthCertDownloadDate" Type="DateTime" />
-          <Property Name="ipAddress" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
-          <Property Name="reportingSupplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="disp" Type="Boolean" Nullable="false" />
-          <Property Name="extended" Type="Boolean" />
-          <Property Name="previousSupplier" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="previousProduct" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CmsBetaSite" Type="Boolean" />
-          <Property Name="EpocCertBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="ResignCertBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="latestAMS" Type="DateTime" />
-          <Property Name="latestCMS" Type="DateTime" />
-          <Property Name="latestMAS" Type="DateTime" />
+          <Property Type="String" Name="org" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="epoc" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="product" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="version" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="latestMsg" />
+          <Property Type="String" Name="X509SerialNumber" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="downloaddate" />
+          <Property Type="String" Name="AuthCertSerialNumber" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="AuthCertDownloadDate" />
+          <Property Type="String" Name="ipAddress" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reportingSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="disp" Nullable="false" />
+          <Property Type="Boolean" Name="extended" />
+          <Property Type="String" Name="previousSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="previousProduct" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="CmsBetaSite" />
+          <Property Type="String" Name="EpocCertBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ResignCertBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="latestAMS" />
+          <Property Type="DateTime" Name="latestCMS" />
+          <Property Type="DateTime" Name="latestMAS" />
         </EntityType>
-        <EntityType Name="tbSupplierContacts">
+        <EntityType Name="tbRPT_SupplierContacts">
           <Key>
             <PropertyRef Name="Rid" />
             <PropertyRef Name="Supplier" />
             <PropertyRef Name="Contact" />
           </Key>
-          <Property Name="Rid" Type="Int32" Nullable="false" />
-          <Property Name="Supplier" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Contact" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="tbMigratingSites">
-          <Key>
-            <PropertyRef Name="Organisation" />
-          </Key>
-          <Property Type="String" Name="Organisation" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FutureSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="PlannedMigrationDate" />
-          <Property Type="DateTime" Name="DateNotificationEmailSent" />
-          <Property Type="DateTime" Name="DateUpdated" />
-          <Property Type="String" Name="OriginalSupplier" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Rid" Nullable="false" />
+          <Property Type="String" Name="Supplier" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -430,141 +430,169 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ReportingModelStoreContainer" CdmEntityContainer="ReportingEntities">
-          <EntitySetMapping Name="tbDailyActivityGP"><EntityTypeMapping TypeName="ReportingModel.tbDailyActivityGP"><MappingFragment StoreEntitySet="tbDailyActivityGP">
-            <ScalarProperty Name="org" ColumnName="org" />
-            <ScalarProperty Name="date" ColumnName="date" />
-            <ScalarProperty Name="amsPrescriptions" ColumnName="amsPrescriptions" />
-            <ScalarProperty Name="amsCancellations" ColumnName="amsCancellations" />
-            <ScalarProperty Name="amsAmendments" ColumnName="amsAmendments" />
-            <ScalarProperty Name="cmsPrescriptions" ColumnName="cmsPrescriptions" />
-            <ScalarProperty Name="cmsCancellations" ColumnName="cmsCancellations" />
-            <ScalarProperty Name="cmsUpdatesRequests" ColumnName="cmsUpdatesRequests" />
-            <ScalarProperty Name="cmsTreatmentUpdates" ColumnName="cmsTreatmentUpdates" />
-            <ScalarProperty Name="cmsComplianceUpdates" ColumnName="cmsComplianceUpdates" />
-            <ScalarProperty Name="gpRegistrationUpdatesRequests" ColumnName="gpRegistrationUpdatesRequests" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbHealthBoardContacts"><EntityTypeMapping TypeName="ReportingModel.tbHealthBoardContacts"><MappingFragment StoreEntitySet="tbHealthBoardContacts">
-            <ScalarProperty Name="Rid" ColumnName="Rid" />
-            <ScalarProperty Name="HealthBoard" ColumnName="HealthBoard" />
-            <ScalarProperty Name="Contact" ColumnName="Contact" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbInactiveSites"><EntityTypeMapping TypeName="ReportingModel.tbInactiveSites"><MappingFragment StoreEntitySet="tbInactiveSites">
-            <ScalarProperty Name="Org" ColumnName="Org" />
-            <ScalarProperty Name="DateEmailSent" ColumnName="DateEmailSent" />
-            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-            <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbMsg"><EntityTypeMapping TypeName="ReportingModel.tbMsg"><MappingFragment StoreEntitySet="tbMsg">
-            <ScalarProperty Name="rid" ColumnName="rid" />
-            <ScalarProperty Name="exId" ColumnName="exId" />
-            <ScalarProperty Name="exDatetime" ColumnName="exDatetime" />
-            <ScalarProperty Name="exMepRoleId" ColumnName="exMepRoleId" />
-            <ScalarProperty Name="exMsgSourceEpocRid" ColumnName="exMsgSourceEpocRid" />
-            <ScalarProperty Name="exMsgDestinationEpocRid" ColumnName="exMsgDestinationEpocRid" />
-            <ScalarProperty Name="msgCxRid" ColumnName="msgCxRid" />
-            <ScalarProperty Name="msgTypeRid" ColumnName="msgTypeRid" />
-            <ScalarProperty Name="xmlSourceComplete" ColumnName="xmlSourceComplete" />
-            <ScalarProperty Name="xmlSource" ColumnName="xmlSource" />
-            <ScalarProperty Name="requestMsgRid" ColumnName="requestMsgRid" />
-            <ScalarProperty Name="responseSendCount" ColumnName="responseSendCount" />
-            <ScalarProperty Name="schemaVersion" ColumnName="schemaVersion" />
-            <ScalarProperty Name="priorityId" ColumnName="priorityId" />
-            <ScalarProperty Name="statusId" ColumnName="statusId" />
-            <ScalarProperty Name="softwareName" ColumnName="softwareName" />
-            <ScalarProperty Name="softwareVersion" ColumnName="softwareVersion" />
-            <ScalarProperty Name="softwareAuthor" ColumnName="softwareAuthor" />
-            <ScalarProperty Name="appServiceName" ColumnName="appServiceName" />
-            <ScalarProperty Name="appServiceVersion" ColumnName="appServiceVersion" />
-            <ScalarProperty Name="sttl" ColumnName="sttl" />
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="stepRef" ColumnName="stepRef" />
-            <ScalarProperty Name="datetime" ColumnName="datetime" />
-            <ScalarProperty Name="categoryId" ColumnName="categoryId" />
-            <ScalarProperty Name="lastBlockId" ColumnName="lastBlockId" />
-            <ScalarProperty Name="bodyTypeCount" ColumnName="bodyTypeCount" />
-            <ScalarProperty Name="batched" ColumnName="batched" />
-            <ScalarProperty Name="deletableOn" ColumnName="deletableOn" />
-            <ScalarProperty Name="msgTxSenderType" ColumnName="msgTxSenderType" />
-            <ScalarProperty Name="msgTxSenderId" ColumnName="msgTxSenderId" />
-            <ScalarProperty Name="msgTxSenderName" ColumnName="msgTxSenderName" />
-            <ScalarProperty Name="auditCreatedOn" ColumnName="auditCreatedOn" />
-            <ScalarProperty Name="auditCreatedBy" ColumnName="auditCreatedBy" />
-            <ScalarProperty Name="auditUpdatedOn" ColumnName="auditUpdatedOn" />
-            <ScalarProperty Name="auditUpdatedBy" ColumnName="auditUpdatedBy" />
-            <ScalarProperty Name="deleteOn" ColumnName="deleteOn" />
-            <ScalarProperty Name="deleteOnNextReview" ColumnName="deleteOnNextReview" />
-            <ScalarProperty Name="deleteOnFixed" ColumnName="deleteOnFixed" />
-            <ScalarProperty Name="deleteFailedOn" ColumnName="deleteFailedOn" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbOrganisation"><EntityTypeMapping TypeName="ReportingModel.tbOrganisation"><MappingFragment StoreEntitySet="tbOrganisation">
-            <ScalarProperty Name="rid" ColumnName="rid" />
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="organisationTypeRid" ColumnName="organisationTypeRid" />
-            <ScalarProperty Name="shortName" ColumnName="shortName" />
-            <ScalarProperty Name="name" ColumnName="name" />
-            <ScalarProperty Name="healthBoardName" ColumnName="healthBoardName" />
-            <ScalarProperty Name="alternateName" ColumnName="alternateName" />
-            <ScalarProperty Name="prsRefreshEnabled" ColumnName="prsRefreshEnabled" />
-            <ScalarProperty Name="epsServicesEnabled" ColumnName="epsServicesEnabled" />
-            <ScalarProperty Name="startDate" ColumnName="startDate" />
-            <ScalarProperty Name="endDate" ColumnName="endDate" />
-            <ScalarProperty Name="archived" ColumnName="archived" />
-            <ScalarProperty Name="auditCreatedOn" ColumnName="auditCreatedOn" />
-            <ScalarProperty Name="auditCreatedBy" ColumnName="auditCreatedBy" />
-            <ScalarProperty Name="auditUpdatedOn" ColumnName="auditUpdatedOn" />
-            <ScalarProperty Name="auditUpdatedBy" ColumnName="auditUpdatedBy" />
-            <ScalarProperty Name="address1" ColumnName="address1" />
-            <ScalarProperty Name="address2" ColumnName="address2" />
-            <ScalarProperty Name="address3" ColumnName="address3" />
-            <ScalarProperty Name="address4" ColumnName="address4" />
-            <ScalarProperty Name="postCode" ColumnName="postCode" />
-            <ScalarProperty Name="country" ColumnName="country" />
-            <ScalarProperty Name="telephone" ColumnName="telephone" />
-            <ScalarProperty Name="fax" ColumnName="fax" />
-            <ScalarProperty Name="email" ColumnName="email" />
-            <ScalarProperty Name="supplier" ColumnName="supplier" />
-            <ScalarProperty Name="supplierReference" ColumnName="supplierReference" />
-            <ScalarProperty Name="dispensing" ColumnName="dispensing" />
-            <ScalarProperty Name="notes" ColumnName="notes" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbOrgSupplier"><EntityTypeMapping TypeName="ReportingModel.tbOrgSupplier"><MappingFragment StoreEntitySet="tbOrgSupplier">
-            <ScalarProperty Name="org" ColumnName="org" />
-            <ScalarProperty Name="epoc" ColumnName="epoc" />
-            <ScalarProperty Name="supplier" ColumnName="supplier" />
-            <ScalarProperty Name="product" ColumnName="product" />
-            <ScalarProperty Name="version" ColumnName="version" />
-            <ScalarProperty Name="latestMsg" ColumnName="latestMsg" />
-            <ScalarProperty Name="X509SerialNumber" ColumnName="X509SerialNumber" />
-            <ScalarProperty Name="downloaddate" ColumnName="downloaddate" />
-            <ScalarProperty Name="AuthCertSerialNumber" ColumnName="AuthCertSerialNumber" />
-            <ScalarProperty Name="AuthCertDownloadDate" ColumnName="AuthCertDownloadDate" />
-            <ScalarProperty Name="ipAddress" ColumnName="ipAddress" />
-            <ScalarProperty Name="reportingSupplier" ColumnName="reportingSupplier" />
-            <ScalarProperty Name="disp" ColumnName="disp" />
-            <ScalarProperty Name="extended" ColumnName="extended" />
-            <ScalarProperty Name="previousSupplier" ColumnName="previousSupplier" />
-            <ScalarProperty Name="previousProduct" ColumnName="previousProduct" />
-            <ScalarProperty Name="CmsBetaSite" ColumnName="CmsBetaSite" />
-            <ScalarProperty Name="EpocCertBy" ColumnName="EpocCertBy" />
-            <ScalarProperty Name="ResignCertBy" ColumnName="ResignCertBy" />
-            <ScalarProperty Name="latestAMS" ColumnName="latestAMS" />
-            <ScalarProperty Name="latestCMS" ColumnName="latestCMS" />
-            <ScalarProperty Name="latestMAS" ColumnName="latestMAS" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbSupplierContacts"><EntityTypeMapping TypeName="ReportingModel.tbSupplierContacts"><MappingFragment StoreEntitySet="tbSupplierContacts">
-            <ScalarProperty Name="Rid" ColumnName="Rid" />
-            <ScalarProperty Name="Supplier" ColumnName="Supplier" />
-            <ScalarProperty Name="Contact" ColumnName="Contact" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="tbMigratingSites1">
-            <EntityTypeMapping TypeName="ReportingModel.tbMigratingSites">
-              <MappingFragment StoreEntitySet="tbMigratingSites">
-                <ScalarProperty Name="OriginalSupplier" ColumnName="OriginalSupplier" />
+          <EntitySetMapping Name="tbRPT_DailyActivityGP">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_DailyActivityGP">
+              <MappingFragment StoreEntitySet="tbRPT_DailyActivityGP">
+                <ScalarProperty Name="gpRegistrationUpdatesRequests" ColumnName="gpRegistrationUpdatesRequests" />
+                <ScalarProperty Name="cmsComplianceUpdates" ColumnName="cmsComplianceUpdates" />
+                <ScalarProperty Name="cmsTreatmentUpdates" ColumnName="cmsTreatmentUpdates" />
+                <ScalarProperty Name="cmsUpdatesRequests" ColumnName="cmsUpdatesRequests" />
+                <ScalarProperty Name="cmsCancellations" ColumnName="cmsCancellations" />
+                <ScalarProperty Name="cmsPrescriptions" ColumnName="cmsPrescriptions" />
+                <ScalarProperty Name="amsAmendments" ColumnName="amsAmendments" />
+                <ScalarProperty Name="amsCancellations" ColumnName="amsCancellations" />
+                <ScalarProperty Name="amsPrescriptions" ColumnName="amsPrescriptions" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="org" ColumnName="org" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEPS_Msg">
+            <EntityTypeMapping TypeName="ReportingModel.tbEPS_Msg">
+              <MappingFragment StoreEntitySet="tbEPS_Msg">
+                <ScalarProperty Name="deleteFailedOn" ColumnName="deleteFailedOn" />
+                <ScalarProperty Name="deleteOnFixed" ColumnName="deleteOnFixed" />
+                <ScalarProperty Name="deleteOnNextReview" ColumnName="deleteOnNextReview" />
+                <ScalarProperty Name="deleteOn" ColumnName="deleteOn" />
+                <ScalarProperty Name="auditUpdatedBy" ColumnName="auditUpdatedBy" />
+                <ScalarProperty Name="auditUpdatedOn" ColumnName="auditUpdatedOn" />
+                <ScalarProperty Name="auditCreatedBy" ColumnName="auditCreatedBy" />
+                <ScalarProperty Name="auditCreatedOn" ColumnName="auditCreatedOn" />
+                <ScalarProperty Name="msgTxSenderName" ColumnName="msgTxSenderName" />
+                <ScalarProperty Name="msgTxSenderId" ColumnName="msgTxSenderId" />
+                <ScalarProperty Name="msgTxSenderType" ColumnName="msgTxSenderType" />
+                <ScalarProperty Name="deletableOn" ColumnName="deletableOn" />
+                <ScalarProperty Name="batched" ColumnName="batched" />
+                <ScalarProperty Name="bodyTypeCount" ColumnName="bodyTypeCount" />
+                <ScalarProperty Name="lastBlockId" ColumnName="lastBlockId" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="datetime" ColumnName="datetime" />
+                <ScalarProperty Name="stepRef" ColumnName="stepRef" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sttl" ColumnName="sttl" />
+                <ScalarProperty Name="appServiceVersion" ColumnName="appServiceVersion" />
+                <ScalarProperty Name="appServiceName" ColumnName="appServiceName" />
+                <ScalarProperty Name="softwareAuthor" ColumnName="softwareAuthor" />
+                <ScalarProperty Name="softwareVersion" ColumnName="softwareVersion" />
+                <ScalarProperty Name="softwareName" ColumnName="softwareName" />
+                <ScalarProperty Name="statusId" ColumnName="statusId" />
+                <ScalarProperty Name="priorityId" ColumnName="priorityId" />
+                <ScalarProperty Name="schemaVersion" ColumnName="schemaVersion" />
+                <ScalarProperty Name="responseSendCount" ColumnName="responseSendCount" />
+                <ScalarProperty Name="requestMsgRid" ColumnName="requestMsgRid" />
+                <ScalarProperty Name="xmlSource" ColumnName="xmlSource" />
+                <ScalarProperty Name="xmlSourceComplete" ColumnName="xmlSourceComplete" />
+                <ScalarProperty Name="msgTypeRid" ColumnName="msgTypeRid" />
+                <ScalarProperty Name="msgCxRid" ColumnName="msgCxRid" />
+                <ScalarProperty Name="exMsgDestinationEpocRid" ColumnName="exMsgDestinationEpocRid" />
+                <ScalarProperty Name="exMsgSourceEpocRid" ColumnName="exMsgSourceEpocRid" />
+                <ScalarProperty Name="exMepRoleId" ColumnName="exMepRoleId" />
+                <ScalarProperty Name="exDatetime" ColumnName="exDatetime" />
+                <ScalarProperty Name="exId" ColumnName="exId" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEPS_Organisation">
+            <EntityTypeMapping TypeName="ReportingModel.tbEPS_Organisation">
+              <MappingFragment StoreEntitySet="tbEPS_Organisation">
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="dispensing" ColumnName="dispensing" />
+                <ScalarProperty Name="supplierReference" ColumnName="supplierReference" />
+                <ScalarProperty Name="supplier" ColumnName="supplier" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="postCode" ColumnName="postCode" />
+                <ScalarProperty Name="address4" ColumnName="address4" />
+                <ScalarProperty Name="address3" ColumnName="address3" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="auditUpdatedBy" ColumnName="auditUpdatedBy" />
+                <ScalarProperty Name="auditUpdatedOn" ColumnName="auditUpdatedOn" />
+                <ScalarProperty Name="auditCreatedBy" ColumnName="auditCreatedBy" />
+                <ScalarProperty Name="auditCreatedOn" ColumnName="auditCreatedOn" />
+                <ScalarProperty Name="archived" ColumnName="archived" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="epsServicesEnabled" ColumnName="epsServicesEnabled" />
+                <ScalarProperty Name="prsRefreshEnabled" ColumnName="prsRefreshEnabled" />
+                <ScalarProperty Name="alternateName" ColumnName="alternateName" />
+                <ScalarProperty Name="healthBoardName" ColumnName="healthBoardName" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shortName" ColumnName="shortName" />
+                <ScalarProperty Name="organisationTypeRid" ColumnName="organisationTypeRid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_HealthBoardContacts">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_HealthBoardContacts">
+              <MappingFragment StoreEntitySet="tbRPT_HealthBoardContacts">
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="HealthBoard" ColumnName="HealthBoard" />
+                <ScalarProperty Name="Rid" ColumnName="Rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_InactiveSites">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_InactiveSites">
+              <MappingFragment StoreEntitySet="tbRPT_InactiveSites">
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateEmailSent" ColumnName="DateEmailSent" />
+                <ScalarProperty Name="Org" ColumnName="Org" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_MigratingSites">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_MigratingSites">
+              <MappingFragment StoreEntitySet="tbRPT_MigratingSites">
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="DateNotificationEmailSent" ColumnName="DateNotificationEmailSent" />
                 <ScalarProperty Name="PlannedMigrationDate" ColumnName="PlannedMigrationDate" />
                 <ScalarProperty Name="FutureSupplier" ColumnName="FutureSupplier" />
+                <ScalarProperty Name="OriginalSupplier" ColumnName="OriginalSupplier" />
                 <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_OrgSupplier">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_OrgSupplier">
+              <MappingFragment StoreEntitySet="tbRPT_OrgSupplier">
+                <ScalarProperty Name="latestMAS" ColumnName="latestMAS" />
+                <ScalarProperty Name="latestCMS" ColumnName="latestCMS" />
+                <ScalarProperty Name="latestAMS" ColumnName="latestAMS" />
+                <ScalarProperty Name="ResignCertBy" ColumnName="ResignCertBy" />
+                <ScalarProperty Name="EpocCertBy" ColumnName="EpocCertBy" />
+                <ScalarProperty Name="CmsBetaSite" ColumnName="CmsBetaSite" />
+                <ScalarProperty Name="previousProduct" ColumnName="previousProduct" />
+                <ScalarProperty Name="previousSupplier" ColumnName="previousSupplier" />
+                <ScalarProperty Name="extended" ColumnName="extended" />
+                <ScalarProperty Name="disp" ColumnName="disp" />
+                <ScalarProperty Name="reportingSupplier" ColumnName="reportingSupplier" />
+                <ScalarProperty Name="ipAddress" ColumnName="ipAddress" />
+                <ScalarProperty Name="AuthCertDownloadDate" ColumnName="AuthCertDownloadDate" />
+                <ScalarProperty Name="AuthCertSerialNumber" ColumnName="AuthCertSerialNumber" />
+                <ScalarProperty Name="downloaddate" ColumnName="downloaddate" />
+                <ScalarProperty Name="X509SerialNumber" ColumnName="X509SerialNumber" />
+                <ScalarProperty Name="latestMsg" ColumnName="latestMsg" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="supplier" ColumnName="supplier" />
+                <ScalarProperty Name="epoc" ColumnName="epoc" />
+                <ScalarProperty Name="org" ColumnName="org" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_SupplierContacts">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_SupplierContacts">
+              <MappingFragment StoreEntitySet="tbRPT_SupplierContacts">
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="Rid" ColumnName="Rid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -590,14 +618,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Reporting">
-        <EntityTypeShape EntityType="ReportingModel.tbDailyActivityGP" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbHealthBoardContacts" Width="1.5" PointX="2.75" PointY="0.75" Height="1.4279589843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbInactiveSites" Width="1.5" PointX="2.75" PointY="3.75" Height="1.592306315104167" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbMsg" Width="1.5" PointX="4.75" PointY="0.75" Height="7.5088102213541674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbOrganisation" Width="1.5" PointX="6.75" PointY="0.75" Height="5.7009895833333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbOrgSupplier" Width="1.5" PointX="0.75" PointY="6.75" Height="4.5505582682291674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbSupplierContacts" Width="1.5" PointX="6.75" PointY="7.75" Height="1.4279589843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReportingModel.tbMigratingSites" Width="1.5" PointX="9.375" PointY="0.75" Height="1.9210009765625" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_DailyActivityGP" Width="1.5" PointX="0.5" PointY="0.5" Height="2.7427376302083317" />
+        <EntityTypeShape EntityType="ReportingModel.tbEPS_Msg" Width="1.5" PointX="8" PointY="0.5" Height="7.5088102213541674" />
+        <EntityTypeShape EntityType="ReportingModel.tbEPS_Organisation" Width="1.5" PointX="10" PointY="0.5" Height="5.7009895833333317" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_HealthBoardContacts" Width="1.5" PointX="4.25" PointY="2.625" Height="1.4279589843750031" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_InactiveSites" Width="1.5" PointX="2.375" PointY="0.5" Height="1.5923063151041674" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_MigratingSites" Width="1.5" PointX="4.25" PointY="0.5" Height="1.9210009765625031" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_OrgSupplier" Width="1.5" PointX="6.125" PointY="0.5" Height="4.5505582682291674" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_SupplierContacts" Width="1.5" PointX="2.375" PointY="2.375" Height="1.4279589843750031" />
       </Diagram>
     </Diagrams>
   </Designer>

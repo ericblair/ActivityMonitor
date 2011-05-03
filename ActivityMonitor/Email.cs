@@ -9,11 +9,16 @@ using System.Configuration;
 
 namespace ActivityMonitor
 {
+    /// <summary>
+    /// Class used to handle contructing and sending of emails
+    /// </summary>
     public class Email : ActivityMonitor.IEmail
     {
         IRepository _repository;
         ILogger _log;
         ISMTPWrapper _client;
+
+        #region Constructors
 
         public Email(IRepository rep, ILogger log)
         {
@@ -30,19 +35,39 @@ namespace ActivityMonitor
             _client = client;
         }
 
+        #endregion
+
+        /// <summary>
+        /// Send email to contacts passed in via list parameter
+        /// Note that this will send to all contacts as 'To' recipients
+        /// </summary>
+        /// <param name="contacts"></param>
+        /// <param name="organisation"></param>
         public void Send(List<String> contacts, string organisation)
         {
-            // ValidateEmailAddress(contacts);
+            // Construct email
             MailMessage email = ComposeEmail(contacts, organisation);
+            //Configure SMTP server
             SmtpClient emailServer = _client.ConfigureSmtpServer();
+            // Send email(s)
             emailServer.Send(email);
         }
 
+        /// <summary>
+        /// Send email.
+        /// This method will send emails to contacts passed in the supplierContacts list as 'To' recipients
+        /// and to contacts passed in the healthBoardContacts list as 'CC' recipients
+        /// </summary>
+        /// <param name="supplierContacts"></param>
+        /// <param name="healthBoardContacts"></param>
+        /// <param name="organisation"></param>
         public void Send(List<String> supplierContacts, List<String> healthBoardContacts, string organisation)
         {
-            // Created this method to accomodate sending to 'To' (supplier) and 'CC' (healthBoard) receipients 
+            // Construct email
             MailMessage email = ComposeEmail(supplierContacts, healthBoardContacts, organisation);
+            // configure SMTP server
             SmtpClient emailServer = _client.ConfigureSmtpServer();
+            // Send email(s)
             emailServer.Send(email);
         }
 

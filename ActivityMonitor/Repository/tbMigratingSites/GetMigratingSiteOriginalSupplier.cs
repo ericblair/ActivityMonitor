@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public string GetMigratingSiteOriginalSupplier(string organisation)
         {
-            var _originalSupplier = (from x in _ReportingEntity.tbMigratingSites
+            var _originalSupplier = (from x in _ReportingEntity.tbRPT_MigratingSites
                                      where x.Organisation == organisation
                                      select x.OriginalSupplier)
                                      .FirstOrDefault();

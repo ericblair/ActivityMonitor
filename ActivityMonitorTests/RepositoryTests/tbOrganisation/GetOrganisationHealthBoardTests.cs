@@ -23,7 +23,7 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board"));
         }
 
         [TestMethod()]

@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbMsg AddtbMsgDataRow(int msgrid, string organisation, DateTime msgdatetime, int msgType)
+        public static tbEPS_Msg AddtbMsgDataRow(int msgrid, string organisation, DateTime msgdatetime, int msgType)
         {
-            tbMsg row = new tbMsg
+            tbEPS_Msg row = new tbEPS_Msg
             {
                 rid = msgrid,
                 exId = new Guid(),

@@ -23,8 +23,8 @@ namespace ActivityMonitorTests.Repository
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTest1", 2));
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTest2", 2));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTest1", 2));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTest2", 2));
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace ActivityMonitorTests.Repository
         public void ActivityTableHasBeenUpdated_Default_SearchesForValuesInputOnPreviousDay_ReturnTrueWhenValuesExist()
         {
             // Add one more record containing yesterdays date to values populated by initialize (none of which match yesterdays date)
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTestA", 1));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("uTestA", 1));
             
             bool previousDateFound = _repository.ActivityTableHasBeenUpdated();
 

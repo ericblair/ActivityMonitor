@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbOrgSupplier AddOrgSupplierDataRow(string organisation, string supplier)
+        public static tbRPT_OrgSupplier AddOrgSupplierDataRow(string organisation, string supplier)
         {
-            tbOrgSupplier row = new tbOrgSupplier
+            tbRPT_OrgSupplier row = new tbRPT_OrgSupplier
             {
                 org = organisation,
                 epoc = "test",
@@ -39,9 +39,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrgSupplier AddOrgSupplierDataRow(string organisation, string supplier, DateTime? latestAmsMsg)
+        public static tbRPT_OrgSupplier AddOrgSupplierDataRow(string organisation, string supplier, DateTime? latestAmsMsg)
         {
-            tbOrgSupplier row = new tbOrgSupplier
+            tbRPT_OrgSupplier row = new tbRPT_OrgSupplier
             {
                 org = organisation,
                 epoc = "test",
@@ -70,9 +70,9 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrgSupplier AddOrgSupplierDataRow(string organisation, bool dispensing)
+        public static tbRPT_OrgSupplier AddOrgSupplierDataRow(string organisation, bool dispensing)
         {
-            tbOrgSupplier row = new tbOrgSupplier
+            tbRPT_OrgSupplier row = new tbRPT_OrgSupplier
             {
                 org = organisation,
                 epoc = "test",
@@ -101,10 +101,10 @@ namespace ActivityMonitorTests.TestHelpers
             return row;
         }
 
-        public static tbOrgSupplier AddOrgSupplierDataRow(string organisation, string epoc, string supplier, string reportingSupplier)
+        public static tbRPT_OrgSupplier AddOrgSupplierDataRow(string organisation, string epoc, string supplier, string reportingSupplier)
         {   // Added EPOC parameter as without it the complier wouldn't differentiate between a call to this and a call to 
             // (string organisation, string supplier, DateTime? latestAmsMsg) when the date passed in is null
-            tbOrgSupplier row = new tbOrgSupplier
+            tbRPT_OrgSupplier row = new tbRPT_OrgSupplier
             {
                 org = organisation,
                 epoc = epoc,

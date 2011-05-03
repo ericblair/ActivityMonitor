@@ -8,9 +8,9 @@ namespace ActivityMonitorTests.TestHelpers
 {
     public static partial class PopulateTable
     {
-        public static tbInactiveSites AddInactiveSitesDataRow(string organisation, Nullable<System.DateTime> dateEmailSent, DateTime dateCreated, Nullable<System.DateTime> dateUpdated)
+        public static tbRPT_InactiveSites AddInactiveSitesDataRow(string organisation, Nullable<System.DateTime> dateEmailSent, DateTime dateCreated, Nullable<System.DateTime> dateUpdated)
         {
-            tbInactiveSites row = new tbInactiveSites
+            tbRPT_InactiveSites row = new tbRPT_InactiveSites
             {
                 Org = organisation,
                 DateEmailSent = dateEmailSent,

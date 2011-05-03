@@ -7,12 +7,12 @@ namespace ActivityMonitor.Repository
 {
     public partial class Repository
     {
-        // return organisation's supplier value from tbOrgSupplier
+        // return organisation's supplier value from tbRPT_OrgSupplier
         public string GetOrganisationSupplier(string organisation)
         {
             string _supplier = null;
 
-            _supplier = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
+            _supplier = (from OrgSupplier in _ReportingEntity.tbRPT_OrgSupplier
                          where OrgSupplier.org == organisation
                          select OrgSupplier.supplier)
                         .FirstOrDefault();

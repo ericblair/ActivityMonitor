@@ -39,7 +39,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow(_organisation, 0, false));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow(_organisation, 0, false));
 
             Assert.IsFalse(_repository.OrganisationHasSentAMSMessages(_organisation));
         }
@@ -49,7 +49,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, true));
 
             Assert.IsTrue(_repository.OrganisationHasSentAMSMessages(_organisation));
         }
@@ -59,9 +59,9 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 2, true));
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 1, true));
-            _mockContext.tbDailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 2, true));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 1, true));
+            _mockContext.tbRPT_DailyActivityGP.AddObject(TestHelpers.PopulateTable.AddGPDailyActivityDataRow("1234", 0, false));
 
             Assert.IsFalse(_repository.OrganisationHasSentAMSMessages(_organisation));
         }

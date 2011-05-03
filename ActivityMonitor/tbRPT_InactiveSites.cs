@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace ActivityMonitor
 {
-    public partial class tbInactiveSites
+    public partial class tbRPT_InactiveSites
     {
         #region Primitive Properties
     

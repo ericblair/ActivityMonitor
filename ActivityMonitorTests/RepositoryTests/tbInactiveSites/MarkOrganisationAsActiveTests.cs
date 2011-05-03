@@ -22,9 +22,9 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3456", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3456", null, DateTime.Today, null));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.MarkOrganisationAsActive(_organisation);
 
-            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbInactiveSites. Org: " + _organisation));
+            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbRPT_InactiveSites. Org: " + _organisation));
         }
 
         [TestMethod]
@@ -44,8 +44,8 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.MarkOrganisationAsActive(_organisation);
 
-            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbInactiveSites. Org: " + _organisation));
-            Assert.AreEqual(_mockContext.tbInactiveSites.Count(), 3);
+            _log.Verify(log => log.Add("ERROR: Tried to remove non-existant organisation from tbRPT_InactiveSites. Org: " + _organisation));
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.Count(), 3);
         }
 
         [TestMethod]
@@ -55,9 +55,9 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.MarkOrganisationAsActive(_organisation);
 
-            Assert.AreEqual(_mockContext.tbInactiveSites.Count(), 2);
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).Org, "2345");
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(1).Org, "3456");
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.Count(), 2);
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).Org, "2345");
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(1).Org, "3456");
         }
     }
 }

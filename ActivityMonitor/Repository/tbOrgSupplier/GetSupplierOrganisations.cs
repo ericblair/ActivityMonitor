@@ -10,7 +10,7 @@ namespace ActivityMonitor.Repository
         // return all organisations for specified supplier
         public List<String> GetSupplierOrganisations(string supplier)
         {
-            var _organisations = from OrgSupplier in _ReportingEntity.tbOrgSupplier
+            var _organisations = from OrgSupplier in _ReportingEntity.tbRPT_OrgSupplier
                                  where OrgSupplier.supplier == supplier
                                  orderby OrgSupplier.org
                                  select OrgSupplier.org;

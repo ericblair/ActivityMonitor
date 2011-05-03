@@ -14,23 +14,36 @@ namespace ActivityMonitor
             Logger log = new Logger();
             ReportingEntities db = new ReportingEntities();
             ActivityMonitor.Repository.Repository repository = new ActivityMonitor.Repository.Repository(log, db);
+
             try
             {
                 string parameter = args[0];
+                
                 if (parameter == "CheckGPActivityForSelectedSuppliers")
                 {
+                    // Check GP Activity For Selected Suppliers  - will look for any sites running the selected suppliers software and issue an inactive email
+                    // report for any sites found to be inactive in the last 24 hours
+                    // Note: If more than 10 inactive sites are found for any healthboards then no reports will be sent to the affected healthboard
+                    // This allows us to investigate whether the sites are genuinely inactive or whether or not we've tried to report on non-suitable data
+                    // (ie bank holiday, etc)
+
                     log.Add("Job to run = CheckGPActivityForSelectedSuppliers, healthboard inactive site limit = true");
                     CheckGPActivityForSelectedSupplier _checkGPActivity = new CheckGPActivityForSelectedSupplier(repository, log, true);
                     _checkGPActivity.RunCheck();
                 }
                 else if (parameter == "CheckGPActivityForSelectedSuppliersIgnoreHealthboardLimit")
                 {
+                    // Check GP Activity For Selected Suppliers - Ignore Healthboard Limit
+                    // This will send inactive reports out regardless of how many sites are found to be inactive.
+
                     log.Add("Job to run = CheckGPActivityForSelectedSuppliers, healthboard inactive site limit = false");
                     CheckGPActivityForSelectedSupplier _checkGPActivity = new CheckGPActivityForSelectedSupplier(repository, log, false);
                     _checkGPActivity.RunCheck();
                 }
                 else if (parameter == "CheckSitesMigratingFromGpassToEmis")
                 {
+                    // Check all sites migrating from GPASS to EMIS and send out reports if the migration date expires without the switch being detected
+
                     log.Add("Job to run = CheckSitesMigratingFromGpassToEmis");
                     CheckMigratingSites _checkMigratingSites = new CheckMigratingSites(repository, log);
                     _checkMigratingSites.UpdateMigratingSitesTable();

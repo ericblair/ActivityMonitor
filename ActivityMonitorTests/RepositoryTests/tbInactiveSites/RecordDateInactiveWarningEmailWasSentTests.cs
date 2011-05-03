@@ -23,7 +23,7 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", null, DateTime.Today, null));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.RecordDateInactiveWarningEmailWasSent(_organisation);
 
-            _log.Verify(log => log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbInactiveSites. Org: " + _organisation));
+            _log.Verify(log => log.Add("ERROR: Tried to update the email was sent for a non-existant organisation from tbRPT_InactiveSites. Org: " + _organisation));
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.RecordDateInactiveWarningEmailWasSent(_organisation);
 
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).DateEmailSent, DateTime.Today);
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).DateEmailSent, DateTime.Today);
         }
     }
 }

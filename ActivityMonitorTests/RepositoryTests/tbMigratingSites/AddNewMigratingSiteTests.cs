@@ -30,16 +30,16 @@ namespace ActivityMonitorTests.RepositoryTests
             string _organisation = "1234";
 
             // Added supplier to allow call to complete
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "EMIS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "EMIS"));
 
             _repository.AddNewMigratingSite(_organisation, DateTime.Today);
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, _organisation);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).OriginalSupplier, "EMIS");
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).FutureSupplier, null);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).DateNotificationEmailSent, null);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).DateUpdated, null);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).OriginalSupplier, "EMIS");
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).FutureSupplier, null);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).DateNotificationEmailSent, null);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).DateUpdated, null);
         }
 
         // Not sure how to test error conditions atm. See Repository.SaveNewlyInactiveOrganisation for a description of similar issue.

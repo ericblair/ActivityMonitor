@@ -31,7 +31,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.SetOrganisationMigrationDate(_organisation, DateTime.Today);
 
-            _log.Verify(log => log.Add("ERROR: App attempted to update organisation not present in tbMigratingSites. Org: " + _organisation));
+            _log.Verify(log => log.Add("ERROR: App attempted to update organisation not present in tbRPT_MigratingSites. Org: " + _organisation));
         }
 
         [TestMethod]
@@ -39,11 +39,11 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234"));
 
             _repository.SetOrganisationMigrationDate(_organisation, DateTime.Today);
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
         }
     }
 }

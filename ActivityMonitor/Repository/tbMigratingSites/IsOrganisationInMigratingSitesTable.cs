@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public bool IsOrganisationInMigratingSitesTable(string organisation)
         {
-            var _organisation = (from x in _ReportingEntity.tbMigratingSites
+            var _organisation = (from x in _ReportingEntity.tbRPT_MigratingSites
                                  where organisation == x.Organisation
                                  select x);
 

@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public Dictionary<string, DateTime> GetMigratingGPASSSites()
         {
-            var _migratingSitesRaw = (from OrgSupplier in _ReportingEntity.tbOrgSupplier
+            var _migratingSitesRaw = (from OrgSupplier in _ReportingEntity.tbRPT_OrgSupplier
                                    where OrgSupplier.supplier == "Gpass"
                                       // Following line caused issues when ran against live. Error: LINQ to Entities does not recognize the method boolean startswith
                                       // && OrgSupplier.reportingSupplier.StartsWith("MIGRATING TO EMIS ON", true, System.Globalization.CultureInfo.CurrentCulture) == true
@@ -18,7 +18,7 @@ namespace ActivityMonitor.Repository
                                        
             Dictionary<string, DateTime> _migratingSites = new Dictionary<string, DateTime>();
 
-            foreach (tbOrgSupplier org in _migratingSitesRaw)
+            foreach (tbRPT_OrgSupplier org in _migratingSitesRaw)
             {
                 try
                 {

@@ -41,12 +41,12 @@ namespace ActivityMonitorTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON 01/01/2011"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON 01/01/2011"));
 
             _checkMigratingSites.UpdateMigratingSitesTable();
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 1);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 1);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, _organisation);
         }
 
         [TestMethod]
@@ -54,16 +54,16 @@ namespace ActivityMonitorTests
         {
             string _organisation = "1234";
 
-            // Site already in tbMigratingSites
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, DateTime.Today.AddDays(-5)));
-            // Date has changed in tbOrgSupplier.reportingSupplier field
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
+            // Site already in tbRPT_MigratingSites
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, DateTime.Today.AddDays(-5)));
+            // Date has changed in tbRPT_OrgSupplier.reportingSupplier field
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
 
             _checkMigratingSites.UpdateMigratingSitesTable();
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 1);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, _organisation);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 1);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today);
         }
 
         [TestMethod]
@@ -71,16 +71,16 @@ namespace ActivityMonitorTests
         {
             string _organisation = "1234";
 
-            // Site already in tbMigratingSites
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, DateTime.Today.AddDays(-5)));
-            // Date has changed in tbOrgSupplier.reportingSupplier field
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-5)));
+            // Site already in tbRPT_MigratingSites
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, DateTime.Today.AddDays(-5)));
+            // Date has changed in tbRPT_OrgSupplier.reportingSupplier field
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-5)));
 
             _checkMigratingSites.UpdateMigratingSitesTable();
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 1);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, _organisation);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today.AddDays(-5));
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 1);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).PlannedMigrationDate, DateTime.Today.AddDays(-5));
         }
 
         [TestMethod]
@@ -89,14 +89,14 @@ namespace ActivityMonitorTests
             string _organisation = "1234";
 
             // Set current supplier
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "Gpass"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "Gpass"));
             // Set future supplier
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, "originalSupplier", "EMIS"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, "originalSupplier", "EMIS"));
 
             _checkMigratingSites.CheckForCompletedMigrations();
 
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 1);
-            Assert.AreEqual(_mockContext.tbMigratingSites.ElementAt(0).Organisation, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 1);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.ElementAt(0).Organisation, _organisation);
         }
 
         [TestMethod]
@@ -105,17 +105,17 @@ namespace ActivityMonitorTests
             string _organisation = "1234";
 
             // Set current supplier
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "EMIS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow(_organisation, "EMIS"));
             // Set future supplier
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, "GPASS", "EMIS"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow(_organisation, "GPASS", "EMIS"));
 
             _checkMigratingSites.CheckForCompletedMigrations();
 
-            _log.Verify(log => log.Add("INFO: Record removed from tbMigratingSites.\n"
+            _log.Verify(log => log.Add("INFO: Record removed from tbRPT_MigratingSites.\n"
                              + " New supplier detected for site: " + _organisation
                              + " Original Supplier: " + "GPASS"
                              + " New Supplier: " + "EMIS"));
-            Assert.AreEqual(_mockContext.tbMigratingSites.Count(), 0);
+            Assert.AreEqual(_mockContext.tbRPT_MigratingSites.Count(), 0);
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace ActivityMonitorTests
         [TestMethod]
         public void CheckMigratingSites_SendNotificationEmailsForLateMigrations_NoContactsForSite_LogUpdatedNoEmailsSent()
         {
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
 
             _checkMigratingSites.SendNotificationEmailsForLateMigrations();
 
@@ -142,13 +142,13 @@ namespace ActivityMonitorTests
         public void CheckMigratingSites_SendNotificationEmailsForLateMigrations_NoContactsForOneSiteButOtherSitesAreOK_LogUpdatedCorrectEmailSent()
         {
             // This site has an expired migration and has not been notified but has no contacts
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
             // This site has an expired migration and has not been notified and has contacts
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("2345", DateTime.Today.AddDays(-5), null));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "INPS"));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board"));
-            _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
-            _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("2345", DateTime.Today.AddDays(-5), null));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "INPS"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("2345", "Highland Health Board"));
+            _mockContext.tbRPT_HealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
+            _mockContext.tbRPT_SupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
 
             _checkMigratingSites.SendNotificationEmailsForLateMigrations();
 
@@ -164,11 +164,11 @@ namespace ActivityMonitorTests
         [TestMethod]
         public void CheckMigratingSites_SendNotificationEmailsForLateMigrations_SiteHasExpiredMigrationAndNoNotificationEmailHasBeenSent_LogUpdatedCorrectEmailSent()
         {
-            _mockContext.tbMigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
-            _mockContext.tbOrganisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board"));
-            _mockContext.tbHealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
-            _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
+            _mockContext.tbRPT_MigratingSites.AddObject(TestHelpers.PopulateTable.AddMigratingSitesDataRow("1234", DateTime.Today.AddDays(-5), null));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
+            _mockContext.tbEPS_Organisation.AddObject(TestHelpers.PopulateTable.AddOrganisationDataRow("1234", "Highland Health Board"));
+            _mockContext.tbRPT_HealthBoardContacts.AddObject(TestHelpers.PopulateTable.AddHealthBoardContactsDataRow(1, "Highland Health Board", "high@land.com"));
+            _mockContext.tbRPT_SupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "test@INPS.com"));
 
             _checkMigratingSites.SendNotificationEmailsForLateMigrations();
 

@@ -38,8 +38,8 @@ namespace ActivityMonitorTests.RepositoryTests
         public void GetMigratingGPASSSites_NoSitesMatchCriteria_ReturnEmptyDictionary()
         {
             // Add sites that do not match the expected criteria: (supplier == "Gpass" && reportingSupplier startsWith "MIGRATING TO EMIS ON")
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO GPASS ON 01/01/2011"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "EMIS", "MIGRATING TO EMIS ON 01/01/2011"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO GPASS ON 01/01/2011"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "EMIS", "MIGRATING TO EMIS ON 01/01/2011"));
 
             Dictionary<String, DateTime> _sites = new Dictionary<string, DateTime>();
 
@@ -51,7 +51,7 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetMigratingGPASSSites_SingleSiteMatchesCriteria_ReturnsCorrectDetails()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
 
             Dictionary<String, DateTime> _sites = new Dictionary<string, DateTime>();
 
@@ -64,9 +64,9 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetMigratingGPASSSites_MultipleSitesMatchCriteria_ReturnsCorrectDetails()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-5)));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-10)));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-5)));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-10)));
 
             Dictionary<String, DateTime> _sites = new Dictionary<string, DateTime>();
 
@@ -81,7 +81,7 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetMigratingGPASSSites_SingleSiteMatchesCriteria_InvalidDateInReportingSupplierText_LogUpdated()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON DATETIME_PARSING_ERROR"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON DATETIME_PARSING_ERROR"));
 
             Dictionary<String, DateTime> _sites = new Dictionary<string, DateTime>();
 
@@ -94,9 +94,9 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetMigratingGPASSSites_MultipleSitesMatchCriteria_InvalidDateInReportingSupplierTextForOneSite_OnlyValidSitesReturned()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "epoc", "Gpass", "MIGRATING TO EMIS ON DATETIME_PARSING_ERROR"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-10)));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "epoc", "Gpass", "MIGRATING TO EMIS ON DATETIME_PARSING_ERROR"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "epoc", "Gpass", "MIGRATING TO EMIS ON " + DateTime.Today.AddDays(-10)));
 
             Dictionary<String, DateTime> _sites = new Dictionary<string, DateTime>();
 

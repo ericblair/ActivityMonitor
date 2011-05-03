@@ -23,9 +23,9 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
 
-            _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "testINPS1@test.com"));
-            _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(2, "GPASS", "testGPASS1@test.co.uk"));
-            _mockContext.tbSupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "testINPS2@test.com"));
+            _mockContext.tbRPT_SupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "testINPS1@test.com"));
+            _mockContext.tbRPT_SupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(2, "GPASS", "testGPASS1@test.co.uk"));
+            _mockContext.tbRPT_SupplierContacts.AddObject(TestHelpers.PopulateTable.AddSupplierContactsDataRow(1, "INPS", "testINPS2@test.com"));
         }
 
         [TestMethod()]
@@ -56,7 +56,7 @@ namespace ActivityMonitorTests.RepositoryTests
             List<String> _returnedContacts = _repository.GetSupplierContactsEmailAddresses(_supplier);
 
             Assert.AreEqual(_returnedContacts.Count, 0);
-            _log.Verify(log => log.Add("WARNING: No contacts could be found in tbSupplierContacts matching value: " + _supplier));
+            _log.Verify(log => log.Add("WARNING: No contacts could be found in tbRPT_SupplierContacts matching value: " + _supplier));
         }
     }
 }

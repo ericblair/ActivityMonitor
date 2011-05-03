@@ -31,7 +31,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             string _latestAMSMessage = _repository.GetDateTimeOfLatestAMSMessage(_organisation);
 
-            _log.Verify(log => log.Add("No latest AMS message could be found in tbMsg for site: test"));
+            _log.Verify(log => log.Add("No latest AMS message could be found in tbEPS_Msg for site: test"));
 
             Assert.AreEqual(_latestAMSMessage, "(No AMS Messages found)");
         }
@@ -43,7 +43,7 @@ namespace ActivityMonitorTests.RepositoryTests
 
             DateTime _messageDateTime = new DateTime(2011, 01, 01, 01, 01, 01);
 
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", _messageDateTime, 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", _messageDateTime, 21));
 
             string _latestAMSMessage = _repository.GetDateTimeOfLatestAMSMessage(_organisation);
 
@@ -58,8 +58,8 @@ namespace ActivityMonitorTests.RepositoryTests
             DateTime _oldMessageDateTime = new DateTime(2011, 01, 01, 01, 01, 01);
             DateTime _newMessageDateTime = new DateTime(2011, 02, 02, 02, 02, 02);
 
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", _oldMessageDateTime, 21));
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(2, "1234", _newMessageDateTime, 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", _oldMessageDateTime, 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(2, "1234", _newMessageDateTime, 21));
 
             string _latestAMSMessage = _repository.GetDateTimeOfLatestAMSMessage(_organisation);
 

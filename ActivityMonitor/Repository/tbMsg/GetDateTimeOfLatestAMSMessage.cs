@@ -11,7 +11,7 @@ namespace ActivityMonitor.Repository
         {
             DateTime? _latestMsg = new DateTime?();
 
-            _latestMsg = (from Msg in _ReportingEntity.tbMsg
+            _latestMsg = (from Msg in _ReportingEntity.tbEPS_Msg
                           where Msg.msgTxSenderId == organisation
                           && Msg.msgTypeRid == 21
                           | Msg.msgTypeRid == 22
@@ -22,7 +22,7 @@ namespace ActivityMonitor.Repository
 
             if (_latestMsg == DateTime.MinValue)
             {
-                _log.Add("No latest AMS message could be found in tbMsg for site: " + organisation);
+                _log.Add("No latest AMS message could be found in tbEPS_Msg for site: " + organisation);
                 return "(No AMS Messages found)";
             }
 

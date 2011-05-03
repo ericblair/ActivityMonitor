@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public DateTime? GetOrganisationMigrationDate(string organisation)
         {
-            var _migrationDate = (from x in _ReportingEntity.tbMigratingSites
+            var _migrationDate = (from x in _ReportingEntity.tbRPT_MigratingSites
                                   where x.Organisation == organisation
                                   select x.PlannedMigrationDate)
                                   .FirstOrDefault();

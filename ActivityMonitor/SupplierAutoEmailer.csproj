@@ -122,28 +122,28 @@
     <Compile Include="Repository\tbMigratingSites\SetOrganisationMigrationDate.cs" />
     <Compile Include="Repository\tbInactiveSites\UpdateInactiveOrganisation.cs" />
     <Compile Include="SMTPWrapper.cs" />
-    <Compile Include="tbDailyActivityGP.cs">
+    <Compile Include="tbEPS_Msg.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbHealthBoardContacts.cs">
+    <Compile Include="tbEPS_Organisation.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbInactiveSites.cs">
+    <Compile Include="tbRPT_DailyActivityGP.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbMigratingSites.cs">
+    <Compile Include="tbRPT_HealthBoardContacts.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbMsg.cs">
+    <Compile Include="tbRPT_InactiveSites.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbOrganisation.cs">
+    <Compile Include="tbRPT_MigratingSites.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbOrgSupplier.cs">
+    <Compile Include="tbRPT_OrgSupplier.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbSupplierContacts.cs">
+    <Compile Include="tbRPT_SupplierContacts.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
     <Compile Include="UpdateActivityData.cs" />

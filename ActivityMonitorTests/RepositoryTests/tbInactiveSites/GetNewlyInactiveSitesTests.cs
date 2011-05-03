@@ -23,7 +23,7 @@ namespace ActivityMonitorTests.RepositoryTests
             _log = new Mock<ILogger>();
             _repository = new ActivityMonitor.Repository.Repository(_log.Object, _mockContext);
             
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", DateTime.Today.AddDays(-3), DateTime.Today.AddDays(-3), DateTime.Today.AddDays(-1)));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("1234", DateTime.Today.AddDays(-3), DateTime.Today.AddDays(-3), DateTime.Today.AddDays(-1)));
         }
 
         [TestMethod()]
@@ -38,7 +38,7 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetNewlyInactiveSites_SingleNewlyInactiveSiteExists_CorrectDataReturned()
         {
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
             
             List<String> _newlyInactiveSites = _repository.GetNewlyInactiveSites();
 
@@ -49,8 +49,8 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetNewlyInactiveSites_MultipleNewlyInactiveSiteExists_CorrectDataReturned()
         {
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
-            _mockContext.tbInactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3456", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("2345", null, DateTime.Today, null));
+            _mockContext.tbRPT_InactiveSites.AddObject(TestHelpers.PopulateTable.AddInactiveSitesDataRow("3456", null, DateTime.Today, null));
             
             List<String> _newlyInactiveSites = _repository.GetNewlyInactiveSites();
 

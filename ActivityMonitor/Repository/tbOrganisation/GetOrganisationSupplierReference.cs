@@ -11,7 +11,7 @@ namespace ActivityMonitor.Repository
         {
             string _supplierRef = null;
 
-            _supplierRef = (from Org in _ReportingEntity.tbOrganisation
+            _supplierRef = (from Org in _ReportingEntity.tbEPS_Organisation
                             where Org.id == organisation
                             select Org.supplierReference)
                             .FirstOrDefault();

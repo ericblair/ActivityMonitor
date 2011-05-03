@@ -15,17 +15,155 @@ using System.Collections.Specialized;
 
 namespace ActivityMonitor
 {
-    public partial class tbOrgSupplier
+    public partial class tbEPS_Organisation
     {
         #region Primitive Properties
     
-        public virtual string org
+        public virtual long rid
         {
             get;
             set;
         }
     
-        public virtual string epoc
+        public virtual string id
+        {
+            get;
+            set;
+        }
+    
+        public virtual long organisationTypeRid
+        {
+            get;
+            set;
+        }
+    
+        public virtual string shortName
+        {
+            get;
+            set;
+        }
+    
+        public virtual string name
+        {
+            get;
+            set;
+        }
+    
+        public virtual string healthBoardName
+        {
+            get;
+            set;
+        }
+    
+        public virtual string alternateName
+        {
+            get;
+            set;
+        }
+    
+        public virtual bool prsRefreshEnabled
+        {
+            get;
+            set;
+        }
+    
+        public virtual bool epsServicesEnabled
+        {
+            get;
+            set;
+        }
+    
+        public virtual System.DateTime startDate
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<System.DateTime> endDate
+        {
+            get;
+            set;
+        }
+    
+        public virtual bool archived
+        {
+            get;
+            set;
+        }
+    
+        public virtual System.DateTime auditCreatedOn
+        {
+            get;
+            set;
+        }
+    
+        public virtual string auditCreatedBy
+        {
+            get;
+            set;
+        }
+    
+        public virtual Nullable<System.DateTime> auditUpdatedOn
+        {
+            get;
+            set;
+        }
+    
+        public virtual string auditUpdatedBy
+        {
+            get;
+            set;
+        }
+    
+        public virtual string address1
+        {
+            get;
+            set;
+        }
+    
+        public virtual string address2
+        {
+            get;
+            set;
+        }
+    
+        public virtual string address3
+        {
+            get;
+            set;
+        }
+    
+        public virtual string address4
+        {
+            get;
+            set;
+        }
+    
+        public virtual string postCode
+        {
+            get;
+            set;
+        }
+    
+        public virtual string country
+        {
+            get;
+            set;
+        }
+    
+        public virtual string telephone
+        {
+            get;
+            set;
+        }
+    
+        public virtual string fax
+        {
+            get;
+            set;
+        }
+    
+        public virtual string email
         {
             get;
             set;
@@ -37,115 +175,19 @@ namespace ActivityMonitor
             set;
         }
     
-        public virtual string product
+        public virtual string supplierReference
         {
             get;
             set;
         }
     
-        public virtual string version
+        public virtual Nullable<bool> dispensing
         {
             get;
             set;
         }
     
-        public virtual Nullable<System.DateTime> latestMsg
-        {
-            get;
-            set;
-        }
-    
-        public virtual string X509SerialNumber
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<System.DateTime> downloaddate
-        {
-            get;
-            set;
-        }
-    
-        public virtual string AuthCertSerialNumber
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<System.DateTime> AuthCertDownloadDate
-        {
-            get;
-            set;
-        }
-    
-        public virtual string ipAddress
-        {
-            get;
-            set;
-        }
-    
-        public virtual string reportingSupplier
-        {
-            get;
-            set;
-        }
-    
-        public virtual bool disp
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<bool> extended
-        {
-            get;
-            set;
-        }
-    
-        public virtual string previousSupplier
-        {
-            get;
-            set;
-        }
-    
-        public virtual string previousProduct
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<bool> CmsBetaSite
-        {
-            get;
-            set;
-        }
-    
-        public virtual string EpocCertBy
-        {
-            get;
-            set;
-        }
-    
-        public virtual string ResignCertBy
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<System.DateTime> latestAMS
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<System.DateTime> latestCMS
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<System.DateTime> latestMAS
+        public virtual string notes
         {
             get;
             set;

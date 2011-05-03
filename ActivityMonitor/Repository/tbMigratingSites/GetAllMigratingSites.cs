@@ -9,7 +9,7 @@ namespace ActivityMonitor.Repository
     {
         public List<String> GetAllMigratingSites()
         {
-            var _migratingSites = from x in _ReportingEntity.tbMigratingSites
+            var _migratingSites = from x in _ReportingEntity.tbRPT_MigratingSites
                                   orderby x.Organisation      // Added this to assist testing
                                   select x.Organisation;
 

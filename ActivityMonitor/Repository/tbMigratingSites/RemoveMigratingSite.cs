@@ -9,14 +9,14 @@ namespace ActivityMonitor.Repository
     {
         public void RemoveMigratingSite(string organisation)
         {
-            var _organisation = (from x in _ReportingEntity.tbMigratingSites
+            var _organisation = (from x in _ReportingEntity.tbRPT_MigratingSites
                                  where x.Organisation == organisation
                                  select x)
                                      .FirstOrDefault();
 
             if (_organisation == null)
             {
-                _log.Add("ERROR: Tried to remove non-existant organisation from tbMigratingSites. Org: " + organisation);
+                _log.Add("ERROR: Tried to remove non-existant organisation from tbRPT_MigratingSites. Org: " + organisation);
                 return;
             }
 

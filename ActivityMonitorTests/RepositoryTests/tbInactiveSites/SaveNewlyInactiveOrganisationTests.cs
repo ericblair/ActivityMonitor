@@ -53,7 +53,7 @@ namespace ActivityMonitorTests.RepositoryTests
         //    }
         //    catch (Exception)
         //    {
-        //        _log.Verify(log => log.Add("ERROR: Occured while trying to save new organisation to tbInactiveSites. Org: 1234"));
+        //        _log.Verify(log => log.Add("ERROR: Occured while trying to save new organisation to tbRPT_InactiveSites. Org: 1234"));
         //    }
         //}
 
@@ -64,11 +64,11 @@ namespace ActivityMonitorTests.RepositoryTests
 
             _repository.SaveNewlyInactiveOrganisation(_organisation);
 
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).Org, _organisation);
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).DateEmailSent, null);
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).DateCreated, DateTime.Today);
-            Assert.AreEqual(_mockContext.tbInactiveSites.ElementAt(0).DateUpdated, null);
-            _log.Verify(log => log.Add("INFO: New Org Added to tbInactiveSites : " + _organisation));
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).Org, _organisation);
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).DateEmailSent, null);
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).DateCreated, DateTime.Today);
+            Assert.AreEqual(_mockContext.tbRPT_InactiveSites.ElementAt(0).DateUpdated, null);
+            _log.Verify(log => log.Add("INFO: New Org Added to tbRPT_InactiveSites : " + _organisation));
         }
     }
 }

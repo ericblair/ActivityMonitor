@@ -32,13 +32,13 @@ namespace ActivityMonitorTests.RepositoryTests
             List<String> _suppliers = _repository.GetAllSuppliers();
 
             Assert.AreEqual(_suppliers.Count, 0);
-            _log.Verify(log => log.Add("WARNING: No Suppliers found in tbOrgSupplier"));
+            _log.Verify(log => log.Add("WARNING: No Suppliers found in tbRPT_OrgSupplier"));
         }
 
         [TestMethod]
         public void GetAllSuppliers_SingleOrgSingleSupplierFound_CorrectDetailsReturned()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS")); 
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS")); 
             
             List<String> _suppliers = _repository.GetAllSuppliers();
 
@@ -49,8 +49,8 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetAllSuppliers_TwoOrgsTwoSuppliers_CorrectDetailsReturned()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS")); 
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS")); 
 
             List<String> _suppliers = _repository.GetAllSuppliers();
 
@@ -62,9 +62,9 @@ namespace ActivityMonitorTests.RepositoryTests
         [TestMethod]
         public void GetAllSuppliers_ThreeOrgsTwoSuppliers_CorrectDetailsReturned()
         {
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS"));
-            _mockContext.tbOrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "INPS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("1234", "INPS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("2345", "EMIS"));
+            _mockContext.tbRPT_OrgSupplier.AddObject(TestHelpers.PopulateTable.AddOrgSupplierDataRow("3456", "INPS"));
 
             List<String> _suppliers = _repository.GetAllSuppliers();
 

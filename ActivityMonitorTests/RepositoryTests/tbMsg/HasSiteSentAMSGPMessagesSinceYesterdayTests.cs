@@ -39,7 +39,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today.AddDays(-3), 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today.AddDays(-3), 21));
 
             bool _result = _repository.HasSiteSentAMSGPMessagesSinceYesterday(_organisation);
 
@@ -51,7 +51,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today.AddDays(-1), 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today.AddDays(-1), 21));
 
             bool _result = _repository.HasSiteSentAMSGPMessagesSinceYesterday(_organisation);
 
@@ -63,7 +63,7 @@ namespace ActivityMonitorTests.RepositoryTests
         {
             string _organisation = "1234";
 
-            _mockContext.tbMsg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
+            _mockContext.tbEPS_Msg.AddObject(TestHelpers.PopulateTable.AddtbMsgDataRow(1, "1234", DateTime.Today, 21));
 
             bool _result = _repository.HasSiteSentAMSGPMessagesSinceYesterday(_organisation);
 

@@ -10,14 +10,14 @@ namespace ActivityMonitor.Repository
         // Updates known inactive site 
         public void UpdateInactiveOrganisation(string organisation)
         {
-            var _organisation = (from InactiveSites in _ReportingEntity.tbInactiveSites
+            var _organisation = (from InactiveSites in _ReportingEntity.tbRPT_InactiveSites
                                  where InactiveSites.Org == organisation
                                  select InactiveSites)
                                  .FirstOrDefault();
 
             if (_organisation == null)
             {
-                _log.Add("ERROR: App attempted to update organisation not present in tbInactiveSites. Org: " + organisation);
+                _log.Add("ERROR: App attempted to update organisation not present in tbRPT_InactiveSites. Org: " + organisation);
                 return;
             }
 
