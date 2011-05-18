@@ -143,6 +143,9 @@
     <Compile Include="tbRPT_OrgSupplier.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbRPT_PRSErrorMonitor.cs">
+      <DependentUpon>ReportingMock.tt</DependentUpon>
+    </Compile>
     <Compile Include="tbRPT_SupplierContacts.cs">
       <DependentUpon>ReportingMock.tt</DependentUpon>
     </Compile>

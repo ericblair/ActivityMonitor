@@ -63,9 +63,13 @@ namespace ActivityMonitor
             get { return _tbRPT_SupplierContacts  ?? (_tbRPT_SupplierContacts = new MockObjectSet<tbRPT_SupplierContacts>()); }
         }
         private IObjectSet<tbRPT_SupplierContacts> _tbRPT_SupplierContacts;
+        public IObjectSet<tbRPT_PRSErrorMonitor> tbRPT_PRSErrorMonitor
+        {
+            get { return _tbRPT_PRSErrorMonitor  ?? (_tbRPT_PRSErrorMonitor = new MockObjectSet<tbRPT_PRSErrorMonitor>()); }
+        }
+        private IObjectSet<tbRPT_PRSErrorMonitor> _tbRPT_PRSErrorMonitor;
 
-
-        public int SaveChanges() { return 0; }   // Had to implement this myself, not sure if it will work....
+        public int SaveChanges() { return 0; }   
         public void DeleteObject(object entity)
         {
             // Grab the name of the calling method and action as appropriate

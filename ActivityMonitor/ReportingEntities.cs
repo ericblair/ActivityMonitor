@@ -97,6 +97,12 @@ namespace ActivityMonitor
             get { return _tbRPT_SupplierContacts ?? (_tbRPT_SupplierContacts = CreateObjectSet<tbRPT_SupplierContacts>("tbRPT_SupplierContacts")); }
         }
         private ObjectSet<tbRPT_SupplierContacts> _tbRPT_SupplierContacts;
+    
+        public IObjectSet<tbRPT_PRSErrorMonitor> tbRPT_PRSErrorMonitor
+        {
+            get { return _tbRPT_PRSErrorMonitor ?? (_tbRPT_PRSErrorMonitor = CreateObjectSet<tbRPT_PRSErrorMonitor>("tbRPT_PRSErrorMonitor")); }
+        }
+        private ObjectSet<tbRPT_PRSErrorMonitor> _tbRPT_PRSErrorMonitor;
 
         #endregion
     }

@@ -29,6 +29,7 @@ namespace ActivityMonitor
         IObjectSet<tbRPT_MigratingSites> tbRPT_MigratingSites { get; }
         IObjectSet<tbRPT_OrgSupplier> tbRPT_OrgSupplier { get; }
         IObjectSet<tbRPT_SupplierContacts> tbRPT_SupplierContacts { get; }
+        IObjectSet<tbRPT_PRSErrorMonitor> tbRPT_PRSErrorMonitor { get; }
 
         // Added the following myself
         int SaveChanges();

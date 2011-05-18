@@ -51,6 +51,7 @@
           <EntitySet Name="tbRPT_InactiveSites" EntityType="ReportingModel.Store.tbRPT_InactiveSites" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbRPT_MigratingSites" EntityType="ReportingModel.Store.tbRPT_MigratingSites" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbRPT_OrgSupplier" EntityType="ReportingModel.Store.tbRPT_OrgSupplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tbRPT_PRSErrorMonitor" EntityType="ReportingModel.Store.tbRPT_PRSErrorMonitor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tbRPT_SupplierContacts" EntityType="ReportingModel.Store.tbRPT_SupplierContacts" store:Type="Tables" store:Schema="dbo" store:Name="tbRPT_SupplierContacts">
             <DefiningQuery>SELECT 
       [tbRPT_SupplierContacts].[Rid] AS [Rid], 
@@ -156,15 +157,15 @@
           </Key>
           <Property Name="org" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="date" Type="smalldatetime" Nullable="false" />
-          <Property Name="amsPrescriptions" Type="smallint" />
-          <Property Name="amsCancellations" Type="smallint" />
-          <Property Name="amsAmendments" Type="smallint" />
-          <Property Name="cmsPrescriptions" Type="smallint" />
-          <Property Name="cmsCancellations" Type="smallint" />
-          <Property Name="cmsUpdatesRequests" Type="smallint" />
-          <Property Name="cmsTreatmentUpdates" Type="smallint" />
-          <Property Name="cmsComplianceUpdates" Type="smallint" />
-          <Property Name="gpRegistrationUpdatesRequests" Type="smallint" />
+          <Property Name="amsPrescriptions" Type="int" />
+          <Property Name="amsCancellations" Type="int" />
+          <Property Name="amsAmendments" Type="int" />
+          <Property Name="cmsPrescriptions" Type="int" />
+          <Property Name="cmsCancellations" Type="int" />
+          <Property Name="cmsUpdatesRequests" Type="int" />
+          <Property Name="cmsTreatmentUpdates" Type="int" />
+          <Property Name="cmsComplianceUpdates" Type="int" />
+          <Property Name="gpRegistrationUpdatesRequests" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'Reporting.dbo.tbRPT_HealthBoardContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -226,6 +227,14 @@
           <Property Name="latestCMS" Type="datetime" />
           <Property Name="latestMAS" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbRPT_PRSErrorMonitor">
+          <Key>
+            <PropertyRef Name="DateTime" />
+          </Key>
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="PRSUnavailableErrors" Type="int" Nullable="false" />
+          <Property Name="PRSTimeoutErrors" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'Reporting.dbo.tbRPT_SupplierContacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -252,6 +261,7 @@
           <EntitySet Name="tbRPT_MigratingSites" EntityType="ReportingModel.tbRPT_MigratingSites" />
           <EntitySet Name="tbRPT_OrgSupplier" EntityType="ReportingModel.tbRPT_OrgSupplier" />
           <EntitySet Name="tbRPT_SupplierContacts" EntityType="ReportingModel.tbRPT_SupplierContacts" />
+          <EntitySet Name="tbRPT_PRSErrorMonitor" EntityType="ReportingModel.tbRPT_PRSErrorMonitor" />
         </EntityContainer>
         <EntityType Name="tbRPT_DailyActivityGP">
           <Key>
@@ -423,6 +433,14 @@
           <Property Type="Int32" Name="Rid" Nullable="false" />
           <Property Type="String" Name="Supplier" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Contact" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbRPT_PRSErrorMonitor">
+          <Key>
+            <PropertyRef Name="DateTime" />
+          </Key>
+          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+          <Property Type="Int32" Name="PRSUnavailableErrors" Nullable="false" />
+          <Property Type="Int32" Name="PRSTimeoutErrors" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -596,6 +614,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbRPT_PRSErrorMonitor">
+            <EntityTypeMapping TypeName="ReportingModel.tbRPT_PRSErrorMonitor">
+              <MappingFragment StoreEntitySet="tbRPT_PRSErrorMonitor">
+                <ScalarProperty Name="PRSTimeoutErrors" ColumnName="PRSTimeoutErrors" />
+                <ScalarProperty Name="PRSUnavailableErrors" ColumnName="PRSUnavailableErrors" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -626,6 +653,7 @@
         <EntityTypeShape EntityType="ReportingModel.tbRPT_MigratingSites" Width="1.5" PointX="4.25" PointY="0.5" Height="1.9210009765625031" />
         <EntityTypeShape EntityType="ReportingModel.tbRPT_OrgSupplier" Width="1.5" PointX="6.125" PointY="0.5" Height="4.5505582682291674" />
         <EntityTypeShape EntityType="ReportingModel.tbRPT_SupplierContacts" Width="1.5" PointX="2.375" PointY="2.375" Height="1.4279589843750031" />
+        <EntityTypeShape EntityType="ReportingModel.tbRPT_PRSErrorMonitor" Width="1.5" PointX="0.75" PointY="4.75" Height="1.4279589843749996" />
       </Diagram>
     </Diagrams>
   </Designer>
