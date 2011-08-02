@@ -32,6 +32,34 @@ namespace ActivityMonitor
 
         #endregion
 
+        public Dictionary<String, Int16> GetCountOfInactiveSitesPerHealthboard()
+        {
+            List<String> _newlyInactiveSites = _repository.GetNewlyInactiveSites();
+
+            Dictionary<String, Int16> inactiveSitesPerHealthboard = new Dictionary<string, short>();
+
+            if (_newlyInactiveSites.Count == 0)
+            {
+                _log.Add("No newly inactive sites");
+                return inactiveSitesPerHealthboard;
+                // Don't need to worry about stopping program execution here as 
+                // it's caught in SendInactiveReports()
+            }
+
+            foreach (string org in _newlyInactiveSites)
+            {
+                string _healthboard = _repository.GetOrganisationHealthBoard(org);
+
+                if (inactiveSitesPerHealthboard.ContainsKey(_healthboard))
+                    inactiveSitesPerHealthboard[_healthboard]++;
+                else
+                    inactiveSitesPerHealthboard.Add(_healthboard, 1);
+            }
+
+            return inactiveSitesPerHealthboard;
+        }
+
+        // Don't think this is still used!
         public bool NumberOfInactiveSitesPerHealthBoardLimitExceeded()
         {
             List<String> _newlyInactiveSites = _repository.GetNewlyInactiveSites();
@@ -103,6 +131,48 @@ namespace ActivityMonitor
                 catch (Exception ex)
                 {
                     _log.Add("ERROR: Unable to send inactive report email for organisation: " + _organisation + 
+                        ". Error message: " + ex.Message);
+                    continue;
+                }
+            }
+        }
+
+        public void SendInactiveReports(List<String> healthboardsWithTooManyInactiveSitesToReport)
+        {
+            List<String> _organisations = GetAllInactiveSites();
+
+            if (_organisations.Count == 0)
+            {
+                // There are no new inactive sites
+                _log.Add("INFO: There are no newly inactive sites to send reports to.");
+                return;
+            }
+
+            foreach (string _organisation in _organisations)
+            {
+                // Don't send email if too many sites are inactive for this particular healthboard
+                string organisationHealthboard = _repository.GetOrganisationHealthBoard(_organisation);
+                if (healthboardsWithTooManyInactiveSitesToReport.Contains(organisationHealthboard))
+                    continue;
+
+                List<String> _supplierContacts = _repository.GetSupplierContactsEmailAddresses(_repository.GetOrganisationSupplier(_organisation));
+                List<String> _healthBoardContacts = _repository.GetHealthBoardContactsEmailAddresses(organisationHealthboard);
+
+                if (_supplierContacts.Count == 0 && _healthBoardContacts.Count == 0)
+                {
+                    _log.Add("WARNING: No contacts for organisation: " + _organisation + " could be found.");
+                    continue;
+                }
+                try
+                {
+                    _email.Send(_supplierContacts, _healthBoardContacts, _organisation);
+
+                    RecordOrganisationInactiveReportHasBeenSent(_organisation);
+                    _log.Add("Inactive email report was sent for site: " + _organisation);
+                }
+                catch (Exception ex)
+                {
+                    _log.Add("ERROR: Unable to send inactive report email for organisation: " + _organisation +
                         ". Error message: " + ex.Message);
                     continue;
                 }

@@ -57,11 +57,27 @@ namespace ActivityMonitor
             // if number of inactive sites per healthboard limit is to be observed
             if (_applyHealthBoardInactiveSiteLimit == true)
             {
-                if (reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded() == false)
+                //if (reportInactiveSites.NumberOfInactiveSitesPerHealthBoardLimitExceeded() == false)
+                //{
+                //    // Send inactive reports
+                //    reportInactiveSites.SendInactiveReports();
+                //}
+                Dictionary<String, Int16> countOfInactiveSitesPerHealthboard = reportInactiveSites.GetCountOfInactiveSitesPerHealthboard();
+
+                List<String> healthboardsWithTooManyInactiveSitesToReport = new List<string>();
+
+                int inactiveSitesLimitPerHealthboard = 15;  // Config file!!!
+
+                foreach (KeyValuePair<String, Int16> value in countOfInactiveSitesPerHealthboard)
                 {
-                    // Send inactive reports
-                    reportInactiveSites.SendInactiveReports();
+                    if (value.Value >= inactiveSitesLimitPerHealthboard)
+                    {
+                        healthboardsWithTooManyInactiveSitesToReport.Add(value.Key);
+                        _log.Add("WARNING: Healthboard limit exceeded for : " + value.Key + " : number of inactive sites: " + value.Value.ToString());
+                    }
                 }
+
+                reportInactiveSites.SendInactiveReports(healthboardsWithTooManyInactiveSitesToReport);
             }
             else   // Ignore limit - send inactive email reports regardless of how many inactive sites there are
             {
