@@ -42,13 +42,6 @@ namespace ActivityMonitor
         /// </summary>
         public void RunCheck()
         {
-            // Check running tool won't issue inactive reports based on weekend activity
-            if (RunningCheckWillPickUpWeekendActivity() == true)
-            {
-                _log.Add("Running app today would pick up weekend activity. Run aborted.");
-                return;
-            }
-
             // Check that tbDailyActivityGP has been updated 
             UpdateActivityData updateActivityData = new UpdateActivityData(_repository, _log);
             if (updateActivityData.CheckActivityDataHasBeenUpdated() == false)

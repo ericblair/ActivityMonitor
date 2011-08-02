@@ -57,7 +57,7 @@ namespace ActivityMonitor
             }
 
             bool _limitExceeded = false;
-            int _limit = 10;    // Move this value to config file
+            int _limit = 15;    // Move this value to config file
 
             foreach (KeyValuePair<String, Int16> value in _healthBoardCount)
             {

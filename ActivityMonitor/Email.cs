@@ -187,6 +187,15 @@ namespace ActivityMonitor
 
                 _subject = "Transmission Fault in ePharmacy CDB" + _supplierRef + " (OrgID " + organisation.Trim() + ")";
             }
+            else if (_supplier == "INPS")
+            {
+                string _supplierRef = _repository.GetOrganisationSupplierReference(organisation);
+
+                if (_supplierRef == null)
+                    throw new Exception("No Supplier Reference could be found to create subject for INPS inactive report email.");
+
+                _subject = "eAMS Offline - INPS Reference " + _supplierRef + " (OrgID " + organisation.Trim() + ")";
+            }
             else
             {
                 _subject = "Inactive Organisation:" + organisation;
@@ -207,6 +216,17 @@ namespace ActivityMonitor
                         + _repository.GetOrganisationName(organisation) + ", CDB"
                         + _repository.GetOrganisationSupplierReference(organisation) + ", OrgID "
                         +  organisation.Trim()
+                        + ") is reported as being offline. The last AMS message was received on "
+                        + _repository.GetDateTimeOfLatestAMSMessage(organisation)
+                        + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
+            }
+            else if (_supplier == "INPS")
+            {
+                _body = "eAMS Offline\n\n"
+                        + "This site ("
+                        + _repository.GetOrganisationName(organisation) + ", INPS Reference "
+                        + _repository.GetOrganisationSupplierReference(organisation) + ", OrgID "
+                        + organisation.Trim()
                         + ") is reported as being offline. The last AMS message was received on "
                         + _repository.GetDateTimeOfLatestAMSMessage(organisation)
                         + "\n Please arrange for this to be investigated and brought back online as soon as possible.";
