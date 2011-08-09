@@ -44,11 +44,12 @@ namespace ActivityMonitor
         {
             // Check that tbDailyActivityGP has been updated 
             UpdateActivityData updateActivityData = new UpdateActivityData(_repository, _log);
-            if (updateActivityData.CheckActivityDataHasBeenUpdated() == false)
-            {
-                _log.Add("tbDailyActivityGP was not updated yesterday");
-                return;
-            }
+            // Removed following section as it no longer makes complete sense after enabling last active weekday checking
+            //if (updateActivityData.CheckActivityDataHasBeenUpdated() == false)
+            //{
+            //    _log.Add("tbDailyActivityGP was not updated yesterday");
+            //    return;
+            //}
 
             // Update tbRPT_InactiveSites
             updateActivityData.UpdateData();

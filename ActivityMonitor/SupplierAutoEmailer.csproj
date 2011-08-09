@@ -85,6 +85,7 @@
     <Compile Include="Repository\tbMigratingSites\AddNewMigratingSite.cs" />
     <Compile Include="Repository\tbMigratingSites\FindUnnotifiedSitesWithLateMigrations.cs" />
     <Compile Include="Repository\tbMigratingSites\GetAllMigratingSites.cs" />
+    <Compile Include="Repository\tbMsg\DidSiteSendAMSGPMessagesOnLastWeekDay.cs" />
     <Compile Include="Repository\tbMsg\GetDateTimeOfLatestAMSMessage.cs" />
     <Compile Include="Repository\tbOrgSupplier\GetAllSuppliers.cs" />
     <Compile Include="Repository\tbHealthBoardContacts\GetHealthBoardContactsEmailAddresses.cs" />

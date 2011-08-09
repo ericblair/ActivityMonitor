@@ -46,7 +46,10 @@ namespace ActivityMonitor
                 // Create a list of all organisations running selected supplier's software
                 List<String> _organisations = _repository.GetSupplierOrganisations(_supplier);
                 if (_organisations.Count == 0)
-                    throw new Exception("Unable to find any organisations to check for supplier: " + _supplier);
+                {
+                    _log.Add("Unable to find any organisations to check for supplier: " + _supplier);
+                    continue;
+                }
 
                 foreach (string _organisation in _organisations)
                 {
